@@ -542,19 +542,23 @@
     .bento-card {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
+      border-radius: 18px;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       position: relative;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .bento-card:hover {
-      border-color: var(--ampersand);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(17,17,17,0.05);
+      border-color: transparent;
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(17,17,17,0.10), 0 0 0 1px rgba(255,90,31,0.15);
+    }
+    .bento-card-content {
+      padding: 24px 28px 28px;
+      position: relative;
+      z-index: 2;
     }
     .bento-card h3 {
       font-family: var(--font-display);
@@ -568,10 +572,6 @@
       font-size: 0.85rem;
       line-height: 1.6;
     }
-    .bento-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
     .bento-1 { grid-column: span 7; grid-row: span 2; }
     .bento-2 { grid-column: span 5; }
     .bento-3 { grid-column: span 5; }
@@ -579,44 +579,386 @@
     .bento-5 { grid-column: span 4; }
     .bento-6 { grid-column: span 4; }
 
-    .bento-1 .bento-visual {
-      position: absolute;
-      top: 32px;
-      right: 32px;
-      width: 55%;
-      height: 60%;
-      border-radius: var(--radius-sm);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .bento-1 .ai-line {
+    /* --- Shared visual area with gradient backgrounds --- */
+    .bento-visual {
+      flex: 1;
+      min-height: 170px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
     }
-    .bento-1 .ai-dot {
-      width: 7px;
-      height: 7px;
+    .bento-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.55;
+      transition: opacity 0.4s ease;
+    }
+    .bento-card:hover .bento-visual::before { opacity: 0.75; }
+    .bento-1 .bento-visual::before { background: linear-gradient(135deg, #FFF0EB 0%, #FFE0D4 40%, #FFD0C0 100%); }
+    .bento-2 .bento-visual::before { background: linear-gradient(135deg, #FFF0EB 0%, #FFE4D9 50%, #FFDDD0 100%); }
+    .bento-3 .bento-visual::before { background: linear-gradient(135deg, #EBF0FF 0%, #DDE6FF 50%, #D0DDFF 100%); }
+    .bento-4 .bento-visual::before { background: linear-gradient(135deg, #F0EBF7 0%, #E8E0F4 50%, #DDD4EF 100%); }
+    .bento-5 .bento-visual::before { background: linear-gradient(135deg, #EBF5FF 0%, #DDEEFF 50%, #D0E8FF 100%); }
+    .bento-6 .bento-visual::before { background: linear-gradient(135deg, #EBFFF0 0%, #DDFCE4 50%, #D0F5DA 100%); }
+    .bento-1 .bento-visual { min-height: 300px; }
+
+    /* --- Glass icon base --- */
+    .glass-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+      position: relative;
+      z-index: 2;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-card:hover .glass-icon {
+      transform: scale(1.08) translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .glass-icon svg { width: 24px; height: 24px; }
+
+    /* --- Floating orbs for visual depth --- */
+    .bento-visual .float-orb {
+      position: absolute;
       border-radius: 50%;
-      background: var(--ampersand);
-      flex-shrink: 0;
+      filter: blur(40px);
+      opacity: 0.35;
+      z-index: 0;
+      transition: all 0.6s ease;
     }
-    .bento-1 .ai-bar {
-      height: 5px;
-      border-radius: 3px;
-      background: var(--border);
+    .bento-card:hover .float-orb { opacity: 0.5; }
+
+    /* --- Card 1: AI Summarization --- */
+    .ai-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 360px;
     }
-    .bento-big-number {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      font-weight: 400;
-      margin-bottom: 4px;
+    .ai-widget-doc {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-1:hover .ai-widget-doc { transform: translateY(-4px); }
+    .ai-widget-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .ai-widget-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--ampersand), #FF8A5C);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(255,90,31,0.3);
+    }
+    .ai-widget-icon svg { width: 16px; height: 16px; }
+    .ai-widget-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--ampersand);
     }
+    .ai-widget-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ai-wl {
+      height: 7px;
+      border-radius: 4px;
+      background: var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+    .ai-wl.active {
+      background: rgba(255, 90, 31, 0.12);
+    }
+    .ai-wl.active::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: linear-gradient(90deg, transparent, rgba(255,90,31,0.35), transparent);
+      animation: ai-shimmer 2.2s ease-in-out infinite;
+    }
+    .ai-wl:nth-child(2).active::after { animation-delay: 0.25s; }
+    .ai-wl:nth-child(5).active::after { animation-delay: 0.5s; }
+    @keyframes ai-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .ai-widget-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--ampersand);
+      animation: float-badge 3s ease-in-out infinite;
+      z-index: 2;
+    }
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .ai-widget-badge .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ampersand);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* --- Card 2: RSS Auto-Sync --- */
+    .rss-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 280px;
+    }
+    .rss-node {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .rss-node-from {
+      background: linear-gradient(135deg, var(--ampersand), #FF8A5C);
+    }
+    .rss-node-to {
+      background: linear-gradient(135deg, var(--cornflower), #6B8FFF);
+    }
+    .bento-2:hover .rss-node { transform: scale(1.1) translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.16); }
+    .rss-node svg { width: 24px; height: 24px; }
+    .rss-connector {
+      flex: 1;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(255,90,31,0.2), rgba(58,103,255,0.2));
+      position: relative;
+      overflow: hidden;
+    }
+    .rss-connector::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--ampersand), var(--cornflower));
+      animation: rss-flow 1.8s ease-in-out infinite;
+    }
+    @keyframes rss-flow {
+      0% { left: -24px; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { left: calc(100% + 24px); opacity: 0; }
+    }
+    .rss-pulse-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 20px;
+      border: 2px solid var(--ampersand);
+      opacity: 0;
+      animation: rss-ping 2s ease-out infinite;
+    }
+    .rss-node-to .rss-pulse-ring {
+      border-color: var(--cornflower);
+      animation-delay: 0.9s;
+    }
+    @keyframes rss-ping {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.5); }
+    }
+
+    /* --- Card 3: Export Formats --- */
+    .export-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 260px;
+    }
+    .export-chip {
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+      color: var(--ink);
+      cursor: default;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bento-3:hover .export-chip:nth-child(1) { background: linear-gradient(135deg, var(--ampersand), #FF8A5C); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(255,90,31,0.25); transition-delay: 0s; }
+    .bento-3:hover .export-chip:nth-child(2) { background: linear-gradient(135deg, var(--cornflower), #6B8FFF); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(58,103,255,0.25); transition-delay: 0.05s; }
+    .bento-3:hover .export-chip:nth-child(3) { background: linear-gradient(135deg, var(--slate), #444A54); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(43,47,54,0.25); transition-delay: 0.1s; }
+    .bento-3:hover .export-chip:nth-child(4) { background: linear-gradient(135deg, var(--ampersand), #FF8A5C); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(255,90,31,0.25); transition-delay: 0.15s; }
+    .bento-3:hover .export-chip:nth-child(5) { background: linear-gradient(135deg, var(--cornflower), #6B8FFF); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(58,103,255,0.25); transition-delay: 0.2s; }
+
+    /* --- Card 4: Custom Branding --- */
+    .brand-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .brand-pill {
+      width: 38px;
+      border-radius: 19px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    .brand-pill:nth-child(1) { height: 58px; background: linear-gradient(180deg, var(--ampersand), #FF8A5C); }
+    .brand-pill:nth-child(2) { height: 44px; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); }
+    .brand-pill:nth-child(3) { height: 68px; background: linear-gradient(180deg, var(--slate), #444A54); }
+    .brand-pill:nth-child(4) { height: 36px; background: linear-gradient(180deg, #DDD9D3, #C5C0B9); }
+    .bento-4:hover .brand-pill:nth-child(1) { height: 44px; border-radius: 14px; transform: rotate(-3deg); }
+    .bento-4:hover .brand-pill:nth-child(2) { height: 68px; border-radius: 14px; transform: rotate(2deg); }
+    .bento-4:hover .brand-pill:nth-child(3) { height: 38px; border-radius: 14px; transform: rotate(-2deg); }
+    .bento-4:hover .brand-pill:nth-child(4) { height: 58px; border-radius: 14px; transform: rotate(3deg); }
+
+    /* --- Card 5: Smart Timestamps --- */
+    .ts-widget {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 220px;
+    }
+    .ts-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 3px;
+      position: relative;
+      margin-bottom: 14px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .ts-fill {
+      height: 100%;
+      width: 42%;
+      background: linear-gradient(90deg, var(--ampersand), #FF8A5C);
+      border-radius: 3px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 12px rgba(255,90,31,0.3);
+    }
+    .bento-5:hover .ts-fill { width: 75%; }
+    .ts-pin {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 3px solid var(--ampersand);
+      box-shadow: 0 2px 8px rgba(255,90,31,0.3);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+    .ts-pin:nth-child(3) { left: 22%; border-color: var(--ampersand); }
+    .ts-pin:nth-child(4) { left: 48%; border-color: var(--cornflower); box-shadow: 0 2px 8px rgba(58,103,255,0.3); }
+    .ts-pin:nth-child(5) { left: 78%; border-color: var(--slate); box-shadow: 0 2px 8px rgba(43,47,54,0.2); }
+    .bento-5:hover .ts-pin { transform: translate(-50%, -50%) scale(1.35); background: var(--ampersand); border-color: #fff; }
+    .bento-5:hover .ts-pin:nth-child(4) { background: var(--cornflower); }
+    .bento-5:hover .ts-pin:nth-child(5) { background: var(--slate); }
+    .ts-times {
+      display: flex;
+      justify-content: space-between;
+    }
+    .ts-time {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    /* --- Card 6: Analytics --- */
+    .chart-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      height: 90px;
+    }
+    .chart-col {
+      width: 20px;
+      border-radius: 8px 8px 4px 4px;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .chart-col:nth-child(1) { height: 30%; background: linear-gradient(180deg, rgba(255,90,31,0.4), rgba(255,90,31,0.15)); }
+    .chart-col:nth-child(2) { height: 50%; background: linear-gradient(180deg, rgba(58,103,255,0.4), rgba(58,103,255,0.15)); }
+    .chart-col:nth-child(3) { height: 38%; background: linear-gradient(180deg, rgba(255,90,31,0.4), rgba(255,90,31,0.15)); }
+    .chart-col:nth-child(4) { height: 70%; background: linear-gradient(180deg, rgba(58,103,255,0.4), rgba(58,103,255,0.15)); }
+    .chart-col:nth-child(5) { height: 55%; background: linear-gradient(180deg, rgba(255,90,31,0.4), rgba(255,90,31,0.15)); }
+    .chart-col:nth-child(6) { height: 85%; background: linear-gradient(180deg, rgba(58,103,255,0.4), rgba(58,103,255,0.15)); }
+    .chart-col:nth-child(7) { height: 65%; background: linear-gradient(180deg, rgba(255,90,31,0.4), rgba(255,90,31,0.15)); }
+    .bento-6:hover .chart-col:nth-child(1) { height: 48%; background: linear-gradient(180deg, var(--ampersand), #FF8A5C); box-shadow: 0 4px 14px rgba(255,90,31,0.3); }
+    .bento-6:hover .chart-col:nth-child(2) { height: 62%; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); box-shadow: 0 4px 14px rgba(58,103,255,0.3); transition-delay: 0.03s; }
+    .bento-6:hover .chart-col:nth-child(3) { height: 52%; background: linear-gradient(180deg, var(--ampersand), #FF8A5C); box-shadow: 0 4px 14px rgba(255,90,31,0.3); transition-delay: 0.06s; }
+    .bento-6:hover .chart-col:nth-child(4) { height: 82%; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); box-shadow: 0 4px 14px rgba(58,103,255,0.3); transition-delay: 0.09s; }
+    .bento-6:hover .chart-col:nth-child(5) { height: 68%; background: linear-gradient(180deg, var(--ampersand), #FF8A5C); box-shadow: 0 4px 14px rgba(255,90,31,0.3); transition-delay: 0.12s; }
+    .bento-6:hover .chart-col:nth-child(6) { height: 96%; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); box-shadow: 0 4px 14px rgba(58,103,255,0.3); transition-delay: 0.15s; }
+    .bento-6:hover .chart-col:nth-child(7) { height: 78%; background: linear-gradient(180deg, var(--ampersand), #FF8A5C); box-shadow: 0 4px 14px rgba(255,90,31,0.3); transition-delay: 0.18s; }
 
     /* ========== TESTIMONIALS ========== */
     .testimonials .container > .section-title { text-align: center; }
@@ -946,9 +1288,10 @@
     /* ========== RESPONSIVE ========== */
     @media (max-width: 1024px) {
       .bento-grid { grid-template-columns: repeat(6, 1fr); }
-      .bento-1 { grid-column: span 6; }
+      .bento-1 { grid-column: span 6; grid-row: span 1; }
+      .bento-1 .bento-visual { min-height: 220px; }
       .bento-2, .bento-3 { grid-column: span 3; }
-      .bento-4, .bento-5, .bento-6 { grid-column: span 2; }
+      .bento-4, .bento-5, .bento-6 { grid-column: span 3; }
     }
     @media (max-width: 768px) {
       section { padding: 80px 0; }
@@ -967,7 +1310,9 @@
       .how-it-works .steps { grid-template-columns: 1fr; }
       .bento-grid { grid-template-columns: 1fr; }
       .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6 { grid-column: span 1; }
-      .bento-1 .bento-visual { display: none; }
+      .bento-1 { grid-row: span 1; }
+      .bento-visual { min-height: 150px; }
+      .bento-1 .bento-visual { min-height: 200px; }
       .testimonial-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
       .mockup-content { grid-template-columns: 1fr; }
@@ -1122,42 +1467,136 @@
       <h2 class="section-title reveal">Everything you need.<br><em>Nothing you don't.</em></h2>
       <p class="section-desc reveal">Built for podcast creators who want to grow their audience without spending hours on content repurposing.</p>
       <div class="bento-grid">
+        <!-- Card 1: AI Summarization (large) -->
         <div class="bento-card bento-1 reveal">
           <div class="bento-visual">
-            <div class="ai-line"><div class="ai-dot"></div><div class="ai-bar" style="width:80%"></div></div>
-            <div class="ai-line"><div class="ai-dot"></div><div class="ai-bar" style="width:65%"></div></div>
-            <div class="ai-line"><div class="ai-dot"></div><div class="ai-bar" style="width:90%"></div></div>
-            <div class="ai-line"><div class="ai-dot"></div><div class="ai-bar" style="width:50%"></div></div>
-            <div class="ai-line"><div class="ai-dot"></div><div class="ai-bar" style="width:75%"></div></div>
+            <div class="float-orb" style="width:120px;height:120px;background:var(--ampersand);top:20%;right:15%;"></div>
+            <div class="float-orb" style="width:80px;height:80px;background:var(--cornflower);bottom:20%;left:10%;"></div>
+            <div class="ai-widget">
+              <div class="ai-widget-badge"><span class="badge-dot"></span> Analyzing episode...</div>
+              <div class="ai-widget-doc">
+                <div class="ai-widget-top">
+                  <div class="ai-widget-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l2.09 6.26L20 10.27l-4.91 3.82L16.18 22 12 17.77 7.82 22l1.09-7.91L4 10.27l5.91-1.01L12 2z"/></svg></div>
+                  <span class="ai-widget-title">AI Summary</span>
+                </div>
+                <div class="ai-widget-lines">
+                  <div class="ai-wl active" style="width:94%"></div>
+                  <div class="ai-wl active" style="width:80%"></div>
+                  <div class="ai-wl" style="width:88%"></div>
+                  <div class="ai-wl" style="width:62%"></div>
+                  <div class="ai-wl active" style="width:96%"></div>
+                  <div class="ai-wl" style="width:72%"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="bento-icon">&#129302;</div>
-          <h3>AI-Powered Summarization</h3>
-          <p>Advanced language models analyze your entire episode and extract the most compelling moments, quotes, and insights automatically.</p>
+          <div class="bento-card-content">
+            <h3>AI-Powered Summarization</h3>
+            <p>Advanced language models analyze your entire episode and extract the most compelling moments, quotes, and insights automatically.</p>
+          </div>
         </div>
+
+        <!-- Card 2: RSS Auto-Sync -->
         <div class="bento-card bento-2 reveal reveal-delay-1">
-          <div class="bento-icon">&#128225;</div>
-          <h3>RSS Auto-Sync</h3>
-          <p>Connect once, generate forever. New episodes are detected and processed automatically.</p>
+          <div class="bento-visual">
+            <div class="float-orb" style="width:70px;height:70px;background:var(--ampersand);top:15%;left:10%;"></div>
+            <div class="float-orb" style="width:60px;height:60px;background:var(--cornflower);bottom:15%;right:10%;"></div>
+            <div class="rss-widget">
+              <div class="rss-node rss-node-from" style="position:relative;">
+                <div class="rss-pulse-ring"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.5" fill="#fff"/></svg>
+              </div>
+              <div class="rss-connector"></div>
+              <div class="rss-node rss-node-to" style="position:relative;">
+                <div class="rss-pulse-ring"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8"/><path d="M8 8h8"/><path d="M8 16h5"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>RSS Auto-Sync</h3>
+            <p>Connect once, generate forever. New episodes are detected and processed automatically.</p>
+          </div>
         </div>
+
+        <!-- Card 3: Export Formats -->
         <div class="bento-card bento-3 reveal reveal-delay-2">
-          <div class="bento-big-number">12+</div>
-          <h3>Export Formats</h3>
-          <p>HTML, Markdown, plain text, Substack, Mailchimp, ConvertKit, and more.</p>
+          <div class="bento-visual">
+            <div class="float-orb" style="width:80px;height:80px;background:var(--cornflower);top:10%;right:10%;"></div>
+            <div class="float-orb" style="width:60px;height:60px;background:var(--ampersand);bottom:15%;left:15%;"></div>
+            <div class="export-widget">
+              <div class="export-chip">HTML</div>
+              <div class="export-chip">Markdown</div>
+              <div class="export-chip">Substack</div>
+              <div class="export-chip">Mailchimp</div>
+              <div class="export-chip">ConvertKit</div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>12+ Export Formats</h3>
+            <p>HTML, Markdown, plain text, Substack, Mailchimp, ConvertKit, and more.</p>
+          </div>
         </div>
+
+        <!-- Card 4: Custom Branding -->
         <div class="bento-card bento-4 reveal reveal-delay-1">
-          <div class="bento-icon">&#127912;</div>
-          <h3>Custom Branding</h3>
-          <p>Match your show's visual identity with custom colors, fonts, and layouts.</p>
+          <div class="bento-visual">
+            <div class="float-orb" style="width:70px;height:70px;background:#9B6FFF;top:10%;left:20%;"></div>
+            <div class="brand-widget">
+              <div class="brand-pill"></div>
+              <div class="brand-pill"></div>
+              <div class="brand-pill"></div>
+              <div class="brand-pill"></div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>Custom Branding</h3>
+            <p>Match your show's visual identity with custom colors, fonts, and layouts.</p>
+          </div>
         </div>
+
+        <!-- Card 5: Smart Timestamps -->
         <div class="bento-card bento-5 reveal reveal-delay-2">
-          <div class="bento-icon">&#9201;</div>
-          <h3>Smart Timestamps</h3>
-          <p>Auto-generated chapter markers and clickable timestamp links.</p>
+          <div class="bento-visual">
+            <div class="float-orb" style="width:60px;height:60px;background:var(--cornflower);top:15%;right:15%;"></div>
+            <div class="ts-widget">
+              <div class="ts-bar">
+                <div class="ts-fill"></div>
+                <div class="ts-pin"></div>
+                <div class="ts-pin"></div>
+                <div class="ts-pin"></div>
+              </div>
+              <div class="ts-times">
+                <span class="ts-time">0:00</span>
+                <span class="ts-time">21:30</span>
+                <span class="ts-time">42:00</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>Smart Timestamps</h3>
+            <p>Auto-generated chapter markers and clickable timestamp links.</p>
+          </div>
         </div>
+
+        <!-- Card 6: Analytics -->
         <div class="bento-card bento-6 reveal reveal-delay-3">
-          <div class="bento-icon">&#128200;</div>
-          <h3>Analytics</h3>
-          <p>Track open rates, clicks, and engagement across every newsletter.</p>
+          <div class="bento-visual">
+            <div class="float-orb" style="width:70px;height:70px;background:var(--ampersand);bottom:10%;right:10%;"></div>
+            <div class="chart-widget">
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+              <div class="chart-col"></div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>Analytics</h3>
+            <p>Track open rates, clicks, and engagement across every newsletter.</p>
+          </div>
         </div>
       </div>
     </div>
