@@ -180,31 +180,91 @@
 
     /* Footer */
     .footer {
-      background: var(--surface);
-      padding: 48px 0 32px;
       border-top: 1px solid var(--border);
+      padding: 56px 0 36px;
     }
-    .footer-inner {
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+    .footer-brand svg { width: 32px; height: 32px; }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      margin-top: 14px;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 450;
+    }
+    .footer-col a:hover { color: var(--cornflower); }
+    .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-    .footer-inner span {
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
       font-size: 0.82rem;
       color: var(--text-muted);
     }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      transition: color 0.2s;
+    .footer-socials {
+      display: flex;
+      gap: 12px;
     }
-    .footer-links a:hover { color: var(--cornflower); }
+    .footer-socials a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-socials a:hover {
+      background: var(--ink);
+      color: var(--porcelain);
+      border-color: var(--ink);
+    }
 
     @media (max-width: 768px) {
       .legal-hero { padding: 120px 0 40px; }
       .legal-content section { margin-bottom: 36px; }
-      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
@@ -363,12 +423,51 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path d="M20 20L20 4C12 4 5.5 10 5.5 18Z" fill="#3A67FF"/><path d="M20 20L36 20C36 12 30 5.5 22 5.5Z" fill="#5B85FF"/><path d="M20 20L20 36C28 36 34.5 30 34.5 22Z" fill="#3A67FF"/><path d="M20 20L4 20C4 28 10 34.5 18 34.5Z" fill="#5B85FF"/></svg>
+            PodPress
+          </a>
+          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Features</h4>
+          <ul>
+            <li><a href="transcript-to-newsletter.html">Transcript to Newsletter</a></li>
+            <li><a href="youtube-to-newsletter.html">YouTube to Newsletter</a></li>
+            <li><a href="rss-to-newsletter.html">RSS to Newsletter</a></li>
+            <li><a href="podcast-to-blog.html">Podcast to Blog</a></li>
+            <li><a href="podcast-to-faq.html">Podcast to FAQ</a></li>
+            <li><a href="podcast-to-insights.html">Podcast to Key Insights</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="ai-newsletter-generator.html">AI Newsletter Generator</a></li>
+            <li><a href="newsletter-software.html">Newsletter Software</a></li>
+            <li><a href="transcript-generator.html">Transcript Generator</a></li>
+            <li><a href="content-repurposing.html">Content Repurposing</a></li>
+            <li><a href="content-automation.html">Content Automation</a></li>
+            <li><a href="podcast-newsletter-guide.html">Podcast Newsletter Guide</a></li>
+            <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-links">
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="index.html">Home</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter">&#120143;</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">&#9654;</a>
         </div>
       </div>
     </div>
