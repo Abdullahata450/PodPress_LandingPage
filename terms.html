@@ -46,8 +46,7 @@
     .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
     .navbar .container { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
-    .logo-icon { width: 32px; height: 32px; }
-    .logo-icon svg { width: 100%; height: 100%; }
+    .nav-logo img { height: 32px; width: auto; }
     .nav-back {
       font-size: 0.88rem; font-weight: 500; color: var(--text-muted);
       display: flex; align-items: center; gap: 6px; transition: color 0.2s;
@@ -199,7 +198,7 @@
       font-size: 1.1rem;
       color: var(--ink);
     }
-    .footer-brand svg { width: 32px; height: 32px; }
+    .footer-brand img { height: 32px; width: auto; }
     .footer-brand p {
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -274,8 +273,7 @@
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 20L20 4C12 4 5.5 10 5.5 18Z" fill="#3A67FF"/><path d="M20 20L36 20C36 12 30 5.5 22 5.5Z" fill="#5B85FF"/><path d="M20 20L20 36C28 36 34.5 30 34.5 22Z" fill="#3A67FF"/><path d="M20 20L4 20C4 28 10 34.5 18 34.5Z" fill="#5B85FF"/></svg></div>
-        PodPress
+        <img src="logo-dark.png" alt="PodPress" />
       </a>
       <a href="index.html" class="nav-back">&larr; Back to home</a>
     </div>
@@ -426,8 +424,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path d="M20 20L20 4C12 4 5.5 10 5.5 18Z" fill="#3A67FF"/><path d="M20 20L36 20C36 12 30 5.5 22 5.5Z" fill="#5B85FF"/><path d="M20 20L20 36C28 36 34.5 30 34.5 22Z" fill="#3A67FF"/><path d="M20 20L4 20C4 28 10 34.5 18 34.5Z" fill="#5B85FF"/></svg>
-            PodPress
+            <img src="logo-dark.png" alt="PodPress" />
           </a>
           <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
         </div>

@@ -54,7 +54,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 700; font-size: 1.1rem; color: var(--ink);
 }
-.sp-logo svg { width: 32px; height: 32px; }
+.sp-logo img { height: 32px; width: auto; }
 .sp-back {
   font-size: 0.85rem; color: var(--text-muted);
   text-decoration: none; transition: color 0.2s;
@@ -443,7 +443,7 @@ img { max-width: 100%; display: block; }
   font-size: 1.1rem;
   color: var(--ink);
 }
-.footer-brand svg { width: 32px; height: 32px; }
+.footer-brand img { height: 32px; width: auto; }
 .footer-brand p {
   color: var(--text-muted);
   font-size: 0.85rem;
