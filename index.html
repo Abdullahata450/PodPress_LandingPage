@@ -210,7 +210,7 @@
     .hero-badge .dot {
       width: 8px;
       height: 8px;
-      background: var(--ampersand);
+      background: var(--cornflower);
       border-radius: 50%;
       animation: pulse 2s ease-in-out infinite;
     }
@@ -231,7 +231,7 @@
     }
     .hero h1 em {
       font-style: italic;
-      color: var(--ampersand);
+      color: var(--cornflower);
     }
     .hero p {
       font-size: clamp(1.05rem, 1.8vw, 1.2rem);
@@ -1550,6 +1550,94 @@
       .footer-brand { grid-column: span 1; }
     }
 
+    /* ========== MOBILE MENU ========== */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mobile-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 80%;
+      max-width: 380px;
+      background: var(--surface);
+      z-index: 999;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 100px 32px 40px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
+    }
+    .mobile-menu.is-active {
+      transform: translateX(0);
+    }
+    .mobile-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+    .mobile-menu-links li {
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-links a {
+      display: block;
+      padding: 18px 0;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a:focus {
+      color: var(--ampersand);
+    }
+    .mobile-menu-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .mobile-menu-cta .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 16px 24px;
+      font-size: 1rem;
+    }
+    .mobile-toggle.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .mobile-toggle.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .mobile-toggle.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    body.menu-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
+    }
+
     /* ========== CUSTOM CURSOR ========== */
     @media (pointer: fine) {
       *, *::before, *::after { cursor: none !important; }
@@ -1793,11 +1881,29 @@
         <a href="#" class="btn btn-ghost">Log In</a>
         <a href="#" class="btn btn-primary">Get Started</a>
       </div>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-overlay" id="mobileOverlay" aria-hidden="true"></div>
+  <aside class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation menu" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <ul class="mobile-menu-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu-cta">
+      <a href="#" class="btn btn-ghost">Log In</a>
+      <a href="#" class="btn btn-primary">Get Started</a>
+    </div>
+  </aside>
 
   <!-- ===== HERO ===== -->
   <section class="hero">
@@ -2413,6 +2519,103 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // === Mobile Menu ===
+    (function() {
+      const toggle = document.getElementById('mobileToggle');
+      const menu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('mobileOverlay');
+      if (!toggle || !menu || !overlay) return;
+
+      const focusableSelector = 'a[href], button, [tabindex]:not([tabindex="-1"])';
+      let savedScrollY = 0;
+
+      function openMenu() {
+        savedScrollY = window.scrollY;
+        document.body.style.top = `-${savedScrollY}px`;
+        document.body.classList.add('menu-open');
+
+        toggle.classList.add('is-active');
+        menu.classList.add('is-active');
+        overlay.classList.add('is-active');
+
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.setAttribute('aria-hidden', 'false');
+        overlay.setAttribute('aria-hidden', 'false');
+
+        menu.addEventListener('transitionend', function onEnd() {
+          menu.removeEventListener('transitionend', onEnd);
+          const firstLink = menu.querySelector(focusableSelector);
+          if (firstLink) firstLink.focus();
+        });
+
+        document.addEventListener('keydown', handleEscape);
+        document.addEventListener('keydown', trapFocus);
+      }
+
+      function closeMenu() {
+        toggle.classList.remove('is-active');
+        menu.classList.remove('is-active');
+        overlay.classList.remove('is-active');
+
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
+
+        document.body.classList.remove('menu-open');
+        document.body.style.top = '';
+        window.scrollTo(0, savedScrollY);
+
+        toggle.focus();
+
+        document.removeEventListener('keydown', handleEscape);
+        document.removeEventListener('keydown', trapFocus);
+      }
+
+      function handleEscape(e) {
+        if (e.key === 'Escape') closeMenu();
+      }
+
+      function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+        const focusable = [toggle, ...menu.querySelectorAll(focusableSelector)];
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+
+      toggle.addEventListener('click', function() {
+        if (menu.classList.contains('is-active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      overlay.addEventListener('click', closeMenu);
+
+      menu.querySelectorAll('.mobile-menu-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          closeMenu();
+        });
+      });
+
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && menu.classList.contains('is-active')) {
+          closeMenu();
+        }
+      });
+    })();
 
     // === Waveform bars ===
     const waveform = document.getElementById('waveform');
