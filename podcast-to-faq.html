@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Podcast to FAQ — PodPress</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="pages.css" />
+</head>
+<body>
+  <nav class="sp-nav">
+    <div class="sp-nav-inner">
+      <a href="index.html" class="sp-logo">
+        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#3A67FF" stroke-width="2"/><circle cx="18" cy="18" r="6" fill="#3A67FF"/><path d="M18 2v10M18 24v10M2 18h10M24 18h10" stroke="#3A67FF" stroke-width="2"/></svg>
+        PodPress
+      </a>
+      <a href="index.html" class="sp-back">← Back to home</a>
+    </div>
+  </nav>
+
+  <section class="sp-hero">
+    <div class="sp-hero-inner">
+      <h1>Podcast to <em>FAQ</em></h1>
+      <p>Extract common questions from your episodes and build a dynamic FAQ page automatically</p>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class="sp-showcase">
+    <div class="sp-container">
+      <span class="sp-label">How It Works</span>
+      <h2 class="sp-heading">From conversation to structured knowledge</h2>
+
+      <div class="sp-block">
+        <div class="sp-block-visual">🎯</div>
+        <div class="sp-block-content">
+          <span class="sp-tag blue">AI-Powered</span>
+          <h3>AI Question Detection</h3>
+          <p>Our natural language processing engine listens to every episode and identifies questions posed by hosts, guests, and callers with remarkable precision. The model distinguishes between rhetorical questions, genuine inquiries, and audience-submitted prompts so only meaningful questions make it into your FAQ. Context windows ensure each detected question retains the surrounding discussion for accurate answer generation.</p>
+        </div>
+      </div>
+
+      <div class="sp-block reverse">
+        <div class="sp-block-visual">💡</div>
+        <div class="sp-block-content">
+          <span class="sp-tag orange">Automated</span>
+          <h3>Auto-Generated Answers</h3>
+          <p>Once questions are identified, PodPress synthesizes clear, concise answers drawn directly from the episode transcript and any linked show notes. Each answer is attributed to the original speaker and timestamped so readers can jump straight to the source material. You can review, edit, and approve answers before they go live, giving you full editorial control over the final output.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sp-faq alt-bg">
+    <div class="sp-container">
+      <span class="sp-label">Common Questions</span>
+      <h2 class="sp-heading">Everything you need to know</h2>
+
+      <div class="sp-faq-list">
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">How does PodPress detect questions in my episodes?</button>
+          <div class="sp-faq-a">
+            <p>PodPress uses a fine-tuned large language model trained on thousands of hours of podcast audio. It analyzes speech patterns, intonation cues from the transcript, and sentence structure to distinguish genuine questions from rhetorical ones, statements, and filler phrases. The system achieves over 94% precision on standard podcast formats.</p>
+          </div>
+        </div>
+
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">What audio and transcript formats are supported?</button>
+          <div class="sp-faq-a">
+            <p>You can upload MP3, WAV, M4A, FLAC, and OGG audio files directly, or provide an RSS feed URL for automatic ingestion. For transcripts, we accept SRT, VTT, TXT, and DOCX formats. If you do not have a transcript, PodPress will generate one using built-in speech-to-text before running the FAQ extraction pipeline.</p>
+          </div>
+        </div>
+
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">Can I edit the generated FAQ entries before publishing?</button>
+          <div class="sp-faq-a">
+            <p>Absolutely. Every generated question and answer lands in a draft queue where you can rewrite, merge, split, or delete entries. You can also adjust the tone, add links, and reorder items. Nothing is published until you explicitly approve it, so you maintain complete editorial control over your FAQ page.</p>
+          </div>
+        </div>
+
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">How accurate is the question detection and answer generation?</button>
+          <div class="sp-faq-a">
+            <p>In internal benchmarks, question detection achieves 94% precision and 91% recall across interview, panel, and solo formats. Answer accuracy depends on transcript quality, but users report that roughly 85% of generated answers require little to no editing. The system improves over time as it learns your podcast's vocabulary and recurring topics.</p>
+          </div>
+        </div>
+
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">Does it support multiple languages?</button>
+          <div class="sp-faq-a">
+            <p>Yes. PodPress currently supports question detection and answer generation in English, Spanish, French, German, Portuguese, and Japanese. Additional languages are added quarterly based on user demand. For multilingual episodes, the system can detect the language per segment and generate FAQ entries in the corresponding language or translate everything into a single target language.</p>
+          </div>
+        </div>
+
+        <div class="sp-faq-item">
+          <button class="sp-faq-q">What is the typical turnaround time for processing an episode?</button>
+          <div class="sp-faq-a">
+            <p>Most episodes under 90 minutes are fully processed within 3 to 5 minutes, including transcription, question detection, and answer generation. Longer episodes or batch uploads may take up to 15 minutes. You will receive an email notification and an in-app alert as soon as your FAQ draft is ready for review.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="sp-cta">
+    <div class="sp-container">
+      <h2>Build Your FAQ Library Automatically</h2>
+      <p>Turn every episode into a searchable knowledge base your audience will love.</p>
+      <a href="#" class="sp-cta-btn">Get Started Free</a>
+    </div>
+  </section>
+
+  <footer class="sp-footer">
+    <div class="sp-footer-inner">
+      <span>&copy; 2026 PodPress. All rights reserved.</span>
+      <div class="sp-footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.sp-faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('is-open');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1591,7 +1591,7 @@
       .cursor-arc {
         position: absolute;
         top: 50%; left: 50%;
-        border: 2px solid #ffffff;
+        border: 1.5px solid #ffffff;
         border-radius: 50%;
         opacity: 0;
         transform: translate(-50%, -50%) scale(0);
@@ -1609,6 +1609,7 @@
         width: 44px; height: 44px;
         clip-path: inset(0 50% 0 0);
       }
+      
       /* Right arcs */
       .cursor-arc.arc-r1 {
         width: 28px; height: 28px;
@@ -1618,7 +1619,7 @@
         width: 44px; height: 44px;
         clip-path: inset(0 0 0 50%);
       }
-
+      
       /* --- HOVER state: show inner arcs --- */
       .cursor.is-hover .cursor-dot {
         transform: translate(-50%, -50%) scale(1.15);
@@ -1679,7 +1680,7 @@
         transform: translate(-50%, -50%) scale(0);
         width: 48px; height: 48px;
         border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.7);
         opacity: 0;
         pointer-events: none;
         z-index: 2;
@@ -2366,28 +2367,31 @@
           <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
         </div>
         <div class="footer-col">
-          <h4>Product</h4>
+          <h4>Features</h4>
           <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Integrations</a></li>
-            <li><a href="#">Changelog</a></li>
+            <li><a href="transcript-to-newsletter.html">Transcript to Newsletter</a></li>
+            <li><a href="youtube-to-newsletter.html">YouTube to Newsletter</a></li>
+            <li><a href="rss-to-newsletter.html">RSS to Newsletter</a></li>
+            <li><a href="podcast-to-blog.html">Podcast to Blog</a></li>
+            <li><a href="podcast-to-faq.html">Podcast to FAQ</a></li>
+            <li><a href="podcast-to-insights.html">Podcast to Key Insights</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Resources</h4>
           <ul>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">API Reference</a></li>
+            <li><a href="ai-newsletter-generator.html">AI Newsletter Generator</a></li>
+            <li><a href="newsletter-software.html">Newsletter Software</a></li>
+            <li><a href="transcript-generator.html">Transcript Generator</a></li>
+            <li><a href="content-repurposing.html">Content Repurposing</a></li>
+            <li><a href="content-automation.html">Content Automation</a></li>
+            <li><a href="podcast-newsletter-guide.html">Podcast Newsletter Guide</a></li>
+            <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Legal</h4>
           <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Careers</a></li>
             <li><a href="privacy.html">Privacy</a></li>
             <li><a href="terms.html">Terms</a></li>
           </ul>
@@ -2527,8 +2531,8 @@
 
       // Smooth follow with lerp
       function updatePosition() {
-        cursorX += (mouseX - cursorX) * 0.18;
-        cursorY += (mouseY - cursorY) * 0.18;
+        cursorX += (mouseX - cursorX) * 0.5;
+        cursorY += (mouseY - cursorY) * 0.5;
         cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
         requestAnimationFrame(updatePosition);
       }
