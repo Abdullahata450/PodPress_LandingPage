@@ -113,39 +113,39 @@
       <h2 class="sp-heading">Common questions about podcast newsletters</h2>
       <div class="sp-faq-list">
         <div class="sp-faq-item">
-          <button class="sp-faq-q">How often should I send my podcast newsletter?</button>
+          <button class="sp-faq-q">How often should I send my podcast newsletter?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Most successful podcast newsletters align with their episode release schedule, whether that is weekly, biweekly, or monthly. Consistency matters more than frequency — subscribers should be able to predict when your next issue will arrive. If you publish episodes weekly, a weekly newsletter sent the same day as your episode gives listeners a companion piece to deepen their engagement.</p>
+            <div class="sp-faq-a-inner">Most successful podcast newsletters align with their episode release schedule, whether that is weekly, biweekly, or monthly. Consistency matters more than frequency — subscribers should be able to predict when your next issue will arrive. If you publish episodes weekly, a weekly newsletter sent the same day as your episode gives listeners a companion piece to deepen their engagement.</div>
           </div>
         </div>
         <div class="sp-faq-item">
-          <button class="sp-faq-q">What content works best in a podcast newsletter?</button>
+          <button class="sp-faq-q">What content works best in a podcast newsletter?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>The most effective newsletters combine episode summaries with exclusive content that subscribers cannot get from the podcast alone. Behind-the-scenes stories, extended show notes, resource links, and personal commentary tend to perform well. Curated recommendations related to your episode topic also add value and give readers a reason to stay subscribed.</p>
+            <div class="sp-faq-a-inner">The most effective newsletters combine episode summaries with exclusive content that subscribers cannot get from the podcast alone. Behind-the-scenes stories, extended show notes, resource links, and personal commentary tend to perform well. Curated recommendations related to your episode topic also add value and give readers a reason to stay subscribed.</div>
           </div>
         </div>
         <div class="sp-faq-item">
-          <button class="sp-faq-q">How long should my newsletter be?</button>
+          <button class="sp-faq-q">How long should my newsletter be?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Aim for 500 to 1,000 words as a starting point, which takes about three to five minutes to read. Shorter newsletters tend to have higher completion rates, but longer issues can work if every section delivers genuine value. Test different lengths and use your analytics to find the sweet spot where engagement stays high without losing readers midway through.</p>
+            <div class="sp-faq-a-inner">Aim for 500 to 1,000 words as a starting point, which takes about three to five minutes to read. Shorter newsletters tend to have higher completion rates, but longer issues can work if every section delivers genuine value. Test different lengths and use your analytics to find the sweet spot where engagement stays high without losing readers midway through.</div>
           </div>
         </div>
         <div class="sp-faq-item">
-          <button class="sp-faq-q">Should I use a free or paid newsletter model?</button>
+          <button class="sp-faq-q">Should I use a free or paid newsletter model?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Starting with a free newsletter is the best approach for building an audience and establishing trust. Once you have a consistent readership of at least a few hundred subscribers, you can introduce a paid tier with premium content like bonus episodes, early access, or exclusive interviews. Many creators use a hybrid model where the core newsletter remains free but additional perks are available to paying subscribers.</p>
+            <div class="sp-faq-a-inner">Starting with a free newsletter is the best approach for building an audience and establishing trust. Once you have a consistent readership of at least a few hundred subscribers, you can introduce a paid tier with premium content like bonus episodes, early access, or exclusive interviews. Many creators use a hybrid model where the core newsletter remains free but additional perks are available to paying subscribers.</div>
           </div>
         </div>
         <div class="sp-faq-item">
-          <button class="sp-faq-q">How can I grow my subscriber count?</button>
+          <button class="sp-faq-q">How can I grow my subscriber count?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Mention your newsletter in every podcast episode with a specific call-to-action and make the signup link easy to find in your show notes. Cross-promote on social media, collaborate with other newsletter creators in your niche, and consider running a referral program that rewards existing subscribers for bringing in new ones. Landing pages with a clear value proposition and a sample issue convert significantly better than generic signup forms.</p>
+            <div class="sp-faq-a-inner">Mention your newsletter in every podcast episode with a specific call-to-action and make the signup link easy to find in your show notes. Cross-promote on social media, collaborate with other newsletter creators in your niche, and consider running a referral program that rewards existing subscribers for bringing in new ones. Landing pages with a clear value proposition and a sample issue convert significantly better than generic signup forms.</div>
           </div>
         </div>
         <div class="sp-faq-item">
-          <button class="sp-faq-q">When is the best time to send a newsletter?</button>
+          <button class="sp-faq-q">When is the best time to send a newsletter?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Industry data suggests that Tuesday through Thursday mornings between 9 AM and 11 AM in your audience's primary timezone tend to see the highest open rates. However, your specific audience may differ, so it is important to test different send times and let the data guide your decision. PodPress Smart Scheduling can analyze your subscriber engagement patterns and recommend the optimal delivery window automatically.</p>
+            <div class="sp-faq-a-inner">Industry data suggests that Tuesday through Thursday mornings between 9 AM and 11 AM in your audience's primary timezone tend to see the highest open rates. However, your specific audience may differ, so it is important to test different send times and let the data guide your decision. PodPress Smart Scheduling can analyze your subscriber engagement patterns and recommend the optimal delivery window automatically.</div>
           </div>
         </div>
       </div>
@@ -215,7 +215,9 @@
     document.querySelectorAll('.sp-faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
-        item.classList.toggle('is-open');
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.sp-faq-item').forEach(i => i.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
       });
     });
   </script>

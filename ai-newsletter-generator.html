@@ -102,44 +102,44 @@
 
       <div class="sp-faq-list">
         <div class="sp-faq-item">
-          <button class="sp-faq-q">Is the AI-generated content original?</button>
+          <button class="sp-faq-q">Is the AI-generated content original?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Yes. Every draft is generated from scratch based on your inputs, audience data, and content guidelines. The AI does not copy or paraphrase existing articles. All output passes through an originality check before it reaches your editor, and you retain full ownership of everything produced.</p>
+            <div class="sp-faq-a-inner">Yes. Every draft is generated from scratch based on your inputs, audience data, and content guidelines. The AI does not copy or paraphrase existing articles. All output passes through an originality check before it reaches your editor, and you retain full ownership of everything produced.</div>
           </div>
         </div>
 
         <div class="sp-faq-item">
-          <button class="sp-faq-q">Can I customize the tone and style?</button>
+          <button class="sp-faq-q">Can I customize the tone and style?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Absolutely. You can choose from preset tones like professional, conversational, witty, or authoritative, or upload samples of your own writing for the AI to learn from. Tone settings are saved per newsletter so you can maintain different voices for different publications without reconfiguring each time.</p>
+            <div class="sp-faq-a-inner">Absolutely. You can choose from preset tones like professional, conversational, witty, or authoritative, or upload samples of your own writing for the AI to learn from. Tone settings are saved per newsletter so you can maintain different voices for different publications without reconfiguring each time.</div>
           </div>
         </div>
 
         <div class="sp-faq-item">
-          <button class="sp-faq-q">What data does the AI use to write content?</button>
+          <button class="sp-faq-q">What data does the AI use to write content?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>The AI uses the inputs you provide (topic, bullet points, reference links), your historical newsletter performance data, and general knowledge from its training. It does not access your subscriber list's personal data for content generation. All data processing complies with GDPR and CCPA regulations.</p>
+            <div class="sp-faq-a-inner">The AI uses the inputs you provide (topic, bullet points, reference links), your historical newsletter performance data, and general knowledge from its training. It does not access your subscriber list's personal data for content generation. All data processing complies with GDPR and CCPA regulations.</div>
           </div>
         </div>
 
         <div class="sp-faq-item">
-          <button class="sp-faq-q">Does it integrate with my email service provider?</button>
+          <button class="sp-faq-q">Does it integrate with my email service provider?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>PodPress integrates natively with Mailchimp, ConvertKit, Beehiiv, Substack, SendGrid, and ActiveCampaign. For other providers, you can use our REST API or Zapier integration to push newsletters directly into your sending platform. Setup takes under five minutes for most ESPs.</p>
+            <div class="sp-faq-a-inner">PodPress integrates natively with Mailchimp, ConvertKit, Beehiiv, Substack, SendGrid, and ActiveCampaign. For other providers, you can use our REST API or Zapier integration to push newsletters directly into your sending platform. Setup takes under five minutes for most ESPs.</div>
           </div>
         </div>
 
         <div class="sp-faq-item">
-          <button class="sp-faq-q">Is there a free trial available?</button>
+          <button class="sp-faq-q">Is there a free trial available?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>Yes. Every new account starts with a 14-day free trial that includes full access to all AI features, unlimited drafts, and up to 1,000 sends. No credit card is required to start. At the end of the trial you can choose a paid plan or continue on our free tier with limited monthly sends.</p>
+            <div class="sp-faq-a-inner">Yes. Every new account starts with a 14-day free trial that includes full access to all AI features, unlimited drafts, and up to 1,000 sends. No credit card is required to start. At the end of the trial you can choose a paid plan or continue on our free tier with limited monthly sends.</div>
           </div>
         </div>
 
         <div class="sp-faq-item">
-          <button class="sp-faq-q">How does personalization work?</button>
+          <button class="sp-faq-q">How does personalization work?<span class="icon">+</span></button>
           <div class="sp-faq-a">
-            <p>The personalization engine analyzes each subscriber's open history, click behavior, and stated preferences to build an interest profile. When you send a newsletter, dynamic content blocks are swapped in based on those profiles. For example, a tech-focused subscriber might see developer tool recommendations while a marketing-focused subscriber sees campaign strategy tips, all within the same send.</p>
+            <div class="sp-faq-a-inner">The personalization engine analyzes each subscriber's open history, click behavior, and stated preferences to build an interest profile. When you send a newsletter, dynamic content blocks are swapped in based on those profiles. For example, a tech-focused subscriber might see developer tool recommendations while a marketing-focused subscriber sees campaign strategy tips, all within the same send.</div>
           </div>
         </div>
       </div>
@@ -210,7 +210,9 @@
     document.querySelectorAll('.sp-faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
-        item.classList.toggle('is-open');
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.sp-faq-item').forEach(i => i.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
       });
     });
   </script>
