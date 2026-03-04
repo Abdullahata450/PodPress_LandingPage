@@ -1554,37 +1554,26 @@
     .mobile-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(17, 17, 17, 0.5);
       z-index: 998;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .mobile-overlay.is-active {
-      opacity: 1;
-      visibility: visible;
+      pointer-events: none;
     }
     .mobile-menu {
       position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 80%;
-      max-width: 380px;
-      background: var(--surface);
+      inset: 0;
+      background: var(--porcelain);
       z-index: 999;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       padding: 100px 32px 40px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
     }
     .mobile-menu.is-active {
-      transform: translateX(0);
+      clip-path: inset(0 0 0 0);
     }
     .mobile-menu-links {
       list-style: none;
@@ -2542,12 +2531,6 @@
         toggle.setAttribute('aria-expanded', 'true');
         menu.setAttribute('aria-hidden', 'false');
         overlay.setAttribute('aria-hidden', 'false');
-
-        menu.addEventListener('transitionend', function onEnd() {
-          menu.removeEventListener('transitionend', onEnd);
-          const firstLink = menu.querySelector(focusableSelector);
-          if (firstLink) firstLink.focus();
-        });
 
         document.addEventListener('keydown', handleEscape);
         document.addEventListener('keydown', trapFocus);
