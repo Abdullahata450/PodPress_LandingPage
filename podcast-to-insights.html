@@ -398,6 +398,15 @@
       .footer-grid-5 .footer-brand { grid-column: span 1; }
       .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
     }
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav         { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .sp-hero-badge,
+    [data-theme="dark"] .ins-badge      { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .ins-card       { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .ins-step       { border-bottom-color: var(--border); }
+    [data-theme="dark"] .ins-check-item { border-bottom-color: var(--border); }
+    [data-theme="dark"] .ins-benefit-item { border-bottom-color: var(--border); }
+    [data-theme="dark"] .ins-faq-item   { border-bottom-color: var(--border); }
   </style>
 </head>
 <body>
@@ -406,7 +415,7 @@
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" />
+        <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
       <ul class="sp-nav-links">
         <li><a href="index.html">Product</a></li>
@@ -416,6 +425,7 @@
         <li><a href="index.html#pricing">Pricing</a></li>
       </ul>
       <div class="sp-nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
         <a href="#" class="sp-nav-login">Login</a>
         <a href="index.html" class="sp-nav-start">Start Free &rarr;</a>
       </div>
@@ -596,7 +606,7 @@
       <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" />
+            <img src="logo-dark.png" alt="PodPress" data-logo />
           </a>
           <p class="footer-brand-desc">
             Turn your podcast episodes into engaging newsletters in minutes.
@@ -679,5 +689,8 @@
     });
   </script>
 
+  <script src="navbar.js"></script>
+  <script src="theme.js"></script>
+  <script src="premium.js"></script>
 </body>
 </html>

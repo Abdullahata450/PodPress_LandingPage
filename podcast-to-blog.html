@@ -406,13 +406,21 @@
         padding: 64px 0;
       }
     }
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav         { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .pb-badge       { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .pb-list-wrap   { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .pb-benefit     { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .pb-faq-shell   { background: var(--surface); border-color: var(--border); box-shadow: 0 28px 54px rgba(0,0,0,0.2); }
+    [data-theme="dark"] .pb-faq-item    { background: var(--bg); border-color: var(--border); }
+    [data-theme="dark"] .pb-faq-item.is-open { border-color: rgba(58,103,255,0.35); }
   </style>
 </head>
 <body class="pb-page">
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" />
+        <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
       <ul class="pb-nav-links">
         <li><a href="#overview">Overview</a></li>
@@ -422,6 +430,7 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="pb-nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
         <a href="index.html" class="pb-nav-login">Login</a>
         <a href="#get-started" class="pb-nav-start">Start free</a>
       </div>
@@ -549,7 +558,7 @@
       <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" />
+            <img src="logo-dark.png" alt="PodPress" data-logo />
           </a>
           <p class="footer-brand-desc">
             Turn your podcast episodes into engaging newsletters in minutes.
@@ -631,5 +640,8 @@
       });
     });
   </script>
+  <script src="navbar.js"></script>
+  <script src="theme.js"></script>
+  <script src="premium.js"></script>
 </body>
 </html>

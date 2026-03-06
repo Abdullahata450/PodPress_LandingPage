@@ -521,6 +521,17 @@
       .footer-grid-5 .footer-brand { grid-column: span 1; }
       .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
     }
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav               { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .rss-badge            { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .rss-hero-preview     { background: var(--surface); border-color: var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.3); }
+    [data-theme="dark"] .rss-preview-shell    { background: var(--bg); border-color: var(--border); box-shadow: none; backdrop-filter: none; }
+    [data-theme="dark"] .rss-preview-card     { background: var(--surface); border-color: var(--border); }
+    [data-theme="dark"] .rss-preview-feed-item{ background: var(--bg); border-color: var(--border); }
+    [data-theme="dark"] .rss-preview-stat     { background: var(--surface); border-color: var(--border); }
+    [data-theme="dark"] .rss-benefit-item     { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .rss-perfect-card     { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .rss-cta-panel        { background: var(--surface); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body class="rss-page">
@@ -529,7 +540,7 @@
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" />
+        <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
       <ul class="sp-nav-links">
         <li><a href="#overview">Overview</a></li>
@@ -538,7 +549,7 @@
         <li><a href="#get-started">Get Started</a></li>
       </ul>
       <div class="sp-nav-actions">
-        <button class="sp-nav-theme" aria-label="Toggle theme">&#9790;</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
         <a href="index.html" class="sp-nav-login">Login</a>
         <a href="#get-started" class="sp-nav-start">Start Free &rarr;</a>
       </div>
@@ -702,7 +713,7 @@
       <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" />
+            <img src="logo-dark.png" alt="PodPress" data-logo />
           </a>
           <p class="footer-brand-desc">
             Turn your podcast episodes into engaging newsletters in minutes.
@@ -774,5 +785,8 @@
     </div>
   </footer>
 
+  <script src="navbar.js"></script>
+  <script src="theme.js"></script>
+  <script src="premium.js"></script>
 </body>
 </html>

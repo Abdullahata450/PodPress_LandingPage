@@ -13,9 +13,9 @@
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" />
+        <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <a href="index.html" class="sp-back">← Back to home</a>
+      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
     </div>
   </nav>
 
@@ -112,7 +112,7 @@
       <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" />
+            <img src="logo-dark.png" alt="PodPress" data-logo />
           </a>
           <p class="footer-brand-desc">
             Turn your podcast episodes into engaging newsletters in minutes.
@@ -183,5 +183,8 @@
       </div>
     </div>
   </footer>
+  <script src="navbar.js"></script>
+  <script src="theme.js"></script>
+  <script src="premium.js"></script>
 </body>
 </html>

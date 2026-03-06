@@ -25,6 +25,21 @@
       --radius-full: 999px;
       --font-display: 'Newsreader', Georgia, serif;
       --font-body: 'Inter', -apple-system, sans-serif;
+      --nav-bg: rgba(247, 245, 242, 0.9);
+    }
+    [data-theme="dark"] {
+      --ink: #E8E5DF;
+      --porcelain: #0D1017;
+      --slate: #94A3B8;
+      --bg: #0D1017;
+      --surface: #161A22;
+      --border: #252D3D;
+      --text: #E8E5DF;
+      --text-muted: #8896A8;
+      --nav-bg: rgba(13, 16, 23, 0.92);
+    }
+    .theme-transitioning, .theme-transitioning *, .theme-transitioning *::before, .theme-transitioning *::after {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
     }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
@@ -39,7 +54,7 @@
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 16px 0;
-      background: rgba(247, 245, 242, 0.9);
+      background: var(--nav-bg);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -47,11 +62,23 @@
     .navbar .container { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
     .nav-logo img { height: 32px; width: auto; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
     .nav-back {
       font-size: 0.88rem; font-weight: 500; color: var(--text-muted);
       display: flex; align-items: center; gap: 6px; transition: color 0.2s;
     }
     .nav-back:hover { color: var(--ink); }
+    .theme-toggle {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--surface); color: var(--ink);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s, color 0.2s; padding: 0;
+    }
+    .theme-toggle:hover { border-color: var(--cornflower); background: var(--bg); color: var(--cornflower); }
+    .theme-toggle svg { display: block; }
+    body { transition: background-color 0.3s ease, color 0.3s ease; }
 
     /* Legal page layout */
     .legal-hero {
@@ -269,13 +296,16 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <!-- Old minimal navbar — hidden by .sp-nav CSS rule; full navbar injected by navbar.js -->
+  <nav class="sp-nav">
     <div class="container">
-      <a href="index.html" class="nav-logo">
-        <img src="logo-dark.png" alt="PodPress" />
+      <a href="index.html" class="sp-logo">
+        <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <a href="index.html" class="nav-back">&larr; Back to home</a>
+      <div class="sp-nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="sp-back">&larr; Back to home</a>
+      </div>
     </div>
   </nav>
 
@@ -413,7 +443,7 @@
       <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" />
+            <img src="logo-dark.png" alt="PodPress" data-logo />
           </a>
           <p class="footer-brand-desc">
             Turn your podcast episodes into engaging newsletters in minutes.
@@ -485,5 +515,8 @@
     </div>
   </footer>
 
+  <script src="navbar.js"></script>
+  <script src="theme.js"></script>
+  <script src="premium.js"></script>
 </body>
 </html>
