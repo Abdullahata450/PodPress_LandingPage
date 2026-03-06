@@ -6,115 +6,625 @@
   <title>Podcast to Key Insights — PodPress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+  <style>
+    /* ── Full Navbar ── */
+    .sp-nav {
+      background: rgba(247,245,242,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
+    }
+    .sp-nav-inner { justify-content: space-between; }
+    .sp-nav-links {
+      display: flex; align-items: center;
+      gap: 30px; list-style: none;
+    }
+    .sp-nav-links a {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sp-nav-links a:hover { color: var(--ink); }
+    .sp-nav-actions {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sp-nav-theme {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .sp-nav-theme:hover { background: var(--bg); }
+    .sp-nav-login {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--ink); text-decoration: none;
+      padding: 8px 14px; transition: color 0.2s;
+    }
+    .sp-nav-login:hover { color: var(--cornflower); }
+    .sp-nav-start {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
+      font-size: 0.86rem; font-weight: 600;
+      padding: 10px 20px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(58,103,255,0.16);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .sp-nav-start:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.22);
+    }
+
+    /* ── Hero ── */
+    .sp-hero {
+      background: var(--surface);
+      padding: 152px 0 110px;
+      text-align: center;
+    }
+    .sp-hero-inner {
+      max-width: 680px; margin: 0 auto; padding: 0 24px;
+    }
+    .ins-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px; padding: 7px 16px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.72);
+    }
+    .sp-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .sp-hero .ins-desc {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+    .ins-hero-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
+      font-size: 0.92rem; font-weight: 600;
+      padding: 14px 30px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .ins-hero-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
+    }
+
+    /* ── How it works — vertical numbered steps ── */
+    .ins-how {
+      padding: 100px 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .ins-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .ins-section-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      margin: 0 auto 50px;
+    }
+    .ins-steps {
+      display: flex; flex-direction: column;
+      gap: 0;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ins-step {
+      display: flex; align-items: flex-start; gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ins-step:last-child { border-bottom: none; }
+    .ins-step-num {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.86rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 16px rgba(58,103,255,0.18);
+      margin-top: 2px;
+    }
+    .ins-step p {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--ink); line-height: 1.6;
+      padding-top: 6px;
+    }
+
+    /* ── What you get ── */
+    .ins-whatyouget {
+      padding: 100px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+    .ins-check-list {
+      display: flex; flex-direction: column;
+      gap: 0;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ins-check-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem; font-weight: 500;
+      color: var(--ink);
+    }
+    .ins-check-item:last-child { border-bottom: none; }
+    .ins-check-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ins-check-icon svg { display: block; }
+
+    /* ── Benefits ── */
+    .ins-benefits {
+      padding: 100px 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .ins-benefit-list {
+      display: flex; flex-direction: column;
+      gap: 0;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ins-benefit-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ins-benefit-item:last-child { border-bottom: none; }
+    .ins-benefit-item .ins-check-icon { margin-top: 3px; }
+    .ins-benefit-item p {
+      font-size: 0.9rem; font-weight: 500;
+      color: var(--ink); line-height: 1.65;
+    }
+    .ins-benefit-item p strong {
+      font-weight: 600;
+    }
+
+    /* ── FAQ ── */
+    .ins-faq-section {
+      padding: 100px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+    .ins-faq-panel {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 48px 36px 40px;
+      border-radius: 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .ins-faq-label {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px; padding: 5px 14px;
+      margin-bottom: 18px;
+    }
+    .ins-faq-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .ins-faq-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+    .ins-faq-list {
+      display: flex; flex-direction: column;
+      gap: 0; text-align: left;
+    }
+    .ins-faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .ins-faq-item:last-child { border-bottom: none; }
+    .ins-faq-q {
+      width: 100%; background: none; border: none;
+      padding: 18px 0;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--ink); text-align: left;
+    }
+    .ins-faq-q .faq-icon {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .ins-faq-item.is-open .ins-faq-q .faq-icon {
+      transform: rotate(45deg);
+      background: var(--cornflower);
+      color: #fff;
+      border-color: var(--cornflower);
+    }
+    .ins-faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .ins-faq-item.is-open .ins-faq-a { max-height: 280px; }
+    .ins-faq-a-inner {
+      padding: 0 0 18px;
+      color: var(--text-muted);
+      line-height: 1.7; font-size: 0.88rem;
+    }
+
+    /* ── CTA ── */
+    .ins-cta {
+      padding: 110px 0;
+      background: var(--bg);
+      text-align: center;
+    }
+    .ins-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink); line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .ins-cta p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .ins-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
+      font-size: 0.92rem; font-weight: 600;
+      padding: 14px 30px; border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .ins-cta-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
+    }
+
+    /* ── Footer — 5 columns ── */
+    .footer-grid-5 {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 1.1fr 1.2fr;
+      gap: 40px; margin-bottom: 0;
+    }
+    .footer-brand-desc {
+      color: var(--text-muted); font-size: 0.84rem;
+      line-height: 1.7; margin-top: 14px; max-width: 220px;
+    }
+    .footer-brand-socials {
+      display: flex; gap: 8px; margin-top: 18px;
+    }
+    .footer-brand-socials a {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; color: var(--text-muted);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .footer-brand-socials a:hover {
+      background: var(--ink); color: var(--porcelain);
+      border-color: var(--ink);
+    }
+    .footer-nav-strip {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+      padding: 20px 0; border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .footer-nav-strip a {
+      font-size: 0.82rem; color: var(--text-muted);
+      text-decoration: none; padding: 0 14px;
+      transition: color 0.2s; border-right: 1px solid var(--border);
+    }
+    .footer-nav-strip a:last-child { border-right: none; }
+    .footer-nav-strip a:hover { color: var(--ink); }
+    .footer-bottom-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem; color: var(--text-muted);
+    }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a {
+      font-size: 0.8rem; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--ink); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .sp-nav-links { display: none; }
+      .footer-grid-5 { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-grid-5 .footer-brand { grid-column: span 2; }
+      .footer-brand-desc { max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .sp-hero { padding: 130px 0 80px; }
+      .sp-hero h1 { font-size: 2.2rem; }
+      .ins-section-title, .ins-faq-title, .ins-cta h2 { font-size: 1.55rem; }
+      .ins-faq-panel { padding: 32px 20px 28px; }
+      .footer-grid-5 { grid-template-columns: 1fr; }
+      .footer-grid-5 .footer-brand { grid-column: span 1; }
+      .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- ── Navbar ── -->
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" />
       </a>
-      <a href="index.html" class="sp-back">← Back to home</a>
+      <ul class="sp-nav-links">
+        <li><a href="index.html">Product</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+      </ul>
+      <div class="sp-nav-actions">
+        <a href="#" class="sp-nav-login">Login</a>
+        <a href="index.html" class="sp-nav-start">Start Free &rarr;</a>
+      </div>
     </div>
   </nav>
 
+  <!-- ── Hero ── -->
   <section class="sp-hero">
     <div class="sp-hero-inner">
-      <h1>Podcast to Key <em>Insights</em></h1>
-      <p>Distill hours of conversation into actionable takeaways and shareable highlights</p>
+      <span class="ins-badge">Feature</span>
+      <h1>Podcast to Key Insights</h1>
+      <p class="ins-desc">
+        Extract key insights and takeaways from your podcast episodes
+        automatically. Generate summaries, highlights, and actionable
+        insights that your audience can use.
+      </p>
+      <a href="#" class="ins-hero-btn">Try Podpress Free &rarr;</a>
     </div>
   </section>
 
-  <!-- Feature Grid -->
-  <section class="sp-feature-grid">
+  <!-- ── How it works ── -->
+  <section class="ins-how">
     <div class="sp-container">
-      <span class="sp-label">Capabilities</span>
-      <h2 class="sp-heading">Six ways to surface what matters most</h2>
-
-      <div class="sp-grid">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">📌</div>
-          <h3>Key Takeaway Extraction</h3>
-          <p>Automatically identify the most important points from each episode and present them as a prioritized list. The engine weighs speaker emphasis, topic recurrence, and audience engagement signals to rank takeaways by relevance.</p>
+      <h2 class="ins-section-title">How it works</h2>
+      <p class="ins-section-sub">
+        Four simple steps from episode to insights summary. No manual review
+        — AI extracts key points automatically.
+      </p>
+      <div class="ins-steps">
+        <div class="ins-step">
+          <div class="ins-step-num">1</div>
+          <p>Share your episode via RSS, MP3 upload, or podcast link.</p>
         </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon slate">💬</div>
-          <h3>Quote Highlighting</h3>
-          <p>Surface the most compelling quotes from hosts and guests, complete with timestamps and speaker attribution. Perfect for pulling social-ready soundbites or adding expert citations to blog posts and show notes.</p>
+        <div class="ins-step">
+          <div class="ins-step-num">2</div>
+          <p>We analyze content and extract key insights, takeaways, and main points.</p>
         </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🗂️</div>
-          <h3>Topic Clustering</h3>
-          <p>Group related discussion segments into coherent topic clusters so listeners can navigate directly to the subjects they care about. Each cluster includes a summary, time range, and list of contributing speakers.</p>
+        <div class="ins-step">
+          <div class="ins-step-num">3</div>
+          <p>Receive a structured summary with key insights, highlights, and actionable takeaways.</p>
         </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon blue">📊</div>
-          <h3>Sentiment Analysis</h3>
-          <p>Understand the emotional arc of every conversation with segment-level sentiment scoring. Track how tone shifts across topics and identify moments of strong agreement, surprise, or debate between participants.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon slate">📝</div>
-          <h3>Executive Summaries</h3>
-          <p>Generate concise, paragraph-length summaries tailored for busy professionals who want the gist without listening to the full episode. Summaries include key decisions, action items, and notable data points mentioned in the discussion.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🃏</div>
-          <h3>Shareable Cards</h3>
-          <p>Transform insights into beautifully designed visual cards optimized for social media, email, and Slack. Each card includes the quote or takeaway, your podcast branding, and a direct link back to the episode.</p>
+        <div class="ins-step">
+          <div class="ins-step-num">4</div>
+          <p>Review, customize, and share insights as summaries, social posts, or documentation.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Showcase -->
-  <section class="sp-showcase alt-bg">
+  <!-- ── What you get ── -->
+  <section class="ins-whatyouget">
     <div class="sp-container">
-      <span class="sp-label">Under the Hood</span>
-      <h2 class="sp-heading">Powerful technology, effortless experience</h2>
-
-      <div class="sp-block">
-        <div class="sp-block-visual">🧠</div>
-        <div class="sp-block-content">
-          <span class="sp-tag blue">Intelligence</span>
-          <h3>Deep Analysis Engine</h3>
-          <p>Our multi-pass analysis engine processes each episode through layers of contextual understanding, from speech-to-text and speaker diarization to semantic parsing and cross-reference detection. It identifies not just what was said, but why it matters in the broader context of your show's themes and your audience's interests. The result is insight extraction that feels handcrafted, delivered in seconds.</p>
+      <h2 class="ins-section-title">What you get</h2>
+      <div class="ins-check-list">
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Key insights summary with main takeaways and highlights
         </div>
-      </div>
-
-      <div class="sp-block reverse">
-        <div class="sp-block-visual">📤</div>
-        <div class="sp-block-content">
-          <span class="sp-tag orange">Distribution</span>
-          <h3>Share-Ready Output</h3>
-          <p>Every insight PodPress generates is formatted and ready to publish across your favorite channels. Export takeaways as newsletter snippets, social media carousels, blog post drafts, or structured JSON for custom integrations. One-click sharing to Twitter, LinkedIn, and email ensures your best content reaches your audience immediately after each episode drops.</p>
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Structured bullet points and actionable insights
+        </div>
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Export-ready formats: text, HTML, or markdown
+        </div>
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Editable draft so you can refine and customize insights
+        </div>
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Smart extraction of key insights and main takeaways
+        </div>
+        <div class="ins-check-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          Actionable insights formatted for easy consumption
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="sp-cta">
+  <!-- ── Benefits ── -->
+  <section class="ins-benefits">
     <div class="sp-container">
-      <h2>Unlock Hidden Insights From Every Episode</h2>
-      <p>Stop letting valuable ideas get buried in hour-long recordings. Let PodPress do the heavy lifting.</p>
-      <a href="#" class="sp-cta-btn">Try It Free</a>
+      <h2 class="ins-section-title">Benefits</h2>
+      <div class="ins-benefit-list">
+        <div class="ins-benefit-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p><strong>Save time</strong> — extract insights automatically instead of manually reviewing hours of audio.</p>
+        </div>
+        <div class="ins-benefit-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p><strong>Reduce manual effort</strong> — no more listening through episodes to find key points.</p>
+        </div>
+        <div class="ins-benefit-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p><strong>Easy content repurposing</strong> — turn one episode into insight summaries and social posts.</p>
+        </div>
+        <div class="ins-benefit-item">
+          <span class="ins-check-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <p><strong>Improve productivity</strong> — focus on recording; we extract and organize insights.</p>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- ── FAQ ── -->
+  <section class="ins-faq-section">
+    <div class="sp-container">
+      <div class="ins-faq-panel">
+        <span class="ins-faq-label">FAQ</span>
+        <h2 class="ins-faq-title">Frequently<br>asked questions</h2>
+        <p class="ins-faq-sub">Quick answers about Podcast to Key Insights.</p>
+
+        <div class="ins-faq-list">
+          <div class="ins-faq-item">
+            <button class="ins-faq-q">How fast can I get key insights?<span class="faq-icon">+</span></button>
+            <div class="ins-faq-a">
+              <div class="ins-faq-a-inner">Most episodes are processed within 2–3 minutes. You'll receive a structured summary with key insights, highlights, and actionable takeaways as soon as the analysis is complete.</div>
+            </div>
+          </div>
+          <div class="ins-faq-item">
+            <button class="ins-faq-q">What types of insights are extracted?<span class="faq-icon">+</span></button>
+            <div class="ins-faq-a">
+              <div class="ins-faq-a-inner">We extract key takeaways, main discussion points, notable quotes, actionable advice, and topic summaries. The AI identifies the most important moments based on speaker emphasis and topic relevance.</div>
+            </div>
+          </div>
+          <div class="ins-faq-item">
+            <button class="ins-faq-q">What formats can I export?<span class="faq-icon">+</span></button>
+            <div class="ins-faq-a">
+              <div class="ins-faq-a-inner">You can export insights as plain text, HTML, or markdown. All formats are optimized for newsletters, blog posts, social media, and internal documentation.</div>
+            </div>
+          </div>
+          <div class="ins-faq-item">
+            <button class="ins-faq-q">Can I customize the insight format?<span class="faq-icon">+</span></button>
+            <div class="ins-faq-a">
+              <div class="ins-faq-a-inner">Yes. Every generated draft is fully editable. You can adjust tone, reorder sections, add your own commentary, and refine the output before sharing or publishing.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="ins-cta">
+    <div class="sp-container">
+      <h2>Ready to get started?</h2>
+      <p>Extract key insights from your episodes in minutes.</p>
+      <a href="#" class="ins-cta-btn">Get started with Podpress &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
             <img src="logo-dark.png" alt="PodPress" />
           </a>
-          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
+          <p class="footer-brand-desc">
+            Turn your podcast episodes into engaging newsletters in minutes.
+            Built for creators who want to connect with their audience beyond the audio.
+          </p>
+          <div class="footer-brand-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">&#120143;</a>
+            <a href="#" aria-label="YouTube">&#9654;</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="#">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
         </div>
         <div class="footer-col">
           <h4>Features</h4>
@@ -139,23 +649,35 @@
             <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="privacy.html">Privacy</a></li>
-            <li><a href="terms.html">Terms</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="footer-bottom">
+      <nav class="footer-nav-strip" aria-label="Footer navigation">
+        <a href="#">Features</a>
+        <a href="index.html#how-it-works">How It Works</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="#">FAQ</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <div class="footer-bottom-row">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-socials">
-          <a href="#" aria-label="Twitter">&#120143;</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="YouTube">&#9654;</a>
+        <div class="footer-bottom-links">
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.ins-faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.ins-faq-item').forEach(i => i.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+  </script>
+
 </body>
 </html>

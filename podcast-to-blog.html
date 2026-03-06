@@ -8,119 +8,576 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+  <style>
+    body.pb-page {
+      background:
+        radial-gradient(circle at top left, rgba(58,103,255,0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,90,31,0.04), transparent 24%),
+        var(--bg);
+    }
+
+    .sp-nav {
+      background: rgba(247,245,242,0.84);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.82);
+    }
+
+    .pb-nav-links,
+    .pb-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .pb-nav-links {
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+      padding: 0 24px;
+    }
+
+    .pb-nav-links a,
+    .pb-nav-actions a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .pb-nav-links a:hover,
+    .pb-nav-actions a:hover {
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .pb-nav-login {
+      color: var(--ink) !important;
+    }
+
+    .pb-nav-start {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff !important;
+      font-weight: 600 !important;
+      box-shadow: 0 12px 26px rgba(58,103,255,0.18);
+    }
+
+    .pb-nav-start:hover {
+      box-shadow: 0 16px 30px rgba(58,103,255,0.24);
+    }
+
+    .pb-hero {
+      padding: 154px 0 84px;
+      text-align: center;
+      background: transparent;
+    }
+
+    .pb-hero-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .pb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(58,103,255,0.18);
+      color: var(--cornflower);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 20px;
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
+    }
+
+    .pb-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
+    }
+
+    .pb-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4.4vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .pb-hero p {
+      max-width: 600px;
+      margin: 0 auto 28px;
+      font-size: 0.98rem;
+      line-height: 1.78;
+      color: var(--text-muted);
+    }
+
+    .pb-primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pb-primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
+    }
+
+    .pb-section {
+      padding: 76px 0;
+    }
+
+    .pb-section-header {
+      max-width: 620px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .pb-section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .pb-section-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .pb-list-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 30px 28px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+    }
+
+    .pb-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pb-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .pb-check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(58,103,255,0.1);
+      color: var(--cornflower);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .pb-benefits-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .pb-benefit {
+      padding: 24px 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 22px 42px rgba(17,17,17,0.04);
+    }
+
+    .pb-benefit h3 {
+      font-size: 0.98rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .pb-benefit p {
+      font-size: 0.86rem;
+      line-height: 1.68;
+      color: var(--text-muted);
+    }
+
+    .pb-faq-shell {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 30px 26px;
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.06), rgba(255,90,31,0.03));
+      border: 1px solid rgba(221,217,211,0.92);
+      box-shadow: 0 28px 54px rgba(17,17,17,0.06);
+    }
+
+    .pb-faq-label {
+      display: block;
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      margin-bottom: 10px;
+    }
+
+    .pb-faq-title {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .pb-faq-copy {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .pb-faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pb-faq-item {
+      border: 1px solid rgba(221,217,211,0.92);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.8);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pb-faq-item.is-open {
+      border-color: rgba(58,103,255,0.3);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.08);
+    }
+
+    .pb-faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .pb-faq-q .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(58,103,255,0.08);
+      color: var(--cornflower);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .pb-faq-item.is-open .pb-faq-q .icon {
+      transform: rotate(45deg);
+      background: var(--cornflower);
+      color: #fff;
+    }
+
+    .pb-faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+    }
+
+    .pb-faq-item.is-open .pb-faq-a {
+      max-height: 240px;
+    }
+
+    .pb-faq-a-inner {
+      padding: 0 18px 18px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+    }
+
+    .pb-cta {
+      padding-top: 42px;
+      text-align: center;
+    }
+
+    .pb-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .pb-cta p {
+      max-width: 520px;
+      margin: 0 auto 24px;
+      font-size: 0.9rem;
+      line-height: 1.72;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 920px) {
+      .pb-nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .pb-nav-actions .pb-nav-login {
+        display: none;
+      }
+
+      .pb-hero {
+        padding: 132px 0 72px;
+      }
+
+      .pb-list-wrap,
+      .pb-faq-shell {
+        padding: 24px 18px;
+      }
+
+      .pb-benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pb-section {
+        padding: 64px 0;
+      }
+    }
+  </style>
 </head>
-<body>
-  <!-- Navbar -->
+<body class="pb-page">
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" />
       </a>
-      <a href="index.html" class="sp-back">← Back to home</a>
+      <ul class="pb-nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#what-you-get">What you get</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="pb-nav-actions">
+        <a href="index.html" class="pb-nav-login">Login</a>
+        <a href="#get-started" class="pb-nav-start">Start free</a>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>Podcast to <em>Blog</em></h1>
-      <p>Convert spoken conversations into SEO-optimized blog posts with one click</p>
+  <section class="pb-hero" id="overview">
+    <div class="pb-hero-inner">
+      <span class="pb-badge">Blog</span>
+      <h1>Podcast to Blog</h1>
+      <p>Turn your podcast episodes into engaging blog posts in minutes. Get human-sounding articles that are SEO-friendly, well structured, and designed to attract traffic and keep readers engaged.</p>
+      <a href="#get-started" class="pb-primary-btn">Try PodPress Free &rarr;</a>
     </div>
   </section>
 
-  <!-- Showcase -->
-  <section class="sp-showcase">
+  <section class="pb-section" id="how-it-works">
     <div class="sp-container">
-    <div class="sp-label">The Process</div>
-    <h2 class="sp-heading">Three steps from audio to published post</h2>
-
-    <div class="sp-block">
-      <div class="sp-block-visual">🎙️</div>
-      <div class="sp-block-content">
-        <span class="sp-tag">Step 1</span>
-        <h3>Recording to Text</h3>
-        <p>Upload your podcast episode in any audio format and our speech-to-text engine transcribes it with over 98% accuracy. Speaker diarization separates each voice, timestamps are preserved, and filler words are automatically stripped so you start with a clean, readable transcript ready for transformation.</p>
+      <div class="pb-section-header">
+        <h2>How it works</h2>
+        <p>Go from recorded conversation to article-ready draft with a workflow built to be fast, accurate, and easy to refine.</p>
       </div>
-    </div>
-
-    <div class="sp-block reverse">
-      <div class="sp-block-visual">📐</div>
-      <div class="sp-block-content">
-        <span class="sp-tag">Step 2</span>
-        <h3>Smart Formatting</h3>
-        <p>The AI restructures your transcript into a proper blog post with an engaging introduction, logically ordered sections, and a compelling conclusion. It generates subheadings, inserts paragraph breaks at natural topic shifts, and formats quotes and callouts to create a post that reads like it was written from scratch.</p>
+      <div class="pb-list-wrap">
+        <ul class="pb-list">
+          <li><span class="pb-check">1</span>Drop your podcast audio, RSS feed, or transcript into PodPress.</li>
+          <li><span class="pb-check">2</span>We turn the episode into a readable article structure with title, intro, and section flow.</li>
+          <li><span class="pb-check">3</span>PodPress adds SEO-friendly formatting, headings, and a cleaner narrative voice.</li>
+          <li><span class="pb-check">4</span>Customize the final blog post before exporting to WordPress, Webflow, or any CMS.</li>
+        </ul>
       </div>
-    </div>
-
-    <div class="sp-block">
-      <div class="sp-block-visual">🚀</div>
-      <div class="sp-block-content">
-        <span class="sp-tag">Step 3</span>
-        <h3>SEO Optimization</h3>
-        <p>Before publishing, PodPress runs a full SEO analysis on your post. It generates meta titles, descriptions, and Open Graph tags, suggests internal linking opportunities, and scores your content for keyword density and readability. Your blog post is primed to rank from the moment it goes live.</p>
-      </div>
-    </div>
     </div>
   </section>
 
-  <!-- Feature Grid (alt-bg) -->
-  <section class="sp-feature-grid alt-bg">
+  <section class="pb-section" id="what-you-get">
     <div class="sp-container">
-    <div class="sp-label">Capabilities</div>
-    <h2 class="sp-heading">Built for podcasters who want to grow organically</h2>
-    <div class="sp-grid">
-      <div class="sp-card">
-        <div class="sp-card-icon blue">🤖</div>
-        <h3>AI Transcription</h3>
-        <p>State-of-the-art speech recognition handles accents, technical jargon, and cross-talk with ease. The engine learns from your corrections over time, delivering increasingly accurate results with every episode you process.</p>
+      <div class="pb-section-header">
+        <h2>What you get</h2>
+        <p>Every draft is designed to feel publishable, not robotic, with useful structure that saves time on editing and formatting.</p>
       </div>
-      <div class="sp-card">
-        <div class="sp-card-icon slate">📑</div>
-        <h3>Heading Generation</h3>
-        <p>Automatically generates hierarchical H2 and H3 headings based on topic analysis of your conversation. Each heading is crafted to be both reader-friendly and keyword-rich for optimal search engine visibility.</p>
+      <div class="pb-list-wrap">
+        <ul class="pb-list">
+          <li><span class="pb-check">✓</span>Blog posts formatted with intros, subheads, and readable spacing.</li>
+          <li><span class="pb-check">✓</span>SEO-conscious article structure with cleaner transitions and clearer keyword usage.</li>
+          <li><span class="pb-check">✓</span>Export-ready drafts for WordPress, Webflow, Ghost, or custom CMS workflows.</li>
+          <li><span class="pb-check">✓</span>Content that keeps the original voice while removing filler and repetition.</li>
+          <li><span class="pb-check">✓</span>More touchpoints from one episode without extra writing work.</li>
+        </ul>
       </div>
-      <div class="sp-card">
-        <div class="sp-card-icon orange">🖼️</div>
-        <h3>Image Suggestions</h3>
-        <p>Receive contextually relevant image suggestions for each section of your blog post. PodPress recommends stock photos, generates placeholder graphics, and identifies moments where visuals would improve reader retention.</p>
-      </div>
-      <div class="sp-card">
-        <div class="sp-card-icon blue">🏷️</div>
-        <h3>SEO Metadata</h3>
-        <p>Every post is generated with complete meta titles, descriptions, canonical URLs, and structured data markup. Schema.org podcast episode data is included automatically so search engines understand your content's context.</p>
-      </div>
-      <div class="sp-card">
-        <div class="sp-card-icon slate">🔌</div>
-        <h3>WordPress Integration</h3>
-        <p>Publish directly to your WordPress site with a single click. PodPress maps headings, images, categories, and tags to your WordPress setup, and supports custom post types and Advanced Custom Fields for complete flexibility.</p>
-      </div>
-      <div class="sp-card">
-        <div class="sp-card-icon orange">📦</div>
-        <h3>Bulk Export</h3>
-        <p>Process your entire back catalog at once and export blog posts in Markdown, HTML, or WordPress XML format. Perfect for migrating content or building a searchable archive of every episode you have ever recorded.</p>
-      </div>
-    </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="sp-cta">
+  <section class="pb-section" id="benefits">
     <div class="sp-container">
-    <h2>Transform Episodes Into Blog Posts</h2>
-    <p>Unlock the SEO potential of every podcast episode. Let PodPress turn your conversations into discoverable, shareable blog content that drives organic traffic.</p>
-    <a href="index.html" class="sp-cta-btn">Get Started Free</a>
+      <div class="pb-section-header">
+        <h2>Benefits</h2>
+        <p>PodPress helps you publish faster and expand the reach of each episode with less manual rewriting.</p>
+      </div>
+      <div class="pb-benefits-grid">
+        <article class="pb-benefit">
+          <h3>Save time on writing every recap from scratch</h3>
+          <p>Turn long-form conversations into article drafts without spending hours manually restructuring the episode.</p>
+        </article>
+        <article class="pb-benefit">
+          <h3>Make your podcast more discoverable in search</h3>
+          <p>Publish SEO-ready written content that gives each episode a better chance to earn traffic beyond podcast apps.</p>
+        </article>
+        <article class="pb-benefit">
+          <h3>Keep your publishing cadence more consistent</h3>
+          <p>Move from recording to written distribution faster so your blog stays active without extra editorial pressure.</p>
+        </article>
+        <article class="pb-benefit">
+          <h3>Share your episodes in formats readers can skim</h3>
+          <p>Reach people who prefer reading, scanning, and sharing written content instead of listening to the full episode.</p>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <section class="pb-section" id="faq">
+    <div class="sp-container">
+      <div class="pb-faq-shell">
+        <span class="pb-faq-label">FAQ</span>
+        <h2 class="pb-faq-title">Frequently asked questions</h2>
+        <p class="pb-faq-copy">A few common questions about turning podcast episodes into blog-ready content with PodPress.</p>
+
+        <div class="pb-faq-list">
+          <div class="pb-faq-item is-open">
+            <button class="pb-faq-q">How fast can I get a blog post draft?<span class="icon">+</span></button>
+            <div class="pb-faq-a">
+              <div class="pb-faq-a-inner">Most podcast episodes can be converted into a first draft in just a few minutes, depending on audio length and whether transcription is needed first.</div>
+            </div>
+          </div>
+          <div class="pb-faq-item">
+            <button class="pb-faq-q">Do I need to have a blog already?<span class="icon">+</span></button>
+            <div class="pb-faq-a">
+              <div class="pb-faq-a-inner">No. You can generate the draft first, then export or paste it into WordPress, Webflow, Ghost, Notion, or any publishing workflow you already use.</div>
+            </div>
+          </div>
+          <div class="pb-faq-item">
+            <button class="pb-faq-q">What formats can I export?<span class="icon">+</span></button>
+            <div class="pb-faq-a">
+              <div class="pb-faq-a-inner">PodPress blog drafts can be adapted for plain text, HTML, Markdown, and CMS-ready copy depending on how you want to publish.</div>
+            </div>
+          </div>
+          <div class="pb-faq-item">
+            <button class="pb-faq-q">Is the content SEO-optimized?<span class="icon">+</span></button>
+            <div class="pb-faq-a">
+              <div class="pb-faq-a-inner">Yes. The generated output is structured for readability and search visibility, with cleaner headings, stronger organization, and more web-friendly wording.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-section" id="get-started">
+    <div class="sp-container pb-cta">
+      <h2>Ready to get started?</h2>
+      <p>Turn your next podcast episode into a strong blog draft in minutes and publish faster without sacrificing quality.</p>
+      <a href="index.html" class="pb-primary-btn">Get started with PodPress &rarr;</a>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid-5">
         <div class="footer-brand">
           <a href="index.html">
             <img src="logo-dark.png" alt="PodPress" />
           </a>
-          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
+          <p class="footer-brand-desc">
+            Turn your podcast episodes into engaging newsletters in minutes.
+            Built for creators who want to connect with their audience beyond the audio.
+          </p>
+          <div class="footer-brand-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">&#120143;</a>
+            <a href="#" aria-label="YouTube">&#9654;</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="#">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
         </div>
         <div class="footer-col">
           <h4>Features</h4>
@@ -145,23 +602,34 @@
             <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="privacy.html">Privacy</a></li>
-            <li><a href="terms.html">Terms</a></li>
-          </ul>
-        </div>
       </div>
-      <div class="footer-bottom">
+      <nav class="footer-nav-strip" aria-label="Footer navigation">
+        <a href="#">Features</a>
+        <a href="index.html#how-it-works">How It Works</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="#">FAQ</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <div class="footer-bottom-row">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-socials">
-          <a href="#" aria-label="Twitter">&#120143;</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="YouTube">&#9654;</a>
+        <div class="footer-bottom-links">
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.pb-faq-q').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isOpen = item.classList.contains('is-open');
+        document.querySelectorAll('.pb-faq-item').forEach((faqItem) => faqItem.classList.remove('is-open'));
+        if (!isOpen) item.classList.add('is-open');
+      });
+    });
+  </script>
 </body>
 </html>
