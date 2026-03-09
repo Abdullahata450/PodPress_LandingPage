@@ -3,11 +3,314 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Newsletter Software — PodPress</title>
+  <title>Podcast Newsletter Software — PodPress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+
+  <style>
+    /* ============================================================
+       NEWSLETTER SOFTWARE PAGE  —  .ns-* namespace
+    ============================================================ */
+
+    /* ---- Hero ---- */
+    .ns-hero {
+      padding: 120px 0 100px;
+      text-align: center;
+      background: var(--bg);
+    }
+    .ns-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* "SOFTWARE" badge */
+    .ns-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 18px;
+      margin-bottom: 32px;
+    }
+    [data-theme="dark"] .ns-badge {
+      border-color: var(--border);
+      color: var(--text-muted);
+    }
+
+    /* Two-line heading */
+    .ns-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0 0 24px;
+    }
+    .ns-hero h1 .ns-gray {
+      color: #9CA3AF;
+      display: block;
+      font-weight: 700;
+    }
+    [data-theme="dark"] .ns-hero h1 .ns-gray {
+      color: #4B5563;
+    }
+
+    .ns-hero p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0 0 40px;
+    }
+
+    .ns-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cornflower, #3A67FF);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.97rem;
+      font-weight: 600;
+      padding: 15px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(58,103,255,0.25);
+    }
+    .ns-cta-btn:hover {
+      background: #2952e0;
+      transform: translateY(-1px);
+    }
+
+    /* ---- "What you can do" ---- */
+    .ns-section {
+      padding: 96px 0;
+      background: var(--bg);
+    }
+    .ns-section.alt {
+      background: var(--surface, #F3F1ED);
+    }
+    [data-theme="dark"] .ns-section.alt {
+      background: #111520;
+    }
+    .ns-section-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .ns-section-inner.wide {
+      max-width: 860px;
+    }
+    .ns-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 56px;
+      line-height: 1.15;
+    }
+    .ns-section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin: -36px 0 52px;
+      line-height: 1.6;
+    }
+
+    /* ---- "What you can do" — Premium Bento Grid ---- */
+    .ns-bento-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .ns-bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      text-align: left;
+    }
+    .ns-bento-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.22s ease;
+    }
+    .ns-bento-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+      border-color: rgba(58,103,255,0.4);
+      transform: translateY(-3px);
+    }
+    [data-theme="dark"] .ns-bento-card { background: var(--surface); }
+    .ns-bento-card.span-2 { grid-column: span 2; }
+    .ns-bento-card.span-3 { grid-column: span 3; flex-direction: row; }
+
+    .ns-bento-visual {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px 24px;
+      flex-shrink: 0;
+    }
+    .ns-bento-card.span-3 .ns-bento-visual {
+      width: 380px;
+      height: auto;
+      min-height: 168px;
+      border-right: 1.5px solid var(--border);
+    }
+    .ns-bento-body {
+      padding: 18px 22px 24px;
+      border-top: 1.5px solid var(--border);
+      flex: 1;
+    }
+    .ns-bento-card.span-3 .ns-bento-body {
+      border-top: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 36px;
+    }
+    .ns-bento-step {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      font-family: var(--font-body);
+      margin-bottom: 7px;
+    }
+    .ns-bento-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--font-body);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .ns-bento-desc {
+      font-size: 0.845rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+      font-family: var(--font-body);
+    }
+
+    /* Visual bg gradients */
+    .ns-bv-blue   { background: linear-gradient(145deg,#EEF2FF 0%,#DBEAFE 100%); }
+    .ns-bv-orange { background: linear-gradient(145deg,#FFF7ED 0%,#FFEDD5 100%); }
+    .ns-bv-green  { background: linear-gradient(145deg,#F0FDF4 0%,#DCFCE7 100%); }
+    .ns-bv-purple { background: linear-gradient(145deg,#FAF5FF 0%,#EDE9FE 100%); }
+    .ns-bv-slate  { background: linear-gradient(145deg,#F1F5F9 0%,#E2E8F0 100%); }
+
+    [data-theme="dark"] .ns-bv-blue   { background: linear-gradient(145deg,rgba(58,103,255,0.14) 0%,rgba(58,103,255,0.07) 100%); }
+    [data-theme="dark"] .ns-bv-orange { background: linear-gradient(145deg,rgba(255,90,31,0.13) 0%,rgba(255,90,31,0.06) 100%); }
+    [data-theme="dark"] .ns-bv-green  { background: linear-gradient(145deg,rgba(34,197,94,0.12) 0%,rgba(34,197,94,0.06) 100%); }
+    [data-theme="dark"] .ns-bv-purple { background: linear-gradient(145deg,rgba(139,92,246,0.13) 0%,rgba(139,92,246,0.06) 100%); }
+    [data-theme="dark"] .ns-bv-slate  { background: linear-gradient(145deg,rgba(148,163,184,0.12) 0%,rgba(100,116,139,0.06) 100%); }
+
+    @media (max-width: 780px) {
+      .ns-bento { grid-template-columns: 1fr 1fr; }
+      .ns-bento-card.span-2 { grid-column: span 2; }
+      .ns-bento-card.span-3 { grid-column: span 2; flex-direction: column; }
+      .ns-bento-card.span-3 .ns-bento-visual {
+        width: 100%; border-right: none; border-bottom: 1.5px solid var(--border);
+      }
+    }
+    @media (max-width: 520px) {
+      .ns-bento { grid-template-columns: 1fr; }
+      .ns-bento-card.span-2, .ns-bento-card.span-3 { grid-column: span 1; }
+      .ns-bento-visual { height: 160px; }
+    }
+
+    /* ---- "Built for podcast workflows" cards ---- */
+    .ns-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 0;
+      text-align: left;
+    }
+    .ns-card {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 30px;
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .ns-card:hover {
+      border-color: var(--cornflower, #3A67FF);
+      box-shadow: 0 4px 24px rgba(58,103,255,0.1);
+    }
+    .ns-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .ns-card {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    /* ---- "Purpose-built" CTA section ---- */
+    .ns-cta-section {
+      padding: 96px 0;
+      background: var(--surface, #F3F1ED);
+      text-align: center;
+    }
+    [data-theme="dark"] .ns-cta-section {
+      background: #111520;
+    }
+    .ns-cta-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+    .ns-cta-section p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin: 0 0 40px;
+      line-height: 1.6;
+    }
+
+    /* Divider between sections */
+    .ns-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    @media (max-width: 620px) {
+      .ns-hero {
+        padding: 80px 0 72px;
+      }
+      .ns-grid {
+        grid-template-columns: 1fr;
+      }
+      .ns-section, .ns-cta-section {
+        padding: 72px 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav class="sp-nav">
@@ -15,117 +318,364 @@
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
+      <div class="sp-nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="sp-back">&larr; Back to home</a>
+      </div>
     </div>
   </nav>
 
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>Newsletter <em>Software</em></h1>
-      <p>The all-in-one platform for creating, sending, and growing your email newsletter</p>
+  <!-- ======================== HERO ======================== -->
+  <section class="ns-hero">
+    <div class="ns-hero-inner">
+      <span class="ns-badge">Software</span>
+      <h1>
+        Podcast Newsletter Software
+        <span class="ns-gray">for Podcasters</span>
+      </h1>
+      <p>
+        Podpress is newsletter software designed exclusively for podcasters.
+        It converts podcast episodes into newsletters using AI, helping teams
+        publish faster without manual writing.
+      </p>
+      <a href="#" class="ns-cta-btn">Try podcast newsletter software &rarr;</a>
     </div>
   </section>
 
-  <!-- Showcase -->
-  <section class="sp-showcase">
-    <div class="sp-container">
-      <span class="sp-label">Core Platform</span>
-      <h2 class="sp-heading">Built for creators who mean business</h2>
+  <div class="ns-divider"></div>
 
-      <div class="sp-block">
-        <div class="sp-block-visual">🎨</div>
-        <div class="sp-block-content">
-          <span class="sp-tag blue">Design</span>
-          <h3>Drag-and-Drop Builder</h3>
-          <p>Design stunning newsletters without writing a single line of code. Our visual editor gives you full control over layout, typography, and imagery with a library of professionally designed blocks you can mix and match. Responsive previews let you see exactly how your newsletter will render on desktop, tablet, and mobile before you hit send.</p>
+  <!-- ======================== WHAT YOU CAN DO ======================== -->
+  <section class="ns-section alt">
+    <div class="ns-bento-wrap">
+      <h2 class="ns-section-title">What you can do</h2>
+
+      <div class="ns-bento">
+
+        <!-- ── Card 1: Upload (span-2) ── -->
+        <div class="ns-bento-card span-2">
+          <div class="ns-bento-visual ns-bv-blue">
+            <svg viewBox="0 0 480 158" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px">
+              <!-- Left panel: RSS / episode list -->
+              <rect x="0" y="0" width="222" height="158" rx="12" fill="white" fill-opacity="0.72" stroke="#BFDBFE" stroke-width="1.2"/>
+              <!-- Panel header -->
+              <rect x="0" y="0" width="222" height="34" rx="12" fill="#EFF6FF"/>
+              <rect x="0" y="22" width="222" height="12" fill="#EFF6FF"/>
+              <circle cx="18" cy="17" r="5" fill="#EF4444" fill-opacity="0.7"/>
+              <circle cx="31" cy="17" r="5" fill="#F59E0B" fill-opacity="0.7"/>
+              <circle cx="44" cy="17" r="5" fill="#22C55E" fill-opacity="0.7"/>
+              <text x="112" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#64748B" font-weight="600">RSS FEED</text>
+              <!-- Input bar -->
+              <rect x="10" y="42" width="202" height="26" rx="7" fill="white" stroke="#BFDBFE" stroke-width="1"/>
+              <circle cx="23" cy="55" r="7" fill="#3A67FF" fill-opacity="0.15"/>
+              <text x="23" y="59" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#3A67FF">⚡</text>
+              <rect x="34" y="51" width="120" height="5" rx="2.5" fill="#94A3B8" fill-opacity="0.5"/>
+              <rect x="194" y="46" width="14" height="18" rx="4" fill="#3A67FF"/>
+              <text x="201" y="58" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white">→</text>
+              <!-- Episode row 1 -->
+              <rect x="10" y="76" width="202" height="30" rx="8" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1"/>
+              <rect x="20" y="84" width="30" height="14" rx="4" fill="#0EA5E9" fill-opacity="0.2"/>
+              <text x="35" y="94" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#0284C7">EP 47</text>
+              <rect x="56" y="84" width="100" height="5" rx="2.5" fill="#334155" fill-opacity="0.45"/>
+              <rect x="56" y="93" width="60" height="4" rx="2" fill="#94A3B8" fill-opacity="0.35"/>
+              <!-- Episode row 2 -->
+              <rect x="10" y="112" width="202" height="28" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+              <rect x="20" y="119" width="30" height="14" rx="4" fill="#6366F1" fill-opacity="0.15"/>
+              <text x="35" y="129" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4F46E5">EP 46</text>
+              <rect x="56" y="119" width="88" height="5" rx="2.5" fill="#334155" fill-opacity="0.4"/>
+              <rect x="56" y="128" width="52" height="4" rx="2" fill="#94A3B8" fill-opacity="0.3"/>
+              <!-- Connected badge -->
+              <rect x="10" y="146" width="104" height="6" rx="3" fill="#DCFCE7"/>
+              <rect x="120" y="146" width="92" height="6" rx="3" fill="#DCFCE7"/>
+
+              <!-- Right panel: Waveform -->
+              <rect x="234" y="0" width="246" height="158" rx="12" fill="white" fill-opacity="0.72" stroke="#BFDBFE" stroke-width="1.2"/>
+              <text x="246" y="18" font-family="Inter,sans-serif" font-size="8.5" fill="#64748B" font-weight="700" letter-spacing="0.08em">AUDIO WAVEFORM</text>
+              <!-- Waveform bars (30 bars, varying heights) -->
+              <g transform="translate(244, 28)">
+                <rect x="0"   y="25" width="4" height="12" rx="2" fill="#3A67FF" fill-opacity="0.35"/>
+                <rect x="6"   y="15" width="4" height="22" rx="2" fill="#3A67FF" fill-opacity="0.55"/>
+                <rect x="12"  y="6"  width="4" height="31" rx="2" fill="#3A67FF" fill-opacity="0.9"/>
+                <rect x="18"  y="12" width="4" height="25" rx="2" fill="#3A67FF" fill-opacity="0.7"/>
+                <rect x="24"  y="20" width="4" height="17" rx="2" fill="#3A67FF" fill-opacity="0.45"/>
+                <rect x="30"  y="4"  width="4" height="33" rx="2" fill="#3A67FF"/>
+                <rect x="36"  y="16" width="4" height="21" rx="2" fill="#3A67FF" fill-opacity="0.65"/>
+                <rect x="42"  y="26" width="4" height="11" rx="2" fill="#3A67FF" fill-opacity="0.35"/>
+                <rect x="48"  y="9"  width="4" height="28" rx="2" fill="#3A67FF" fill-opacity="0.85"/>
+                <rect x="54"  y="18" width="4" height="19" rx="2" fill="#3A67FF" fill-opacity="0.55"/>
+                <rect x="60"  y="2"  width="4" height="35" rx="2" fill="#3A67FF"/>
+                <rect x="66"  y="13" width="4" height="24" rx="2" fill="#3A67FF" fill-opacity="0.75"/>
+                <rect x="72"  y="24" width="4" height="13" rx="2" fill="#3A67FF" fill-opacity="0.4"/>
+                <rect x="78"  y="10" width="4" height="27" rx="2" fill="#3A67FF" fill-opacity="0.8"/>
+                <rect x="84"  y="4"  width="4" height="33" rx="2" fill="#3A67FF"/>
+                <rect x="90"  y="17" width="4" height="20" rx="2" fill="#3A67FF" fill-opacity="0.6"/>
+                <rect x="96"  y="22" width="4" height="15" rx="2" fill="#3A67FF" fill-opacity="0.45"/>
+                <rect x="102" y="7"  width="4" height="30" rx="2" fill="#3A67FF" fill-opacity="0.9"/>
+                <rect x="108" y="27" width="4" height="10" rx="2" fill="#3A67FF" fill-opacity="0.3"/>
+                <rect x="114" y="14" width="4" height="23" rx="2" fill="#3A67FF" fill-opacity="0.7"/>
+                <rect x="120" y="3"  width="4" height="34" rx="2" fill="#3A67FF"/>
+                <rect x="126" y="19" width="4" height="18" rx="2" fill="#3A67FF" fill-opacity="0.55"/>
+                <rect x="132" y="23" width="4" height="14" rx="2" fill="#3A67FF" fill-opacity="0.4"/>
+                <rect x="138" y="8"  width="4" height="29" rx="2" fill="#3A67FF" fill-opacity="0.85"/>
+                <rect x="144" y="16" width="4" height="21" rx="2" fill="#3A67FF" fill-opacity="0.65"/>
+                <rect x="150" y="5"  width="4" height="32" rx="2" fill="#3A67FF"/>
+                <rect x="156" y="20" width="4" height="17" rx="2" fill="#3A67FF" fill-opacity="0.5"/>
+                <rect x="162" y="11" width="4" height="26" rx="2" fill="#3A67FF" fill-opacity="0.75"/>
+                <rect x="168" y="28" width="4" height="9"  rx="2" fill="#3A67FF" fill-opacity="0.3"/>
+                <rect x="174" y="14" width="4" height="23" rx="2" fill="#3A67FF" fill-opacity="0.6"/>
+              </g>
+              <!-- Timestamp bar -->
+              <rect x="244" y="102" width="226" height="4" rx="2" fill="#E0E7FF"/>
+              <rect x="244" y="102" width="90"  height="4" rx="2" fill="#3A67FF"/>
+              <circle cx="334" cy="104" r="5" fill="#3A67FF"/>
+              <!-- Title -->
+              <rect x="244" y="116" width="206" height="32" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+              <text x="254" y="129" font-family="Inter,sans-serif" font-size="8.5" fill="#1E40AF" font-weight="600">Ep 47 — Future of Creator Tools</text>
+              <text x="254" y="141" font-family="Inter,sans-serif" font-size="8" fill="#64748B">42 min  •  Mar 12</text>
+            </svg>
+          </div>
+          <div class="ns-bento-body">
+            <p class="ns-bento-step">Step 01</p>
+            <h3 class="ns-bento-title">Upload or connect podcast episodes</h3>
+            <p class="ns-bento-desc">Drop an audio file or paste your RSS feed URL. Podpress syncs episode data, titles, and audio automatically — no manual setup needed.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="sp-block reverse">
-        <div class="sp-block-visual">📊</div>
-        <div class="sp-block-content">
-          <span class="sp-tag orange">Analytics</span>
-          <h3>Smart Analytics</h3>
-          <p>Go beyond opens and clicks with engagement heatmaps, read-time estimates, and subscriber journey tracking. Understand which sections of your newsletter drive the most interaction and use those insights to refine your content strategy over time. Automated weekly reports land in your inbox so you always know how your last send performed.</p>
+        <!-- ── Card 2: Transcripts (span-1) ── -->
+        <div class="ns-bento-card">
+          <div class="ns-bento-visual ns-bv-orange">
+            <svg viewBox="0 0 200 158" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:200px">
+              <!-- Document card -->
+              <rect x="16" y="4" width="168" height="150" rx="12" fill="white" fill-opacity="0.8" stroke="#FED7AA" stroke-width="1.2"/>
+              <!-- Header bar -->
+              <rect x="16" y="4"  width="168" height="32" rx="12" fill="#FFF7ED"/>
+              <rect x="16" y="24" width="168" height="12" fill="#FFF7ED"/>
+              <circle cx="32" cy="20" r="8" fill="#FB923C" fill-opacity="0.25"/>
+              <text x="32" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#EA580C">✍</text>
+              <rect x="46" y="15" width="80" height="6" rx="3" fill="#FED7AA"/>
+              <!-- "AI Transcribing" chip -->
+              <rect x="120" y="13" width="56" height="14" rx="7" fill="#FFEDD5" stroke="#FDBA74" stroke-width="1"/>
+              <text x="148" y="23" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#C2410C" font-weight="600">● Transcribing</text>
+              <!-- Text lines -->
+              <rect x="28" y="44" width="144" height="6" rx="3" fill="#FED7AA" fill-opacity="0.7"/>
+              <rect x="28" y="56" width="112" height="6" rx="3" fill="#E2E8F0" fill-opacity="0.8"/>
+              <rect x="28" y="68" width="132" height="6" rx="3" fill="#E2E8F0" fill-opacity="0.8"/>
+              <!-- Highlighted section -->
+              <rect x="28" y="80" width="144" height="18" rx="4" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+              <rect x="34" y="86" width="96" height="5" rx="2.5" fill="#FB923C" fill-opacity="0.5"/>
+              <rect x="28" y="106" width="108" height="6" rx="3" fill="#E2E8F0" fill-opacity="0.8"/>
+              <rect x="28" y="118" width="126" height="6" rx="3" fill="#E2E8F0" fill-opacity="0.8"/>
+              <!-- Accuracy badge -->
+              <rect x="28" y="132" width="152" height="16" rx="8" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+              <text x="104" y="143" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" fill="#9A3412" font-weight="700">✓ 98% accuracy</text>
+            </svg>
+          </div>
+          <div class="ns-bento-body">
+            <p class="ns-bento-step">Step 02</p>
+            <h3 class="ns-bento-title">Generate transcripts automatically</h3>
+            <p class="ns-bento-desc">AI transcribes your episode with 98% accuracy in minutes — no manual effort.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="sp-block">
-        <div class="sp-block-visual">👥</div>
-        <div class="sp-block-content">
-          <span class="sp-tag slate">Growth</span>
-          <h3>Subscriber Management</h3>
-          <p>Import, segment, and nurture your audience from a single dashboard. Tag subscribers based on behavior, source, or custom attributes and build dynamic segments that update automatically. Built-in tools for double opt-in, preference centers, and one-click unsubscribe keep you compliant and your list healthy.</p>
+        <!-- ── Card 3: Newsletter (span-1) ── -->
+        <div class="ns-bento-card">
+          <div class="ns-bento-visual ns-bv-green">
+            <svg viewBox="0 0 200 158" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:200px">
+              <!-- Email frame -->
+              <rect x="14" y="4" width="172" height="150" rx="12" fill="white" fill-opacity="0.8" stroke="#BBF7D0" stroke-width="1.2"/>
+              <!-- Email header -->
+              <rect x="14" y="4" width="172" height="38" rx="12" fill="#F0FDF4"/>
+              <rect x="14" y="30" width="172" height="12" fill="#F0FDF4"/>
+              <circle cx="30" cy="23" r="8" fill="#22C55E" fill-opacity="0.2"/>
+              <text x="30" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#16A34A">✉</text>
+              <rect x="44" y="16" width="60" height="5" rx="2.5" fill="#86EFAC" fill-opacity="0.8"/>
+              <rect x="44" y="25" width="100" height="5" rx="2.5" fill="#BBF7D0"/>
+              <!-- Subject line -->
+              <rect x="22" y="46" width="156" height="8" rx="3" fill="#15803D" fill-opacity="0.2"/>
+              <rect x="22" y="58" width="116" height="6" rx="3" fill="#E2E8F0" fill-opacity="0.7"/>
+              <!-- Separator -->
+              <line x1="22" y1="72" x2="178" y2="72" stroke="#BBF7D0" stroke-width="1"/>
+              <!-- Content label -->
+              <rect x="22" y="78" width="64" height="6" rx="3" fill="#16A34A" fill-opacity="0.3"/>
+              <!-- Content blocks -->
+              <rect x="22" y="90"  width="156" height="5" rx="2.5" fill="#E2E8F0" fill-opacity="0.8"/>
+              <rect x="22" y="100" width="140" height="5" rx="2.5" fill="#E2E8F0" fill-opacity="0.8"/>
+              <rect x="22" y="110" width="156" height="5" rx="2.5" fill="#E2E8F0" fill-opacity="0.8"/>
+              <rect x="22" y="120" width="100" height="5" rx="2.5" fill="#E2E8F0" fill-opacity="0.6"/>
+              <!-- CTA button mock -->
+              <rect x="56" y="132" width="88" height="16" rx="8" fill="#22C55E" fill-opacity="0.85"/>
+              <text x="100" y="143" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" font-weight="600">Read full episode →</text>
+            </svg>
+          </div>
+          <div class="ns-bento-body">
+            <p class="ns-bento-step">Step 03</p>
+            <h3 class="ns-bento-title">Create newsletters from episode content</h3>
+            <p class="ns-bento-desc">Structured, publish-ready email drafts generated directly from your transcript.</p>
+          </div>
+        </div>
+
+        <!-- ── Card 4: AI Tools (span-2) ── -->
+        <div class="ns-bento-card span-2">
+          <div class="ns-bento-visual ns-bv-purple">
+            <svg viewBox="0 0 460 158" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px">
+              <!-- Left panel: Raw draft -->
+              <rect x="0" y="0" width="212" height="158" rx="12" fill="white" fill-opacity="0.72" stroke="#DDD6FE" stroke-width="1.2"/>
+              <rect x="0" y="0" width="212" height="28" rx="12" fill="#FAF5FF"/>
+              <rect x="0" y="16" width="212" height="12" fill="#FAF5FF"/>
+              <text x="14" y="18" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" font-weight="700" letter-spacing="0.07em">DRAFT</text>
+              <rect x="14" y="36" width="184" height="5" rx="2.5" fill="#C4B5FD" fill-opacity="0.7"/>
+              <rect x="14" y="46" width="160" height="5" rx="2.5" fill="#C4B5FD" fill-opacity="0.5"/>
+              <rect x="14" y="56" width="176" height="5" rx="2.5" fill="#C4B5FD" fill-opacity="0.6"/>
+              <rect x="14" y="66" width="140" height="5" rx="2.5" fill="#C4B5FD" fill-opacity="0.4"/>
+              <!-- Strikethrough line -->
+              <line x1="14" y1="46" x2="174" y2="46" stroke="#A78BFA" stroke-width="1" stroke-opacity="0.6"/>
+              <line x1="14" y1="56" x2="190" y2="56" stroke="#A78BFA" stroke-width="1" stroke-opacity="0.6"/>
+              <!-- AI suggestion pill -->
+              <rect x="14" y="80" width="184" height="22" rx="8" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1"/>
+              <circle cx="26" cy="91" r="6" fill="#7C3AED" fill-opacity="0.3"/>
+              <text x="26" y="95" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#6D28D9">✦</text>
+              <text x="40" y="94" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" font-weight="600">AI Suggestion</text>
+              <rect x="14" y="108" width="184" height="5" rx="2.5" fill="#DDD6FE" fill-opacity="0.8"/>
+              <rect x="14" y="118" width="160" height="5" rx="2.5" fill="#DDD6FE" fill-opacity="0.6"/>
+              <rect x="14" y="128" width="176" height="5" rx="2.5" fill="#DDD6FE" fill-opacity="0.7"/>
+              <rect x="14" y="138" width="120" height="5" rx="2.5" fill="#DDD6FE" fill-opacity="0.5"/>
+
+              <!-- Arrow -->
+              <circle cx="230" cy="79" r="16" fill="#7C3AED" fill-opacity="0.1"/>
+              <text x="230" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" fill="#7C3AED">→</text>
+
+              <!-- Right panel: Polished -->
+              <rect x="248" y="0" width="212" height="158" rx="12" fill="white" fill-opacity="0.85" stroke="#DDD6FE" stroke-width="1.2"/>
+              <rect x="248" y="0" width="212" height="28" rx="12" fill="#F5F3FF"/>
+              <rect x="248" y="16" width="212" height="12" fill="#F5F3FF"/>
+              <text x="262" y="18" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" font-weight="700" letter-spacing="0.07em">POLISHED</text>
+              <rect x="408" y="8" width="40" height="14" rx="7" fill="#7C3AED" fill-opacity="0.15"/>
+              <text x="428" y="18" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#6D28D9" font-weight="700">✦ AI</text>
+              <rect x="262" y="36" width="184" height="5" rx="2.5" fill="#1E1B4B" fill-opacity="0.25"/>
+              <rect x="262" y="46" width="168" height="5" rx="2.5" fill="#1E1B4B" fill-opacity="0.2"/>
+              <rect x="262" y="56" width="180" height="5" rx="2.5" fill="#1E1B4B" fill-opacity="0.22"/>
+              <rect x="262" y="66" width="148" height="5" rx="2.5" fill="#1E1B4B" fill-opacity="0.18"/>
+              <!-- Check badge -->
+              <rect x="262" y="80" width="184" height="22" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+              <circle cx="274" cy="91" r="6" fill="#22C55E" fill-opacity="0.3"/>
+              <text x="274" y="95" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#16A34A">✓</text>
+              <text x="286" y="94" font-family="Inter,sans-serif" font-size="8" fill="#15803D" font-weight="600">Tone refined • Brand voice applied</text>
+              <rect x="262" y="108" width="184" height="5" rx="2.5" fill="#334155" fill-opacity="0.2"/>
+              <rect x="262" y="118" width="160" height="5" rx="2.5" fill="#334155" fill-opacity="0.18"/>
+              <rect x="262" y="128" width="176" height="5" rx="2.5" fill="#334155" fill-opacity="0.2"/>
+              <rect x="262" y="138" width="124" height="5" rx="2.5" fill="#334155" fill-opacity="0.15"/>
+            </svg>
+          </div>
+          <div class="ns-bento-body">
+            <p class="ns-bento-step">Step 04</p>
+            <h3 class="ns-bento-title">Refine content with AI tools</h3>
+            <p class="ns-bento-desc">Edit tone, trim length, and apply your brand voice — AI suggestions appear inline so you can polish in seconds, not hours.</p>
+          </div>
+        </div>
+
+        <!-- ── Card 5: Export (span-3, horizontal) ── -->
+        <div class="ns-bento-card span-3">
+          <div class="ns-bento-visual ns-bv-slate">
+            <svg viewBox="0 0 340 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px">
+              <!-- Platform pills row 1 -->
+              <rect x="0"   y="6"  width="110" height="44" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="20" cy="28" r="10" fill="#FFE01B" fill-opacity="0.3"/>
+              <text x="20" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="12">✉</text>
+              <text x="36" y="25" font-family="Inter,sans-serif" font-size="9" fill="#1C1C1C" font-weight="700">Mailchimp</text>
+              <text x="36" y="36" font-family="Inter,sans-serif" font-size="8" fill="#64748B">Email platform</text>
+              <circle cx="100" cy="18" r="5" fill="#22C55E"/>
+              <text x="100" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="white">✓</text>
+
+              <rect x="116" y="6"  width="110" height="44" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="136" cy="28" r="10" fill="#FB923C" fill-opacity="0.25"/>
+              <text x="136" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="12">◈</text>
+              <text x="152" y="25" font-family="Inter,sans-serif" font-size="9" fill="#1C1C1C" font-weight="700">ConvertKit</text>
+              <text x="152" y="36" font-family="Inter,sans-serif" font-size="8" fill="#64748B">Creator platform</text>
+              <circle cx="216" cy="18" r="5" fill="#22C55E"/>
+              <text x="216" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="white">✓</text>
+
+              <rect x="232" y="6"  width="108" height="44" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="250" cy="28" r="10" fill="#A78BFA" fill-opacity="0.25"/>
+              <text x="250" y="32" text-anchor="middle" font-family="Inter,sans-serif" font-size="12">◉</text>
+              <text x="266" y="25" font-family="Inter,sans-serif" font-size="9" fill="#1C1C1C" font-weight="700">Substack</text>
+              <text x="266" y="36" font-family="Inter,sans-serif" font-size="8" fill="#64748B">Newsletter</text>
+              <circle cx="330" cy="18" r="5" fill="#22C55E"/>
+              <text x="330" y="21" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="white">✓</text>
+
+              <!-- Platform pills row 2 -->
+              <rect x="0"   y="58" width="110" height="44" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="20" cy="80" r="10" fill="#FBBF24" fill-opacity="0.25"/>
+              <text x="20" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="12">🐝</text>
+              <text x="36" y="77" font-family="Inter,sans-serif" font-size="9" fill="#1C1C1C" font-weight="700">Beehiiv</text>
+              <text x="36" y="88" font-family="Inter,sans-serif" font-size="8" fill="#64748B">Growth platform</text>
+              <circle cx="100" cy="70" r="5" fill="#22C55E"/>
+              <text x="100" y="73" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="white">✓</text>
+
+              <rect x="116" y="58" width="110" height="44" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.2"/>
+              <circle cx="136" cy="80" r="10" fill="#6366F1" fill-opacity="0.2"/>
+              <text x="136" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="12">⬡</text>
+              <text x="152" y="77" font-family="Inter,sans-serif" font-size="9" fill="#1C1C1C" font-weight="700">HubSpot</text>
+              <text x="152" y="88" font-family="Inter,sans-serif" font-size="8" fill="#64748B">CRM + email</text>
+              <circle cx="216" cy="70" r="5" fill="#22C55E"/>
+              <text x="216" y="73" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" fill="white">✓</text>
+
+              <!-- Export formats pill -->
+              <rect x="232" y="58" width="108" height="44" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+              <text x="288" y="76" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#64748B" font-weight="600">Also export as</text>
+              <rect x="243" y="82" width="28" height="13" rx="6" fill="#E2E8F0"/>
+              <text x="257" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#334155" font-weight="600">HTML</text>
+              <rect x="276" y="82" width="28" height="13" rx="6" fill="#E2E8F0"/>
+              <text x="290" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#334155" font-weight="600">.MD</text>
+              <rect x="309" y="82" width="24" height="13" rx="6" fill="#E2E8F0"/>
+              <text x="321" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="7.5" fill="#334155" font-weight="600">TXT</text>
+            </svg>
+          </div>
+          <div class="ns-bento-body">
+            <p class="ns-bento-step">Step 05</p>
+            <h3 class="ns-bento-title">Export or publish via integrations</h3>
+            <p class="ns-bento-desc">One-click export to Mailchimp, ConvertKit, Substack, Beehiiv, HubSpot and more — or download as HTML, Markdown, or plain text. Your workflow, your tools.</p>
+          </div>
+        </div>
+
+      </div><!-- /ns-bento -->
+    </div><!-- /ns-bento-wrap -->
+  </section>
+
+  <div class="ns-divider"></div>
+
+  <!-- ======================== BUILT FOR PODCAST WORKFLOWS ======================== -->
+  <section class="ns-section">
+    <div class="ns-section-inner wide">
+      <h2 class="ns-section-title">Built for podcast workflows</h2>
+      <p class="ns-section-sub">Unlike generic AI tools, Podpress understands:</p>
+      <div class="ns-grid">
+        <div class="ns-card">
+          <p class="ns-card-title">Episode structure</p>
+        </div>
+        <div class="ns-card">
+          <p class="ns-card-title">Spoken content</p>
+        </div>
+        <div class="ns-card">
+          <p class="ns-card-title">Long-form conversations</p>
+        </div>
+        <div class="ns-card">
+          <p class="ns-card-title">Recurring publishing schedules</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats Strip -->
-  <section class="sp-stats">
-    <div class="sp-stats-row">
-      <div>
-        <span class="sp-stat-val">50K+</span>
-        <span class="sp-stat-lbl">Active Users</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">99.8%</span>
-        <span class="sp-stat-lbl">Deliverability</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">200+</span>
-        <span class="sp-stat-lbl">Integrations</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">4.9★</span>
-        <span class="sp-stat-lbl">Rating</span>
-      </div>
+  <div class="ns-divider"></div>
+
+  <!-- ======================== CTA ======================== -->
+  <section class="ns-cta-section">
+    <div class="ns-section-inner">
+      <h2>Purpose-built for podcasters</h2>
+      <p>Software that understands your workflow &mdash; from episode to inbox.</p>
+      <a href="#" class="ns-cta-btn">Try podcast newsletter software &rarr;</a>
     </div>
   </section>
 
-  <!-- Feature Grid (2-col) -->
-  <section class="sp-feature-grid alt-bg">
-    <div class="sp-container">
-      <span class="sp-label">Plans & Flexibility</span>
-      <h2 class="sp-heading">Scales with you from day one</h2>
-
-      <div class="sp-grid cols-2">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🆓</div>
-          <h3>Free Tier</h3>
-          <p>Get started at zero cost with up to 500 subscribers and 2,000 sends per month. The free plan includes access to the drag-and-drop builder, basic analytics, and community support so you can validate your newsletter idea without any financial commitment.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon slate">👫</div>
-          <h3>Team Collaboration</h3>
-          <p>Invite editors, designers, and stakeholders to your workspace with role-based permissions. Collaborative drafting, comment threads, and approval workflows ensure every newsletter is reviewed and polished before it reaches your audience.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🏷️</div>
-          <h3>White Label</h3>
-          <p>Remove all PodPress branding and replace it with your own logo, colors, and custom domain. White-label plans are ideal for agencies and media companies that want a seamless branded experience for their clients or sub-publications.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🔌</div>
-          <h3>API Access</h3>
-          <p>Build custom integrations with our RESTful API and webhook system. Programmatically create campaigns, manage subscribers, trigger sends, and pull analytics into your own dashboards. Comprehensive documentation and SDKs for Python, Node, and Ruby make integration straightforward.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="sp-cta">
-    <div class="sp-container">
-      <h2>Start Building Newsletters For Free</h2>
-      <p>No credit card required. Launch your first newsletter in under five minutes.</p>
-      <a href="#" class="sp-cta-btn">Create Free Account</a>
-    </div>
-  </section>
-
+  <!-- ======================== FOOTER ======================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid-5">
@@ -202,8 +752,8 @@
       </div>
     </div>
   </footer>
+
   <script src="navbar.js"></script>
   <script src="theme.js"></script>
-  <script src="premium.js"></script>
 </body>
 </html>

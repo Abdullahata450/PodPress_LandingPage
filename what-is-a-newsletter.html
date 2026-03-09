@@ -8,123 +8,209 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+  <style>
+    .wn-page {
+      background:
+        radial-gradient(circle at top left, rgba(58,103,255,0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,90,31,0.04), transparent 24%),
+        var(--bg);
+    }
+    .sp-nav { background: rgba(247,245,242,0.84); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(221,217,211,0.82); }
+    
+    .wn-hero { padding: 154px 0 84px; text-align: center; }
+    .wn-hero-inner { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+    .wn-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.74); border: 1px solid rgba(58,103,255,0.18); color: var(--cornflower); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 20px; box-shadow: 0 12px 28px rgba(17,17,17,0.04); }
+    .wn-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(58,103,255,0.12); }
+    .wn-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 4.4vw, 4rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 400; margin-bottom: 18px; color: var(--ink); }
+    .wn-hero p { max-width: 600px; margin: 0 auto 16px; font-size: 0.98rem; line-height: 1.78; color: var(--text-muted); }
+    .wn-hero p.sub { font-size: 0.9rem; color: var(--text-muted); opacity: 0.8; }
+
+    .wn-section { padding: 76px 0; }
+    .wn-section-header { max-width: 620px; margin: 0 auto 34px; text-align: center; }
+    .wn-section-header h2 { font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 12px; color: var(--ink); }
+    .wn-section-header p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+
+    .wn-compare-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .wn-compare-card { padding: 32px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .wn-compare-card.highlight { background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)), linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04)); border-color: rgba(58,103,255,0.3); }
+    .wn-compare-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 24px; color: var(--ink); padding-bottom: 16px; border-bottom: 1px solid rgba(221,217,211,0.8); text-align: center; }
+    .wn-compare-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .wn-compare-list li { display: flex; align-items: center; gap: 14px; font-size: 0.95rem; color: var(--text-muted); }
+    .wn-compare-card.highlight .wn-compare-list li { color: var(--ink); font-weight: 500; }
+    .wn-bullet-icon { width: 6px; height: 6px; border-radius: 50%; background: var(--cornflower); flex-shrink: 0; }
+    .wn-bullet-icon.alt { background: var(--text-muted); opacity: 0.5; }
+
+    .wn-list-wrap { max-width: 760px; margin: 0 auto; padding: 30px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .wn-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .wn-check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; line-height: 1.7; color: var(--ink); font-weight: 500;}
+    .wn-check { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(58,103,255,0.1); color: var(--cornflower); font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
+
+    .wn-pill-wrap { max-width: 760px; margin: 0 auto; text-align: center; }
+    .wn-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 24px; }
+    .wn-tag { padding: 10px 20px; border-radius: 999px; background: rgba(58,103,255,0.08); color: var(--cornflower); font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(58,103,255,0.15); box-shadow: 0 4px 12px rgba(58,103,255,0.05); }
+    .wn-note { font-size: 0.88rem; color: var(--text-muted); opacity: 0.9; text-align: center; margin-top: 24px; }
+
+    .wn-step-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .wn-step-card { padding: 24px 20px; border-radius: 20px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 16px 32px rgba(17,17,17,0.04); text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .wn-step-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(58, 103, 255, 0.03), transparent 60%); opacity: 0; transition: opacity 0.2s ease; pointer-events: none; border-radius: 20px; }
+    .wn-step-card:hover::after { opacity: 1; }
+    .wn-step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--cornflower); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; box-shadow: 0 0 0 4px rgba(58, 103, 255, 0.12); }
+    .wn-step-text { font-size: 0.95rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+
+    .wn-cta { text-align: center; padding-top: 42px; }
+    .wn-cta h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; margin-bottom: 16px; color: var(--ink); }
+    .wn-cta p { max-width: 520px; margin: 0 auto 28px; font-size: 0.95rem; line-height: 1.72; color: var(--text-muted); }
+    .wn-primary-btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; box-shadow: 0 18px 34px rgba(58,103,255,0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .wn-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(58,103,255,0.24); color: #fff; }
+
+    @media (max-width: 900px) {
+      .wn-step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .wn-nav-links, .wn-login { display: none !important; }
+      .wn-hero { padding: 132px 0 72px; }
+      .wn-compare-grid { grid-template-columns: 1fr; }
+      .wn-step-grid { grid-template-columns: 1fr; }
+      .wn-section { padding: 64px 0; }
+    }
+
+    /* Dark mode overrides */
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .wn-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); box-shadow: none; }
+    [data-theme="dark"] .wn-compare-card, [data-theme="dark"] .wn-list-wrap, [data-theme="dark"] .wn-step-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .wn-compare-card.highlight { background: linear-gradient(180deg, rgba(58,103,255,0.1), rgba(58,103,255,0.02)); border-color: rgba(58,103,255,0.35); }
+    [data-theme="dark"] .wn-compare-title { border-color: var(--border); }
+    [data-theme="dark"] .wn-check { background: rgba(58,103,255,0.12); }
+    [data-theme="dark"] .wn-tag { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+  </style>
 </head>
-<body>
+<body class="wn-page">
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
+      <ul class="wn-nav-links" aria-label="Primary" style="display: flex; list-style: none; flex: 1; justify-content: center; padding: 0 24px; gap: 18px; margin: 0;">
+        <li><a href="#comparison" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Difference</a></li>
+        <li><a href="#benefits" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Benefits</a></li>
+        <li><a href="#how-to" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">How to</a></li>
+        <li><a href="index.html#pricing" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Pricing</a></li>
+      </ul>
+      <div class="sp-nav-right" style="display: flex; align-items: center; gap: 18px;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="wn-login" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--ink);">Log in</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; font-weight: 600; font-size: 0.82rem; text-decoration: none; box-shadow: 0 12px 26px rgba(58,103,255,0.18);">Start free</a>
+      </div>
     </div>
   </nav>
 
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>What is a <em>Newsletter?</em></h1>
-      <p>A comprehensive guide to understanding, creating, and growing email newsletters</p>
+  <section class="wn-hero">
+    <div class="wn-hero-inner">
+      <div class="wn-badge">Guide</div>
+      <h1>What Is a Podcast Newsletter?</h1>
+      <p>A podcast newsletter is an email sent to subscribers that summarizes, highlights, or expands on a podcast episode. It transforms spoken content into structured written communication.</p>
+      <p class="sub">Instead of show notes, a podcast newsletter delivers curated episode insights directly to your audience's inbox.</p>
     </div>
   </section>
 
-  <section class="sp-showcase">
+  <section class="wn-section" id="comparison">
     <div class="sp-container">
-      <span class="sp-label">Understanding Newsletters</span>
-      <h2 class="sp-heading">Everything you need to know about email newsletters</h2>
-
-      <div class="sp-block">
-        <div class="sp-block-visual">📧</div>
-        <div class="sp-block-content">
-          <h3>The Basics of Newsletters</h3>
-          <p>A newsletter is a regularly distributed email publication that delivers curated content, updates, or insights directly to a subscriber's inbox. Unlike one-off marketing emails, newsletters build an ongoing relationship with readers by providing consistent value on a predictable schedule. They can range from brief daily digests to in-depth weekly essays, and they give creators a direct communication channel that is not subject to social media algorithms or platform changes.</p>
-          <span class="sp-tag blue">Fundamentals</span>
-        </div>
+      <div class="wn-section-header">
+        <h2>How is a podcast newsletter different from show notes?</h2>
       </div>
-
-      <div class="sp-block reverse">
-        <div class="sp-block-visual">💡</div>
-        <div class="sp-block-content">
-          <h3>Why Newsletters Matter</h3>
-          <p>Email remains one of the highest-converting digital channels, with an average return of $36 for every $1 spent on email marketing. Newsletters give you ownership of your audience list, meaning you are not reliant on any third-party platform to reach the people who care about your content. They also foster deeper engagement than social media posts because subscribers have actively opted in and are reading in a focused, distraction-free environment.</p>
-          <span class="sp-tag slate">Why It Matters</span>
+      <div class="wn-compare-grid">
+        
+        <div class="wn-compare-card">
+          <h3 class="wn-compare-title">Show Notes</h3>
+          <ul class="wn-compare-list">
+            <li><span class="wn-bullet-icon alt"></span>Posted on episode pages</li>
+            <li><span class="wn-bullet-icon alt"></span>Often brief</li>
+            <li><span class="wn-bullet-icon alt"></span>Primarily SEO-focused</li>
+          </ul>
         </div>
-      </div>
 
-      <div class="sp-block">
-        <div class="sp-block-visual">📋</div>
-        <div class="sp-block-content">
-          <h3>Types of Newsletters</h3>
-          <p>Newsletters come in many forms depending on your goals and audience. Educational newsletters teach subscribers something new in each issue, while curated roundups aggregate the best links and resources from around the web. Product update newsletters keep users informed about new features, and community digests highlight member contributions and discussions. Understanding the different types helps you choose the format that aligns best with your content strategy.</p>
-          <span class="sp-tag orange">Categories</span>
+        <div class="wn-compare-card highlight">
+          <h3 class="wn-compare-title">Podcast Newsletter</h3>
+          <ul class="wn-compare-list">
+            <li><span class="wn-bullet-icon"></span>Sent via email</li>
+            <li><span class="wn-bullet-icon"></span>Structured and narrative</li>
+            <li><span class="wn-bullet-icon"></span>Designed for subscriber engagement</li>
+            <li><span class="wn-bullet-icon"></span>Highlights insights, key themes, and context</li>
+          </ul>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section class="sp-feature-grid alt-bg">
+  <section class="wn-section" id="benefits">
     <div class="sp-container">
-      <span class="sp-label">Newsletter Types</span>
-      <h2 class="sp-heading">Popular newsletter formats to inspire your strategy</h2>
-      <div class="sp-grid">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🎓</div>
-          <h3>Educational Newsletters</h3>
-          <p>Teach your subscribers something valuable in every issue with structured lessons, tutorials, or deep dives into specific topics. Educational newsletters position you as an authority in your field and give readers a reason to open every single email. They work exceptionally well for creators who share expertise in areas like marketing, technology, or personal development.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">🔗</div>
-          <h3>Curated Roundups</h3>
-          <p>Save your subscribers hours of browsing by hand-picking the most relevant articles, tools, and resources from across the internet. A well-curated roundup becomes a trusted filter that readers rely on to stay informed without information overload. Add brief commentary to each link explaining why it matters and what the reader will gain from it.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🚀</div>
-          <h3>Product Updates</h3>
-          <p>Keep your users in the loop about new features, improvements, and upcoming releases with a dedicated product changelog newsletter. Highlight the most impactful changes with clear explanations of how they benefit the user rather than just listing technical details. Include screenshots, short demos, or links to detailed documentation to help readers get the most from each update.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon blue">👥</div>
-          <h3>Community Digests</h3>
-          <p>Bring your community together by showcasing member achievements, popular discussions, and upcoming events in a regular digest. Community newsletters strengthen the bond between members and give quieter participants a window into what is happening without needing to check every channel. They are especially effective for membership communities, Slack groups, and online forums.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">💭</div>
-          <h3>Thought Leadership</h3>
-          <p>Share original perspectives, industry analysis, and forward-looking insights that establish your unique point of view. Thought leadership newsletters attract high-quality subscribers who value depth and nuance over surface-level content. They tend to generate strong engagement through replies and forwards, making them powerful tools for building professional influence and credibility.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">📢</div>
-          <h3>Promotional Campaigns</h3>
-          <p>Drive conversions by strategically promoting products, services, or events to an engaged subscriber base. Effective promotional newsletters balance value-driven content with clear calls-to-action so they never feel like pure sales pitches. Segment your audience to deliver personalized offers that match each subscriber's interests and purchase history for significantly higher conversion rates.</p>
-        </div>
+      <div class="wn-section-header">
+        <h2>Why podcasters use newsletters</h2>
+      </div>
+      <div class="wn-list-wrap">
+        <ul class="wn-check-list">
+          <li><span class="wn-check">✓</span>Build direct audience relationships</li>
+          <li><span class="wn-check">✓</span>Increase engagement beyond listening</li>
+          <li><span class="wn-check">✓</span>Reach subscribers who don't listen weekly</li>
+          <li><span class="wn-check">✓</span>Reinforce episode themes</li>
+          <li><span class="wn-check">✓</span>Create a repeatable content channel</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="sp-stats">
-    <div class="sp-stats-row">
-      <div>
-        <div class="sp-stat-val">4B+</div>
-        <div class="sp-stat-lbl">Email Users Worldwide</div>
-      </div>
-      <div>
-        <div class="sp-stat-val">36:1</div>
-        <div class="sp-stat-lbl">Average ROI</div>
-      </div>
-      <div>
-        <div class="sp-stat-val">77%</div>
-        <div class="sp-stat-lbl">Prefer Email for Promos</div>
-      </div>
-      <div>
-        <div class="sp-stat-val">81%</div>
-        <div class="sp-stat-lbl">Read on Mobile</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sp-cta">
+  <section class="wn-section" id="includes">
     <div class="sp-container">
-      <h2>Create Your Newsletter With PodPress</h2>
-      <p>Whether you are starting from scratch or looking to level up an existing newsletter, PodPress gives you the tools to build, grow, and monetize your email audience.</p>
-      <a href="#" class="sp-cta-btn">Start Your Newsletter</a>
+      <div class="wn-section-header">
+        <h2>What does a podcast newsletter include?</h2>
+        <p>A typical podcast newsletter may include:</p>
+      </div>
+      <div class="wn-pill-wrap">
+        <div class="wn-tags">
+          <span class="wn-tag">Episode introduction</span>
+          <span class="wn-tag">Key insights</span>
+          <span class="wn-tag">Important quotes</span>
+          <span class="wn-tag">Segment breakdown</span>
+          <span class="wn-tag">Call-to-action</span>
+        </div>
+        <p class="wn-note">Podpress generates structured newsletters directly from episode transcripts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wn-section" id="how-to">
+    <div class="sp-container">
+      <div class="wn-section-header">
+        <h2>How to create a podcast newsletter</h2>
+      </div>
+      <div class="wn-step-grid">
+        <div class="wn-step-card">
+          <div class="wn-step-num">1</div>
+          <div class="wn-step-text">Generate a transcript</div>
+        </div>
+        <div class="wn-step-card">
+          <div class="wn-step-num">2</div>
+          <div class="wn-step-text">Extract key themes</div>
+        </div>
+        <div class="wn-step-card">
+          <div class="wn-step-num">3</div>
+          <div class="wn-step-text">Structure into email format</div>
+        </div>
+        <div class="wn-step-card">
+          <div class="wn-step-num">4</div>
+          <div class="wn-step-text">Refine and publish</div>
+        </div>
+      </div>
+      <p class="wn-note" style="margin-top: 8px;">Or automate the entire process using Podpress.</p>
+    </div>
+  </section>
+
+  <section class="wn-section">
+    <div class="sp-container wn-cta">
+      <h2>Create your first podcast newsletter</h2>
+      <p>Go from episode to newsletter in minutes — no manual rewriting required.</p>
+      <a href="index.html" class="wn-primary-btn">Create your podcast newsletter &rarr;</a>
     </div>
   </section>
 

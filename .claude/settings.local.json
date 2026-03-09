@@ -5,7 +5,9 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(lsof:*)",
       "Bash(xargs kill:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(python3:*)",
+      "Bash(node -e:*)"
     ]
   }
 }

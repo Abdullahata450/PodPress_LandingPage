@@ -8,155 +8,227 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+  <style>
+    .png-page {
+      background:
+        radial-gradient(circle at top left, rgba(58,103,255,0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,90,31,0.04), transparent 24%),
+        var(--bg);
+    }
+    .sp-nav { background: rgba(247,245,242,0.84); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(221,217,211,0.82); }
+    .png-hero { padding: 154px 0 84px; text-align: center; }
+    .png-hero-inner { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+    .png-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.74); border: 1px solid rgba(58,103,255,0.18); color: var(--cornflower); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 20px; box-shadow: 0 12px 28px rgba(17,17,17,0.04); }
+    .png-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(58,103,255,0.12); }
+    .png-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 4.4vw, 4rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 400; margin-bottom: 18px; color: var(--ink); }
+    .png-hero p { max-width: 600px; margin: 0 auto 16px; font-size: 0.98rem; line-height: 1.78; color: var(--text-muted); }
+    .png-hero p.sub { font-size: 0.9rem; color: var(--text-muted); opacity: 0.8; }
+
+    .png-section { padding: 76px 0; }
+    .png-section-header { max-width: 620px; margin: 0 auto 34px; text-align: center; }
+    .png-section-header h2 { font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 12px; color: var(--ink); }
+    
+    .png-list-wrap { max-width: 760px; margin: 0 auto; padding: 30px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .png-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .png-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; line-height: 1.7; color: var(--ink); font-weight: 500;}
+    .png-check { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(58,103,255,0.1); color: var(--cornflower); font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
+
+    .png-step-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+    .png-step-card { padding: 32px 30px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 22px 42px rgba(17,17,17,0.04); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .png-step-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(58, 103, 255, 0.03), transparent 60%); opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+    .png-step-card:hover::after { opacity: 1; }
+    .png-step-num { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cornflower); }
+    .png-step-num::before { content: ""; width: 18px; height: 1px; background: rgba(58, 103, 255, 0.35); }
+    .png-step-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: var(--ink); }
+    .png-step-desc { font-size: 0.92rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 16px; }
+    
+    .png-step-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .png-step-bullets li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--ink); }
+    .png-step-bullet-icon { width: 6px; height: 6px; border-radius: 50%; background: var(--cornflower); flex-shrink: 0; }
+    .png-step-note { font-size: 0.82rem; color: var(--text-muted); padding-top: 16px; border-top: 1px solid rgba(221,217,211,0.8); }
+
+    .png-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .png-tag { padding: 6px 14px; border-radius: 999px; background: rgba(58,103,255,0.08); color: var(--cornflower); font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(58,103,255,0.15); }
+
+    .png-compare-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .png-compare-card { padding: 32px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .png-compare-card.highlight { background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)), linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04)); border-color: rgba(58,103,255,0.3); }
+    .png-compare-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 24px; color: var(--ink); padding-bottom: 16px; border-bottom: 1px solid rgba(221,217,211,0.8); text-align: center; }
+    .png-compare-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .png-compare-list li { display: flex; align-items: center; gap: 14px; font-size: 0.92rem; color: var(--text-muted); }
+    .png-compare-card.highlight .png-compare-list li { color: var(--ink); font-weight: 500; }
+    .png-num { width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%; background: var(--bg); border: 1px solid rgba(221,217,211,0.9); display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); }
+    .png-compare-card.highlight .png-num { background: var(--cornflower); border-color: var(--cornflower); color: #fff; }
+
+    .png-cta { text-align: center; padding-top: 42px; }
+    .png-cta h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; margin-bottom: 16px; color: var(--ink); }
+    .png-cta p { max-width: 520px; margin: 0 auto 28px; font-size: 0.95rem; line-height: 1.72; color: var(--text-muted); }
+    .png-primary-btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; box-shadow: 0 18px 34px rgba(58,103,255,0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .png-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(58,103,255,0.24); color: #fff; }
+
+    @media (max-width: 768px) {
+      .png-nav-links, .png-login { display: none !important; }
+      .png-hero { padding: 132px 0 72px; }
+      .png-compare-grid { grid-template-columns: 1fr; }
+      .png-section { padding: 64px 0; }
+    }
+
+    /* Dark mode overrides */
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .png-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); box-shadow: none; }
+    [data-theme="dark"] .png-list-wrap, [data-theme="dark"] .png-step-card, [data-theme="dark"] .png-compare-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .png-step-card::after { background: linear-gradient(180deg, rgba(58,103,255,0.08), transparent 60%); }
+    [data-theme="dark"] .png-check { background: rgba(58,103,255,0.12); }
+    [data-theme="dark"] .png-step-num { color: var(--cornflower); }
+    [data-theme="dark"] .png-tag { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .png-step-note, [data-theme="dark"] .png-compare-title { border-color: var(--border); }
+    [data-theme="dark"] .png-num { background: var(--surface); border-color: var(--border); }
+    [data-theme="dark"] .png-compare-card.highlight { background: linear-gradient(180deg, rgba(58,103,255,0.1), rgba(58,103,255,0.02)); border-color: rgba(58,103,255,0.35); }
+  </style>
 </head>
-<body>
+<body class="png-page">
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
+      <ul class="png-nav-links" aria-label="Primary" style="display: flex; list-style: none; flex: 1; justify-content: center; padding: 0 24px; gap: 18px; margin: 0;">
+        <li><a href="#benefits" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Benefits</a></li>
+        <li><a href="#steps" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Step-by-step</a></li>
+        <li><a href="#workflow" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Workflow</a></li>
+        <li><a href="index.html#pricing" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--text-muted);">Pricing</a></li>
+      </ul>
+      <div class="sp-nav-right" style="display: flex; align-items: center; gap: 18px;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="png-login" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--ink);">Log in</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; font-weight: 600; font-size: 0.82rem; text-decoration: none; box-shadow: 0 12px 26px rgba(58,103,255,0.18);">Start free</a>
+      </div>
     </div>
   </nav>
 
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>Podcast Newsletter <em>Guide</em></h1>
-      <p>Everything you need to know about turning your podcast into a thriving newsletter</p>
+  <section class="png-hero">
+    <div class="png-hero-inner">
+      <div class="png-badge">Guide</div>
+      <h1>How to Turn a Podcast Into a Newsletter</h1>
+      <p>Turning a podcast into a newsletter helps you reach more of your audience by using your podcast transcripts as the base for structured email content.</p>
+      <p class="sub">Podpress helps you convert podcast episodes into newsletters automatically using AI.</p>
     </div>
   </section>
 
-  <section class="sp-timeline">
+  <section class="png-section" id="benefits">
     <div class="sp-container">
-      <span class="sp-label">Step-by-Step</span>
-      <h2 class="sp-heading">Your roadmap to a successful podcast newsletter</h2>
-      <div class="sp-tl-list">
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 1</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>Choose Your Format</h3>
-            <p>Decide whether your newsletter will be a full episode recap, a curated highlights digest, or an extended commentary that adds context beyond the audio. Consider your audience's reading habits and the time you can commit to each issue. The format you choose will shape your editorial calendar and set subscriber expectations from day one.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 2</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>Set Up Your Tools</h3>
-            <p>Select an email service provider that integrates with your podcast workflow and supports the features you need, like segmentation and automation. PodPress connects directly with major platforms such as ConvertKit, Mailchimp, and Substack to streamline the setup process. Configure your sending domain, design your template, and verify deliverability before sending your first issue.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 3</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge improve">Improve</span>
-            <h3>Build Your Subscriber List</h3>
-            <p>Grow your list by promoting the newsletter in every episode with a clear call-to-action and a compelling reason to subscribe. Add signup forms to your podcast website, show notes, and social media profiles to capture interested listeners wherever they discover your content. Offer a lead magnet like exclusive bonus content or early access to episodes to incentivize subscriptions.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 4</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>Create Your First Issue</h3>
-            <p>Draft your inaugural newsletter with a personal welcome, a summary of your latest episode, and a preview of what subscribers can expect going forward. Keep the tone conversational and consistent with your podcast personality so readers feel the same connection they get from listening. Include at least one exclusive insight or behind-the-scenes detail that rewards subscribers for signing up.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 5</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge improve">Improve</span>
-            <h3>Optimize and Iterate</h3>
-            <p>Track open rates, click-through rates, and reply rates to understand what resonates with your audience. A/B test subject lines, send times, and content formats to continuously improve engagement over time. Use subscriber feedback and analytics data to refine your editorial strategy and double down on what works best.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Step 6</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>Scale and Monetize</h3>
-            <p>Once you have a loyal subscriber base, explore monetization options like paid tiers, sponsorship placements, and affiliate partnerships. Segment your list to offer premium content to paying subscribers while keeping a free tier to continue growing your audience. Use PodPress analytics to demonstrate your newsletter's value to potential sponsors with concrete engagement metrics.</p>
-          </div>
-        </div>
+      <div class="png-section-header">
+        <h2>Why turn a podcast into a newsletter?</h2>
+      </div>
+      <div class="png-list-wrap">
+        <ul class="png-list">
+          <li><span class="png-check">✓</span>Reach audiences who don’t listen to full episodes</li>
+          <li><span class="png-check">✓</span>Build an owned email list</li>
+          <li><span class="png-check">✓</span>Extend the lifespan of each episode</li>
+          <li><span class="png-check">✓</span>Reinforce key insights in written format</li>
+          <li><span class="png-check">✓</span>Create consistent weekly publishing</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="sp-faq alt-bg">
+  <section class="png-section" id="steps">
     <div class="sp-container">
-      <span class="sp-label">FAQ</span>
-      <h2 class="sp-heading">Common questions about podcast newsletters</h2>
-      <div class="sp-faq-list">
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">How often should I send my podcast newsletter?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Most successful podcast newsletters align with their episode release schedule, whether that is weekly, biweekly, or monthly. Consistency matters more than frequency — subscribers should be able to predict when your next issue will arrive. If you publish episodes weekly, a weekly newsletter sent the same day as your episode gives listeners a companion piece to deepen their engagement.</div>
+      <div class="png-section-header">
+        <h2>Step-by-step: turning a podcast into a newsletter</h2>
+      </div>
+      <div class="png-step-list">
+        
+        <article class="png-step-card">
+          <div class="png-step-num">Step 01</div>
+          <h3 class="png-step-title">Generate a transcript</h3>
+          <p class="png-step-desc">The transcript becomes the source of truth for insights, quotes, and ideas from the episode.</p>
+          <ul class="png-step-bullets">
+            <li><span class="png-step-bullet-icon"></span>YouTube podcast links</li>
+            <li><span class="png-step-bullet-icon"></span>Podcast RSS feeds</li>
+            <li><span class="png-step-bullet-icon"></span>Uploaded MP3 audio files</li>
+          </ul>
+        </article>
+
+        <article class="png-step-card">
+          <div class="png-step-num">Step 02</div>
+          <h3 class="png-step-title">Structure the content</h3>
+          <p class="png-step-desc">Instead of dumping raw text into an email, the content should be logically structured for reading.</p>
+          <ul class="png-step-bullets">
+            <li><span class="png-step-bullet-icon"></span>Clear introduction</li>
+            <li><span class="png-step-bullet-icon"></span>Key themes or segments</li>
+            <li><span class="png-step-bullet-icon"></span>Highlights or insights</li>
+            <li><span class="png-step-bullet-icon"></span>Closing summary</li>
+          </ul>
+          <div class="png-step-note">Podpress automatically transforms transcripts into structured newsletters based on the content flow.</div>
+        </article>
+
+        <article class="png-step-card">
+          <div class="png-step-num">Step 03</div>
+          <h3 class="png-step-title">Choose a newsletter format</h3>
+          <p class="png-step-desc">Multiple newsletter styles are available to match your audience's preferences.</p>
+          <div class="png-tags">
+            <span class="png-tag">Short</span>
+            <span class="png-tag">Summary</span>
+            <span class="png-tag">Detailed</span>
+            <span class="png-tag">Long-form</span>
           </div>
-        </div>
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">What content works best in a podcast newsletter?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">The most effective newsletters combine episode summaries with exclusive content that subscribers cannot get from the podcast alone. Behind-the-scenes stories, extended show notes, resource links, and personal commentary tend to perform well. Curated recommendations related to your episode topic also add value and give readers a reason to stay subscribed.</div>
-          </div>
-        </div>
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">How long should my newsletter be?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Aim for 500 to 1,000 words as a starting point, which takes about three to five minutes to read. Shorter newsletters tend to have higher completion rates, but longer issues can work if every section delivers genuine value. Test different lengths and use your analytics to find the sweet spot where engagement stays high without losing readers midway through.</div>
-          </div>
-        </div>
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">Should I use a free or paid newsletter model?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Starting with a free newsletter is the best approach for building an audience and establishing trust. Once you have a consistent readership of at least a few hundred subscribers, you can introduce a paid tier with premium content like bonus episodes, early access, or exclusive interviews. Many creators use a hybrid model where the core newsletter remains free but additional perks are available to paying subscribers.</div>
-          </div>
-        </div>
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">How can I grow my subscriber count?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Mention your newsletter in every podcast episode with a specific call-to-action and make the signup link easy to find in your show notes. Cross-promote on social media, collaborate with other newsletter creators in your niche, and consider running a referral program that rewards existing subscribers for bringing in new ones. Landing pages with a clear value proposition and a sample issue convert significantly better than generic signup forms.</div>
-          </div>
-        </div>
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">When is the best time to send a newsletter?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Industry data suggests that Tuesday through Thursday mornings between 9 AM and 11 AM in your audience's primary timezone tend to see the highest open rates. However, your specific audience may differ, so it is important to test different send times and let the data guide your decision. PodPress Smart Scheduling can analyze your subscriber engagement patterns and recommend the optimal delivery window automatically.</div>
-          </div>
-        </div>
+          <div class="png-step-note">Regeneration is possible within plan limits if you want to try a different format.</div>
+        </article>
+
+        <article class="png-step-card">
+          <div class="png-step-num">Step 04</div>
+          <h3 class="png-step-title">Refine or repurpose</h3>
+          <p class="png-step-desc">After generation, you have several options to perfect the content:</p>
+          <ul class="png-step-bullets">
+            <li><span class="png-step-bullet-icon"></span>Use AI refinement tools</li>
+            <li><span class="png-step-bullet-icon"></span>Regenerate in a different format</li>
+            <li><span class="png-step-bullet-icon"></span>Generate additional template outputs</li>
+            <li><span class="png-step-bullet-icon"></span>Download in TXT or SRT format</li>
+          </ul>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <section class="sp-cta">
+  <section class="png-section" id="workflow">
     <div class="sp-container">
-      <h2>Start Your Podcast Newsletter Journey</h2>
-      <p>PodPress makes it easy to turn your podcast episodes into compelling newsletters that keep your audience engaged between releases.</p>
-      <a href="#" class="sp-cta-btn">Get Started Free</a>
+      <div class="png-section-header">
+        <h2>Manual vs automated workflow</h2>
+      </div>
+      <div class="png-compare-grid">
+        
+        <div class="png-compare-card">
+          <h3 class="png-compare-title">Manual workflow</h3>
+          <ul class="png-compare-list">
+            <li><span class="png-num">1</span>Transcribe episode</li>
+            <li><span class="png-num">2</span>Clean filler words</li>
+            <li><span class="png-num">3</span>Rewrite into email format</li>
+            <li><span class="png-num">4</span>Format for publishing</li>
+            <li><span class="png-num">5</span>Proofread</li>
+          </ul>
+        </div>
+
+        <div class="png-compare-card highlight">
+          <h3 class="png-compare-title">With Podpress</h3>
+          <ul class="png-compare-list">
+            <li><span class="png-num">1</span>Upload episode</li>
+            <li><span class="png-num">2</span>Transcript generated</li>
+            <li><span class="png-num">3</span>Newsletter structured</li>
+            <li><span class="png-num">4</span>Ready to refine or publish</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="png-section">
+    <div class="sp-container png-cta">
+      <h2>Ready to get started?</h2>
+      <p>Skip the manual work and turn your podcast into an engaging newsletter in minutes.</p>
+      <a href="index.html" class="png-primary-btn">Turn your podcast into a newsletter &rarr;</a>
     </div>
   </section>
 

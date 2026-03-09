@@ -3,110 +3,633 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Repurposing — PodPress</title>
+  <title>Podcast Content Repurposing, Powered by AI — PodPress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+
+  <style>
+    /* ── Page background gradient ── */
+    body.cr-page {
+      background:
+        radial-gradient(circle at 18% 0%, rgba(58,103,255,0.09) 0%, transparent 34%),
+        radial-gradient(circle at 82% 6%, rgba(255,90,31,0.05) 0%, transparent 28%),
+        var(--bg);
+    }
+
+    /* ============================================================
+       CONTENT REPURPOSING  —  .cr-* namespace
+    ============================================================ */
+
+    /* ─── Hero ─── */
+    .cr-hero {
+      padding: 158px 0 108px;
+      text-align: center;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    /* decorative glow orb */
+    .cr-hero::before {
+      content: "";
+      position: absolute;
+      width: 600px; height: 600px;
+      left: 50%; top: -120px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,103,255,0.09) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .cr-hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Badge */
+    .cr-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
+      padding: 7px 16px;
+      margin-bottom: 28px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
+    }
+    .cr-badge::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
+    }
+    [data-theme="dark"] .cr-badge {
+      background: rgba(58,103,255,0.14);
+      border-color: rgba(58,103,255,0.26);
+    }
+
+    /* H1 two-tone heading */
+    .cr-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 0 0 20px;
+    }
+    .cr-hero h1 .cr-h1-muted {
+      display: block;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-muted);
+      letter-spacing: -0.03em;
+    }
+
+    .cr-hero-desc {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+
+    .cr-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 36px rgba(58,103,255,0.22);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .cr-hero-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-2px);
+      box-shadow: 0 22px 42px rgba(58,103,255,0.28);
+    }
+    .cr-hero-btn svg { flex-shrink: 0; }
+
+    /* ─── Shared section styles ─── */
+    .cr-section {
+      padding: 96px 0;
+      background: transparent;
+    }
+    .cr-section.cr-alt {
+      background: var(--surface);
+    }
+    [data-theme="dark"] .cr-section.cr-alt {
+      background: var(--surface);
+    }
+
+    .cr-section-head {
+      max-width: 580px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+    .cr-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.95rem, 3.2vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: -0.032em;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+    .cr-section-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ─── Section 1: "What does Podpress repurpose?" — 3 cards ─── */
+    .cr-input-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .cr-input-card {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(221,217,211,0.9);
+      border-radius: 22px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 42px rgba(17,17,17,0.04);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .cr-input-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(58,103,255,0.04), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .cr-input-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 54px rgba(17,17,17,0.07);
+      border-color: rgba(58,103,255,0.22);
+    }
+    .cr-input-card:hover::after { opacity: 1; }
+    [data-theme="dark"] .cr-input-card {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    .cr-input-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(58,103,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+    .cr-input-icon svg { display: block; }
+
+    .cr-input-card h3 {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .cr-input-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ─── Section 2: "Repurposing outputs" — vertical list ─── */
+    .cr-outputs-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cr-output-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cr-output-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 26px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(221,217,211,0.92);
+      box-shadow: 0 14px 28px rgba(17,17,17,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .cr-output-item:hover {
+      transform: translateX(4px);
+      box-shadow: 0 18px 36px rgba(17,17,17,0.06);
+      border-color: rgba(58,103,255,0.2);
+    }
+    [data-theme="dark"] .cr-output-item {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+    .cr-output-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(58,103,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .cr-output-icon svg { display: block; }
+    .cr-output-label {
+      font-family: var(--font-body);
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* ─── Section 3: "Why repurposing matters" — 2×2 grid ─── */
+    .cr-why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .cr-why-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 28px 26px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(221,217,211,0.92);
+      box-shadow: 0 18px 38px rgba(17,17,17,0.04);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    .cr-why-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 48px rgba(17,17,17,0.07);
+      border-color: rgba(58,103,255,0.2);
+    }
+    [data-theme="dark"] .cr-why-card {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+    .cr-why-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: rgba(58,103,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cr-why-icon svg { display: block; }
+    .cr-why-body h3 {
+      font-family: var(--font-body);
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 7px;
+      line-height: 1.3;
+    }
+    .cr-why-body p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ─── CTA Section ─── */
+    .cr-cta {
+      padding: 110px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+    [data-theme="dark"] .cr-cta { background: var(--surface); }
+    .cr-cta-panel {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 58px 36px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.86)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 32px 64px rgba(17,17,17,0.07);
+    }
+    [data-theme="dark"] .cr-cta-panel {
+      background: var(--bg);
+      border-color: var(--border);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.25);
+    }
+    .cr-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.034em;
+      color: var(--ink);
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+    .cr-cta p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0 0 32px;
+      line-height: 1.72;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 32px;
+    }
+    .cr-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.2);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .cr-cta-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-2px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.28);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 860px) {
+      .cr-input-grid { grid-template-columns: 1fr; max-width: 520px; }
+      .cr-why-grid { grid-template-columns: 1fr; max-width: 520px; }
+    }
+    @media (max-width: 768px) {
+      .cr-hero { padding: 130px 0 80px; }
+      .cr-hero h1 { font-size: 2.3rem; }
+      .cr-section { padding: 70px 0; }
+      .cr-cta { padding: 80px 0; }
+      .cr-cta-panel { padding: 40px 22px; }
+    }
+  </style>
 </head>
-<body>
-  <nav class="sp-nav">
-    <div class="sp-nav-inner">
-      <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" data-logo />
+<body class="cr-page">
+  <!-- Navbar injected by navbar.js -->
+
+  <!-- ====================== HERO ====================== -->
+  <section class="cr-hero">
+    <div class="cr-hero-inner">
+      <span class="cr-badge">Feature</span>
+      <h1>
+        Podcast Content Repurposing,
+        <span class="cr-h1-muted">Powered by AI</span>
+      </h1>
+      <p class="cr-hero-desc">
+        Podpress helps podcasters repurpose every episode into newsletters
+        and written content using AI — without losing context. One episode
+        becomes multiple assets, all generated from a single transcript.
+      </p>
+      <a href="#" class="cr-hero-btn">
+        Repurpose your podcast automatically
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
-    </div>
-  </nav>
-
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>Content <em>Repurposing</em></h1>
-      <p>One piece of content, ten different formats — maximize your reach without extra effort</p>
     </div>
   </section>
 
-  <section class="sp-showcase">
+  <!-- ====================== WHAT DOES PODPRESS REPURPOSE? ====================== -->
+  <section class="cr-section cr-alt">
     <div class="sp-container">
-      <span class="sp-label">How It Works</span>
-      <h2 class="sp-heading">Transform one episode into a content empire</h2>
-
-      <div class="sp-block">
-        <div class="sp-block-visual">🔄</div>
-        <div class="sp-block-content">
-          <h3>One-to-Many Engine</h3>
-          <p>Feed in a single podcast episode and our AI instantly generates multiple content assets tailored for different platforms. The engine analyzes your audio for key moments, quotable insights, and narrative arcs to produce blog posts, social clips, newsletters, and more. Every output preserves your original voice and messaging while adapting tone and length for each channel.</p>
-          <span class="sp-tag blue">AI-Powered</span>
-        </div>
+      <div class="cr-section-head">
+        <h2 class="cr-section-title">What does Podpress repurpose?</h2>
+        <p class="cr-section-sub">Bring your content in any format. We turn it into structured, publish-ready assets.</p>
       </div>
+      <div class="cr-input-grid">
 
-      <div class="sp-block reverse">
-        <div class="sp-block-visual">🎯</div>
-        <div class="sp-block-content">
-          <h3>Format Intelligence</h3>
-          <p>Not all platforms are equal, and neither should your content be. Format Intelligence understands the unique constraints and best practices of each distribution channel automatically. It adjusts character counts for Twitter, aspect ratios for Instagram, and reading levels for blog content so every piece feels native to its destination.</p>
-          <span class="sp-tag slate">Smart Formatting</span>
+        <!-- Card 1: Podcast episodes -->
+        <div class="cr-input-card">
+          <div class="cr-input-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="3.5" stroke="#3A67FF" stroke-width="1.7"/>
+              <path d="M5.5 11a5.5 5.5 0 1 0 11 0 5.5 5.5 0 0 0-11 0" stroke="#3A67FF" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M2 11a9 9 0 1 0 18 0 9 9 0 0 0-18 0" stroke="#3A67FF" stroke-width="1.7" stroke-linecap="round" opacity=".4"/>
+            </svg>
+          </div>
+          <h3>Podcast episodes</h3>
+          <p>Import from YouTube, RSS feed, or direct audio upload — any format works.</p>
         </div>
-      </div>
 
-      <div class="sp-block">
-        <div class="sp-block-visual">🌐</div>
-        <div class="sp-block-content">
-          <h3>Cross-Platform Publishing</h3>
-          <p>Once your content is generated, publish it everywhere from a single dashboard. Connect your WordPress, Medium, LinkedIn, Twitter, Instagram, and email marketing accounts for one-click distribution. Schedule posts across time zones and track engagement metrics from every platform in one unified analytics view.</p>
-          <span class="sp-tag orange">Multi-Channel</span>
+        <!-- Card 2: Transcripts -->
+        <div class="cr-input-card">
+          <div class="cr-input-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="3.5" y="2.5" width="15" height="17" rx="2.5" stroke="#3A67FF" stroke-width="1.7"/>
+              <path d="M7 7.5h8M7 11h8M7 14.5h5" stroke="#3A67FF" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Transcripts as the source of truth</h3>
+          <p>Every output is grounded in your actual words, not hallucinated summaries.</p>
         </div>
+
+        <!-- Card 3: Structured outputs -->
+        <div class="cr-input-card">
+          <div class="cr-input-icon">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="2.5" y="2.5" width="7" height="7" rx="2" stroke="#3A67FF" stroke-width="1.7"/>
+              <rect x="12.5" y="2.5" width="7" height="7" rx="2" stroke="#3A67FF" stroke-width="1.7"/>
+              <rect x="2.5" y="12.5" width="7" height="7" rx="2" stroke="#3A67FF" stroke-width="1.7"/>
+              <rect x="12.5" y="12.5" width="7" height="7" rx="2" stroke="#3A67FF" stroke-width="1.7"/>
+            </svg>
+          </div>
+          <h3>Structured outputs for publishing</h3>
+          <p>Clean formatting ready for email platforms, blogs, and social channels.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <section class="sp-feature-grid alt-bg">
+  <!-- ====================== REPURPOSING OUTPUTS ====================== -->
+  <section class="cr-section">
     <div class="sp-container">
-      <span class="sp-label">Output Formats</span>
-      <h2 class="sp-heading">Every format your audience consumes</h2>
-      <div class="sp-grid">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">📝</div>
-          <h3>Blog Posts</h3>
-          <p>Transform your episode into a fully structured blog article complete with headers, key takeaways, and SEO metadata. Each post is optimized for readability with natural paragraph breaks and internal linking suggestions. Publish directly to WordPress, Ghost, or export as Markdown.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🎬</div>
-          <h3>Social Clips</h3>
-          <p>Automatically identify the most engaging 30- to 90-second segments from your episode and export them as video clips. Each clip is captioned, cropped for vertical or square formats, and ready to upload to TikTok, Instagram Reels, or YouTube Shorts.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">✉️</div>
-          <h3>Email Newsletters</h3>
-          <p>Generate a polished newsletter recap of your episode with highlighted quotes, key discussion points, and embedded audio snippets. Templates are mobile-responsive and compatible with Mailchimp, ConvertKit, and Substack out of the box.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">💬</div>
-          <h3>Quote Cards</h3>
-          <p>Extract the most shareable quotes from your transcript and render them as beautifully designed image cards. Choose from dozens of templates that match your brand colors and typography. Download as PNG or share directly to social media platforms.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🧵</div>
-          <h3>Thread Generator</h3>
-          <p>Convert long-form discussions into engaging Twitter/X threads that break down complex topics into bite-sized posts. The generator adds hooks, numbering, and call-to-actions automatically. Preview and edit each tweet before scheduling or publishing the full thread.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">📋</div>
-          <h3>Show Notes</h3>
-          <p>Produce comprehensive show notes with timestamped topic summaries, guest bios, resource links, and key takeaways. Show notes are formatted for your podcast hosting platform and optimized with relevant keywords to improve discoverability in search engines.</p>
+      <div class="cr-section-head">
+        <h2 class="cr-section-title">Repurposing outputs</h2>
+        <p class="cr-section-sub">Every episode can produce all of these — automatically, from one transcript.</p>
+      </div>
+      <div class="cr-outputs-wrap">
+        <div class="cr-output-list">
+
+          <div class="cr-output-item">
+            <span class="cr-output-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <rect x="2" y="4" width="16" height="13" rx="2.5" stroke="#3A67FF" stroke-width="1.6"/>
+                <path d="M2 7.5h16" stroke="#3A67FF" stroke-width="1.6"/>
+                <circle cx="5" cy="5.8" r="1" fill="#3A67FF" opacity=".5"/>
+                <circle cx="8" cy="5.8" r="1" fill="#3A67FF" opacity=".5"/>
+              </svg>
+            </span>
+            <span class="cr-output-label">Podcast newsletters</span>
+          </div>
+
+          <div class="cr-output-item">
+            <span class="cr-output-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <rect x="3" y="2" width="14" height="16" rx="2.5" stroke="#3A67FF" stroke-width="1.6"/>
+                <path d="M6.5 6.5h7M6.5 10h7M6.5 13.5h4" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="cr-output-label">Blog-style posts</span>
+          </div>
+
+          <div class="cr-output-item">
+            <span class="cr-output-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 2.5v1.5M10 16v1.5M3.22 5.72l1.06 1.06M15.72 14.22l1.06 1.06M1.5 10H3M17 10h1.5M5.28 14.22 4.22 15.28M14.72 5.72l1.06-1.06" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+                <circle cx="10" cy="10" r="3.5" stroke="#3A67FF" stroke-width="1.6"/>
+              </svg>
+            </span>
+            <span class="cr-output-label">Key insights &amp; summaries</span>
+          </div>
+
+          <div class="cr-output-item">
+            <span class="cr-output-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M17 4H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h4l3 3 3-3h4a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1Z" stroke="#3A67FF" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M6.5 9h7M6.5 12h4" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="cr-output-label">Discussion questions</span>
+          </div>
+
+          <div class="cr-output-item">
+            <span class="cr-output-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M14.5 5.5 5.5 14.5M7.5 5.5H4.5a1 1 0 0 0-1 1v3M15.5 12.5v3a1 1 0 0 1-1 1h-3M8 12l2 2 2-2" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="cr-output-label">Content snippets for reuse</span>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sp-cta">
+  <!-- ====================== WHY REPURPOSING MATTERS ====================== -->
+  <section class="cr-section cr-alt">
     <div class="sp-container">
-      <h2>Repurpose Your Content 10x Faster</h2>
-      <p>Stop spending hours reformatting your episodes for every platform. Let PodPress handle the heavy lifting while you focus on creating great content.</p>
-      <a href="#" class="sp-cta-btn">Start Repurposing</a>
+      <div class="cr-section-head">
+        <h2 class="cr-section-title">Why repurposing matters</h2>
+        <p class="cr-section-sub">Most podcast episodes are published once and forgotten. Repurposing lets you do more with the content you already have.</p>
+      </div>
+      <div class="cr-why-grid">
+
+        <!-- Card 1 -->
+        <div class="cr-why-card">
+          <span class="cr-why-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="7.5" stroke="#3A67FF" stroke-width="1.6"/>
+              <path d="M10 6v4l3 2" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div class="cr-why-body">
+            <h3>Extend episode lifespan</h3>
+            <p>Keep your content working weeks after it airs — not just on release day.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="cr-why-card">
+          <span class="cr-why-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="7.5" cy="6.5" r="2.5" stroke="#3A67FF" stroke-width="1.6"/>
+              <circle cx="13.5" cy="6.5" r="2.5" stroke="#3A67FF" stroke-width="1.6"/>
+              <path d="M2 17c0-3 2.5-5 5.5-5M18 17c0-3-2.5-5-5.5-5M10.5 12c1.4 0 2.7.5 3.7 1.4" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div class="cr-why-body">
+            <h3>Reach readers, not just listeners</h3>
+            <p>Meet your audience where they are — in their inbox and on the web.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="cr-why-card">
+          <span class="cr-why-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="2.5" y="4.5" width="15" height="12" rx="2.5" stroke="#3A67FF" stroke-width="1.6"/>
+              <path d="M2.5 8h15" stroke="#3A67FF" stroke-width="1.6"/>
+              <path d="M7 4.5V3M13 4.5V3" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div class="cr-why-body">
+            <h3>Build an owned audience via email</h3>
+            <p>Grow a subscriber list you control, independent of any platform algorithm.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="cr-why-card">
+          <span class="cr-why-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 6h14M3 10h14M3 14h9" stroke="#3A67FF" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div class="cr-why-body">
+            <h3>Publish consistently without extra work</h3>
+            <p>Maintain a regular cadence of written content with zero additional effort.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
+  <!-- ====================== CTA ====================== -->
+  <section class="cr-cta">
+    <div class="sp-container">
+      <div class="cr-cta-panel">
+        <h2>Stop creating once,<br>start repurposing</h2>
+        <p>Turn every episode into newsletters, blog posts, and more — automatically.</p>
+        <a href="#" class="cr-cta-btn">
+          Repurpose your podcast automatically
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== FOOTER ====================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid-5">
@@ -183,6 +706,7 @@
       </div>
     </div>
   </footer>
+
   <script src="navbar.js"></script>
   <script src="theme.js"></script>
   <script src="premium.js"></script>

@@ -82,11 +82,11 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
 }
-.nav-logo {
+.nav-logo, .sp-logo {
   display: flex;
   align-items: center;
 }
-.nav-logo img { height: 32px; width: auto; display: block; }
+.nav-logo img, .sp-logo img { width: 140px; height: 32px; object-fit: contain; object-position: left center; display: block; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -621,7 +621,7 @@ body.menu-open { overflow: hidden; position: fixed; width: 100%; }
   font-size: 1.1rem;
   color: var(--ink);
 }
-.footer-brand img { height: 32px; width: auto; }
+.footer-brand img { width: 140px; height: 32px; object-fit: contain; object-position: left center; }
 .footer-brand-desc {
   color: var(--text-muted);
   font-size: 0.84rem;

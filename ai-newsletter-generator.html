@@ -3,158 +3,322 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Newsletter Generator — PodPress</title>
+  <title>AI Podcast Newsletter Generator — PodPress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+  <style>
+    /* ═══════════════════════════════════════════════════
+       AI Newsletter Generator — Page Styles
+       ═══════════════════════════════════════════════════ */
+
+    /* ── Shared layout ── */
+    .ang-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 32px;
+      text-align: center;
+    }
+
+    /* ── Hero ── */
+    .ang-hero {
+      padding: 156px 0 108px;
+      background: var(--bg);
+    }
+    .ang-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 90, 31, 0.09);
+      color: var(--ampersand);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 90, 31, 0.2);
+      margin-bottom: 28px;
+    }
+    .ang-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.13;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      margin-bottom: 22px;
+      font-family: var(--font-display);
+    }
+    .ang-hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.72;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+    .ang-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--cornflower);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 15px 30px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: var(--font-body);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ang-btn-primary:hover {
+      background: #2850d9;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(58, 103, 255, 0.3);
+      color: #ffffff;
+    }
+
+    /* ── Section base ── */
+    .ang-section {
+      padding: 112px 0;
+      background: var(--bg);
+    }
+    .ang-section + .ang-section {
+      border-top: 1px solid var(--border-light, #E8E5E0);
+    }
+    .ang-section h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.45rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 52px;
+      font-family: var(--font-display);
+    }
+
+    /* ── What makes Podpress different — Checklist ── */
+    .ang-diff-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 460px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ang-diff-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .ang-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      background: rgba(58, 103, 255, 0.1);
+      color: var(--cornflower);
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+    [data-theme="dark"] .ang-check {
+      background: rgba(58, 103, 255, 0.2);
+    }
+
+    /* ── Supported formats ── */
+    .ang-formats-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 440px;
+      margin: -28px auto 44px;
+    }
+    .ang-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .ang-pill {
+      padding: 10px 26px;
+      border: 1.5px solid var(--cornflower);
+      color: var(--cornflower);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: transparent;
+      font-family: var(--font-body);
+      transition: background 0.18s, color 0.18s;
+      cursor: default;
+    }
+    .ang-pill:hover {
+      background: var(--cornflower);
+      color: #ffffff;
+    }
+
+    /* ── Who it's for ── */
+    .ang-who-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .ang-who-col h3 {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 10px;
+      font-family: var(--font-body);
+    }
+    .ang-who-col h3.orange {
+      color: var(--ampersand);
+    }
+    .ang-who-col p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+
+    /* ── Ready to generate CTA ── */
+    .ang-cta-sub {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: -28px auto 40px;
+      max-width: 420px;
+    }
+
+    /* ── Dark mode ── */
+    [data-theme="dark"] .ang-hero,
+    [data-theme="dark"] .ang-section { background: var(--bg); }
+    [data-theme="dark"] .ang-section + .ang-section { border-top-color: var(--border); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .ang-hero    { padding: 120px 0 72px; }
+      .ang-section { padding: 80px 0; }
+      .ang-who-grid { grid-template-columns: 1fr; gap: 28px; }
+      .ang-wrap { padding: 0 20px; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Old nav hidden by .sp-nav { display:none } — full nav injected by navbar.js -->
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
+      <div class="sp-nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="sp-back">&larr; Back to home</a>
+      </div>
     </div>
   </nav>
 
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>AI Newsletter <em>Generator</em></h1>
-      <p>Create professional newsletters powered by artificial intelligence in minutes, not hours</p>
+  <!-- ═══════════════════════════════
+       HERO
+  ═══════════════════════════════ -->
+  <section class="ang-hero">
+    <div class="ang-wrap">
+      <span class="ang-badge">AI-Powered</span>
+      <h1>AI Podcast Newsletter<br>Generator</h1>
+      <p class="ang-hero-sub">Podpress is an AI-powered podcast newsletter generator that converts episodes into structured email content. No prompts, no formatting work — just upload your episode and publish.</p>
+      <a href="#" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
     </div>
   </section>
 
-  <!-- Feature Grid -->
-  <section class="sp-feature-grid">
-    <div class="sp-container">
-      <span class="sp-label">Features</span>
-      <h2 class="sp-heading">Everything you need to create newsletters that convert</h2>
-
-      <div class="sp-grid">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">✍️</div>
-          <h3>Smart Drafting</h3>
-          <p>Provide a topic or a few bullet points and watch the AI compose a polished first draft in seconds. The engine structures your content with compelling openings, clear sections, and strong calls to action so you spend less time writing and more time connecting with readers.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon slate">🎭</div>
-          <h3>Tone Matching</h3>
-          <p>Upload a sample of your previous writing and the AI learns your unique voice, vocabulary, and rhythm. Every draft matches your established tone so subscribers never notice the difference between AI-assisted and hand-written editions.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon orange">📧</div>
-          <h3>Subject Line Generator</h3>
-          <p>Generate dozens of subject line variations ranked by predicted open rate. The model draws on engagement data from millions of email campaigns to suggest lines that spark curiosity, convey urgency, or highlight value without resorting to clickbait.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon blue">💡</div>
-          <h3>Content Suggestions</h3>
-          <p>Never stare at a blank page again. The AI monitors trending topics in your niche, surfaces relevant news, and recommends content angles tailored to your audience's demonstrated interests and engagement history.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon orange">🔬</div>
-          <h3>A/B Testing</h3>
-          <p>Automatically split-test subject lines, preview text, and content blocks across a portion of your list before sending the winning version to everyone else. Built-in statistical significance checks ensure you are acting on real signal, not noise.</p>
-        </div>
-
-        <div class="sp-card">
-          <div class="sp-card-icon slate">🎯</div>
-          <h3>Personalization Engine</h3>
-          <p>Go beyond first-name tokens. The engine segments your audience by behavior, preferences, and engagement level, then dynamically adjusts content blocks, product recommendations, and CTAs so every subscriber receives a newsletter that feels written just for them.</p>
-        </div>
-      </div>
+  <!-- ═══════════════════════════════
+       WHAT MAKES PODPRESS DIFFERENT
+  ═══════════════════════════════ -->
+  <section class="ang-section">
+    <div class="ang-wrap">
+      <h2>What makes Podpress different</h2>
+      <ul class="ang-diff-list">
+        <li>
+          <span class="ang-check">✓</span>
+          Transcript-first generation (not guessing)
+        </li>
+        <li>
+          <span class="ang-check">✓</span>
+          Built specifically for podcasters
+        </li>
+        <li>
+          <span class="ang-check">✓</span>
+          Regeneration within plan limits
+        </li>
+        <li>
+          <span class="ang-check">✓</span>
+          Multiple newsletter formats supported
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- Stats Strip -->
-  <section class="sp-stats">
-    <div class="sp-stats-row">
-      <div>
-        <span class="sp-stat-val">45%</span>
-        <span class="sp-stat-lbl">Higher Open Rates</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">5 min</span>
-        <span class="sp-stat-lbl">Average Creation</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">10K+</span>
-        <span class="sp-stat-lbl">Creators Trust Us</span>
-      </div>
-      <div>
-        <span class="sp-stat-val">98%</span>
-        <span class="sp-stat-lbl">Satisfaction</span>
+  <!-- ═══════════════════════════════
+       SUPPORTED NEWSLETTER FORMATS
+  ═══════════════════════════════ -->
+  <section class="ang-section">
+    <div class="ang-wrap">
+      <h2>Supported newsletter formats</h2>
+      <p class="ang-formats-sub">Choose the depth that fits your audience. Every format is generated from the same transcript.</p>
+      <div class="ang-pills">
+        <span class="ang-pill">Short</span>
+        <span class="ang-pill">Summary</span>
+        <span class="ang-pill">Detailed</span>
+        <span class="ang-pill">Long-form</span>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="sp-faq alt-bg">
-    <div class="sp-container">
-      <span class="sp-label">FAQ</span>
-      <h2 class="sp-heading">Frequently asked questions</h2>
-
-      <div class="sp-faq-list">
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">Is the AI-generated content original?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Yes. Every draft is generated from scratch based on your inputs, audience data, and content guidelines. The AI does not copy or paraphrase existing articles. All output passes through an originality check before it reaches your editor, and you retain full ownership of everything produced.</div>
-          </div>
-        </div>
-
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">Can I customize the tone and style?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Absolutely. You can choose from preset tones like professional, conversational, witty, or authoritative, or upload samples of your own writing for the AI to learn from. Tone settings are saved per newsletter so you can maintain different voices for different publications without reconfiguring each time.</div>
-          </div>
-        </div>
-
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">What data does the AI use to write content?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">The AI uses the inputs you provide (topic, bullet points, reference links), your historical newsletter performance data, and general knowledge from its training. It does not access your subscriber list's personal data for content generation. All data processing complies with GDPR and CCPA regulations.</div>
-          </div>
-        </div>
-
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">Does it integrate with my email service provider?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">PodPress integrates natively with Mailchimp, ConvertKit, Beehiiv, Substack, SendGrid, and ActiveCampaign. For other providers, you can use our REST API or Zapier integration to push newsletters directly into your sending platform. Setup takes under five minutes for most ESPs.</div>
-          </div>
-        </div>
-
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">Is there a free trial available?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">Yes. Every new account starts with a 14-day free trial that includes full access to all AI features, unlimited drafts, and up to 1,000 sends. No credit card is required to start. At the end of the trial you can choose a paid plan or continue on our free tier with limited monthly sends.</div>
-          </div>
-        </div>
-
-        <div class="sp-faq-item">
-          <button class="sp-faq-q">How does personalization work?<span class="icon">+</span></button>
-          <div class="sp-faq-a">
-            <div class="sp-faq-a-inner">The personalization engine analyzes each subscriber's open history, click behavior, and stated preferences to build an interest profile. When you send a newsletter, dynamic content blocks are swapped in based on those profiles. For example, a tech-focused subscriber might see developer tool recommendations while a marketing-focused subscriber sees campaign strategy tips, all within the same send.</div>
-          </div>
-        </div>
+  <!-- ═══════════════════════════════
+       WHO IT'S FOR
+  ═══════════════════════════════ -->
+  <section class="ang-section">
+    <div class="ang-wrap">
+      <h2>Who it's for</h2>
+    </div>
+    <div class="ang-who-grid" style="padding: 0 32px; box-sizing: border-box; margin-left:auto; margin-right:auto; margin-top: -16px;">
+      <div class="ang-who-col">
+        <h3 class="orange">Independent podcasters</h3>
+        <p>Solo creators who need written content without a writing team.</p>
+      </div>
+      <div class="ang-who-col">
+        <h3>Podcast networks</h3>
+        <p>Multi-show operations that need scale and consistency.</p>
+      </div>
+      <div class="ang-who-col">
+        <h3>Content teams</h3>
+        <p>Teams managing multiple shows with tight publishing schedules.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="sp-cta">
-    <div class="sp-container">
-      <h2>Generate Your First AI Newsletter Free</h2>
-      <p>Join thousands of creators who save hours every week with AI-powered newsletter creation.</p>
-      <a href="#" class="sp-cta-btn">Start Free Trial</a>
+  <!-- ═══════════════════════════════
+       READY TO GENERATE — CTA
+  ═══════════════════════════════ -->
+  <section class="ang-section">
+    <div class="ang-wrap">
+      <h2>Ready to generate?</h2>
+      <p class="ang-cta-sub">Upload an episode and get your first AI-generated newsletter in minutes.</p>
+      <a href="#" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
     </div>
   </section>
 
+  <!-- ═══════════════════════════════
+       FOOTER
+  ═══════════════════════════════ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid-5">
@@ -232,18 +396,7 @@
     </div>
   </footer>
 
-  <script>
-    document.querySelectorAll('.sp-faq-q').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const isOpen = item.classList.contains('is-open');
-        document.querySelectorAll('.sp-faq-item').forEach(i => i.classList.remove('is-open'));
-        if (!isOpen) item.classList.add('is-open');
-      });
-    });
-  </script>
   <script src="navbar.js"></script>
   <script src="theme.js"></script>
-  <script src="premium.js"></script>
 </body>
 </html>

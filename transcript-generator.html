@@ -3,145 +3,483 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transcript Generator — PodPress</title>
+  <title>Podcast Transcript Generator — PodPress</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="pages.css" />
+
+  <style>
+    /* ── Subtle page background gradient (matches other pages) ── */
+    body.tg-page {
+      background:
+        radial-gradient(circle at top left, rgba(58,103,255,0.07), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,90,31,0.04), transparent 22%),
+        var(--bg);
+    }
+
+    /* ============================================================
+       TRANSCRIPT GENERATOR PAGE  —  .tg-* namespace
+    ============================================================ */
+
+    /* ── Hero ── */
+    .tg-hero {
+      padding: 152px 0 100px;
+      text-align: center;
+      background: transparent;
+    }
+    .tg-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Badge — matches pb-badge / rss-badge style across other pages */
+    .tg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
+      padding: 7px 16px;
+      margin-bottom: 22px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
+    }
+    .tg-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
+    }
+    [data-theme="dark"] .tg-badge {
+      background: rgba(58,103,255,0.15);
+      border-color: rgba(58,103,255,0.25);
+    }
+
+    /* H1 — Newsreader display font, weight 400, matching other pages */
+    .tg-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4.4vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 0 0 18px;
+    }
+
+    .tg-hero p {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── Shared section wrapper ── */
+    .tg-section {
+      padding: 80px 0;
+      background: transparent;
+    }
+    .tg-section.alt {
+      background: var(--surface);
+    }
+    [data-theme="dark"] .tg-section.alt {
+      background: var(--surface);
+    }
+
+    /* ── Section header — matches pb-section-header / rss-section-head ── */
+    .tg-section-head {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+    .tg-section-head.left {
+      text-align: left;
+    }
+    .tg-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 0 0 10px;
+      line-height: 1.1;
+    }
+    .tg-section-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ── Content card — matches pb-list-wrap / glass card style ── */
+    .tg-card {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+    }
+    [data-theme="dark"] .tg-card {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    /* ── Numbered list (Supported inputs) ── */
+    .tg-num-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .tg-num-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .tg-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(58,103,255,0.22);
+    }
+    .tg-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── Check list (Why transcripts matter) ── */
+    .tg-check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .tg-check-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .tg-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(58,103,255,0.1);
+      color: var(--cornflower);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .tg-check-icon svg { display: block; }
+
+    /* ── Bullet list (What happens after transcription?) ── */
+    .tg-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .tg-bullet-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.7;
+      font-weight: 500;
+    }
+    .tg-bullet-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ampersand, #FF5A1F);
+      flex-shrink: 0;
+    }
+    .tg-note-accent {
+      font-size: 0.82rem;
+      color: var(--ampersand, #FF5A1F);
+      line-height: 1.65;
+    }
+
+    /* ── "Built for podcasters" centered text block ── */
+    .tg-centered-body {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ── CTA section — matches pb-cta / rss-cta panel style ── */
+    .tg-cta {
+      padding: 110px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+    [data-theme="dark"] .tg-cta {
+      background: var(--surface);
+    }
+    .tg-cta-panel {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 28px 56px rgba(17,17,17,0.07);
+    }
+    [data-theme="dark"] .tg-cta-panel {
+      background: var(--bg);
+      border-color: var(--border);
+      box-shadow: 0 28px 56px rgba(0,0,0,0.25);
+    }
+    .tg-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+    .tg-cta p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0 0 30px;
+      line-height: 1.7;
+    }
+    .tg-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tg-cta-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
+    }
+
+    /* ── Divider ── */
+    .tg-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .tg-hero { padding: 130px 0 80px; }
+      .tg-hero h1 { font-size: 2.2rem; }
+      .tg-section { padding: 64px 0; }
+      .tg-card { padding: 22px 20px; }
+      .tg-cta { padding: 80px 0; }
+      .tg-cta-panel { padding: 40px 20px; }
+    }
+  </style>
 </head>
-<body>
-  <nav class="sp-nav">
-    <div class="sp-nav-inner">
-      <a href="index.html" class="sp-logo">
-        <img src="logo-dark.png" alt="PodPress" data-logo />
-      </a>
-      <div class="sp-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button><a href="index.html" class="sp-back">&larr; Back to home</a></div>
-    </div>
-  </nav>
+<body class="tg-page">
+  <!-- Navbar injected by navbar.js -->
 
-  <section class="sp-hero">
-    <div class="sp-hero-inner">
-      <h1>Transcript <em>Generator</em></h1>
-      <p>Convert audio and video into accurate, speaker-labeled transcripts in minutes</p>
+  <!-- ======================== HERO ======================== -->
+  <section class="tg-hero">
+    <div class="tg-hero-inner">
+      <span class="tg-badge">Transcription</span>
+      <h1>Podcast Transcript Generator</h1>
+      <p>
+        Generate accurate podcast transcripts from your episodes using AI.
+        Podpress converts YouTube podcasts, RSS feeds, or uploaded audio
+        files into full transcripts that power structured newsletter creation.
+      </p>
     </div>
   </section>
 
-  <section class="sp-feature-grid">
+  <div class="tg-divider"></div>
+
+  <!-- ======================== SUPPORTED INPUTS ======================== -->
+  <section class="tg-section">
     <div class="sp-container">
-      <span class="sp-label">Core Features</span>
-      <h2 class="sp-heading">Everything you need for flawless transcripts</h2>
-      <div class="sp-grid">
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🎙️</div>
-          <h3>Speech-to-Text Engine</h3>
-          <p>Our proprietary AI engine converts spoken audio into written text with remarkable precision. Trained on millions of hours of podcast audio, it handles accents, jargon, and fast-paced dialogue with ease. Simply upload your file and let the engine do the rest.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">👥</div>
-          <h3>Speaker Identification</h3>
-          <p>Automatically detect and label different speakers throughout your recording. The system learns voice patterns to distinguish between hosts, guests, and callers without manual tagging. Each speaker gets a consistent label across the entire transcript.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">⏱️</div>
-          <h3>Timestamp Sync</h3>
-          <p>Every sentence is precisely synced with its corresponding audio timestamp. Click any line in the transcript to jump directly to that moment in the recording. Perfect for creating show notes, pull quotes, and audiograms with exact timing.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon blue">🌍</div>
-          <h3>Multi-Language Support</h3>
-          <p>Transcribe content in over 40 languages with native-level accuracy. Our models are fine-tuned for each language's unique phonetic patterns and colloquialisms. Seamlessly handle multilingual episodes where speakers switch between languages mid-conversation.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon slate">📄</div>
-          <h3>Export Formats</h3>
-          <p>Download your finished transcripts in the format that fits your workflow best. Choose from plain text, SRT, VTT, Word documents, or structured JSON for developer integrations. Every export preserves speaker labels, timestamps, and paragraph formatting.</p>
-        </div>
-        <div class="sp-card">
-          <div class="sp-card-icon orange">⚡</div>
-          <h3>Batch Processing</h3>
-          <p>Upload an entire season of episodes and transcribe them all at once. Our queue system processes files in parallel so you get results faster than sequential uploads. Monitor progress in real time and receive notifications when each transcript is ready.</p>
-        </div>
+      <div class="tg-section-head">
+        <h2 class="tg-section-title">Supported inputs</h2>
+        <p class="tg-section-sub">Podpress supports:</p>
+      </div>
+      <div class="tg-card">
+        <ul class="tg-num-list">
+          <li>
+            <span class="tg-num">1</span>
+            YouTube podcast links
+          </li>
+          <li>
+            <span class="tg-num">2</span>
+            Podcast RSS feed URLs
+          </li>
+          <li>
+            <span class="tg-num">3</span>
+            Uploaded MP3 audio files
+          </li>
+        </ul>
+        <p class="tg-note">Once processed, your transcript is always accessible in the Transcript tab.</p>
       </div>
     </div>
   </section>
 
-  <section class="sp-timeline alt-bg">
+  <div class="tg-divider"></div>
+
+  <!-- ======================== WHY TRANSCRIPTS MATTER ======================== -->
+  <section class="tg-section alt">
     <div class="sp-container">
-      <span class="sp-label">Changelog</span>
-      <h2 class="sp-heading">Recent improvements to Transcript Generator</h2>
-      <div class="sp-tl-list">
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Mar 2026</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>40+ Language Support</h3>
-            <p>Expanded our language models to cover over 40 languages including Hindi, Turkish, Vietnamese, and Thai. Each new language has been validated against native-speaker benchmarks to ensure production-ready accuracy from day one.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Feb 2026</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge improve">Improved</span>
-            <h3>98% Accuracy Engine</h3>
-            <p>Upgraded our core speech recognition model to achieve 98% word-level accuracy on standard podcast audio. The new engine reduces hallucinations by 60% and handles overlapping speech significantly better than previous versions.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Jan 2026</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>Real-Time Transcription</h3>
-            <p>Introducing live transcription for recording sessions and live streams. Watch your words appear on screen as you speak with less than two seconds of latency. Ideal for live shows, webinars, and remote interview recordings.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Dec 2025</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge fix">Fix</span>
-            <h3>Speaker ID Edge Cases</h3>
-            <p>Resolved an issue where the speaker identification system would occasionally merge two similar-sounding speakers into a single label. Also fixed cases where brief interjections or laughter were incorrectly attributed to the wrong participant.</p>
-          </div>
-        </div>
-        <div class="sp-tl-item">
-          <div class="sp-tl-date">Nov 2025</div>
-          <div class="sp-tl-dot-wrap">
-            <div class="sp-tl-dot"></div>
-            <div class="sp-tl-line"></div>
-          </div>
-          <div class="sp-tl-body">
-            <span class="sp-tl-badge new">New</span>
-            <h3>SRT/VTT Export</h3>
-            <p>Added native export support for SRT and VTT subtitle formats with customizable line lengths and timing offsets. These formats integrate directly with YouTube, Spotify, and all major video hosting platforms for instant captioning.</p>
-          </div>
-        </div>
+      <div class="tg-section-head">
+        <h2 class="tg-section-title">Why transcripts matter for podcasters</h2>
+        <p class="tg-section-sub">A transcript allows you to:</p>
+      </div>
+      <div class="tg-card">
+        <ul class="tg-check-list">
+          <li>
+            <span class="tg-check-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Search episode content
+          </li>
+          <li>
+            <span class="tg-check-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Extract quotes and insights
+          </li>
+          <li>
+            <span class="tg-check-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Repurpose content into newsletters
+          </li>
+          <li>
+            <span class="tg-check-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Maintain accuracy when writing
+          </li>
+        </ul>
+        <p class="tg-note">Podpress uses the transcript as the source of truth for all generated outputs.</p>
       </div>
     </div>
   </section>
 
-  <section class="sp-cta">
+  <div class="tg-divider"></div>
+
+  <!-- ======================== WHAT HAPPENS AFTER TRANSCRIPTION ======================== -->
+  <section class="tg-section">
     <div class="sp-container">
-      <h2>Generate Your First Transcript Free</h2>
-      <p>Upload any audio or video file up to 60 minutes and get a full, speaker-labeled transcript at no cost. No credit card required.</p>
-      <a href="#" class="sp-cta-btn">Get Started Free</a>
+      <div class="tg-section-head">
+        <h2 class="tg-section-title">What happens after transcription?</h2>
+        <p class="tg-section-sub">Your transcript can be transformed into:</p>
+      </div>
+      <div class="tg-card">
+        <ul class="tg-bullet-list">
+          <li>
+            <span class="tg-bullet-dot"></span>
+            AI-generated podcast newsletters
+          </li>
+          <li>
+            <span class="tg-bullet-dot"></span>
+            Key insights
+          </li>
+          <li>
+            <span class="tg-bullet-dot"></span>
+            Blog-style summaries
+          </li>
+          <li>
+            <span class="tg-bullet-dot"></span>
+            Discussion questions
+          </li>
+          <li>
+            <span class="tg-bullet-dot"></span>
+            SEO-friendly content snippets
+          </li>
+        </ul>
+        <p class="tg-note-accent">All outputs are derived from the same transcript and episode context.</p>
+      </div>
     </div>
   </section>
 
+  <div class="tg-divider"></div>
+
+  <!-- ======================== BUILT FOR PODCASTERS ======================== -->
+  <section class="tg-section alt">
+    <div class="sp-container">
+      <div class="tg-section-head">
+        <h2 class="tg-section-title">Built for podcasters</h2>
+        <p class="tg-centered-body">
+          Podpress is not a general AI transcription tool. It is built
+          exclusively for podcasters who want to turn episodes into
+          structured written content.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CTA ======================== -->
+  <section class="tg-cta">
+    <div class="sp-container">
+      <div class="tg-cta-panel">
+        <h2>Start with a transcript</h2>
+        <p>Upload an episode and generate an accurate transcript in minutes.</p>
+        <a href="#" class="tg-cta-btn">Generate your podcast transcript &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid-5">
@@ -218,6 +556,7 @@
       </div>
     </div>
   </footer>
+
   <script src="navbar.js"></script>
   <script src="theme.js"></script>
   <script src="premium.js"></script>
