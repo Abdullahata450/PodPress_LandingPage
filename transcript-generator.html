@@ -22,11 +22,66 @@
        TRANSCRIPT GENERATOR PAGE  —  .tg-* namespace
     ============================================================ */
 
+    /* ── Full Navbar ── */
+    .sp-nav {
+      background: rgba(247,245,242,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
+    }
+    .sp-nav-inner { justify-content: space-between; }
+    .tg-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .tg-nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .tg-nav-links a:hover { color: var(--ink); }
+    .tg-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tg-nav-login {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
+    }
+    .tg-nav-login:hover { color: var(--cornflower); }
+    .tg-nav-start {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(58,103,255,0.16);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tg-nav-start:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.22);
+    }
+
     /* ── Hero ── */
     .tg-hero {
-      padding: 152px 0 100px;
+      background: var(--surface);
+      padding: 152px 0 110px;
       text-align: center;
-      background: transparent;
     }
     .tg-hero-inner {
       max-width: 680px;
@@ -77,28 +132,44 @@
 
     .tg-hero p {
       font-size: 0.97rem;
-      line-height: 1.8;
+      line-height: 1.82;
       color: var(--text-muted);
       max-width: 580px;
-      margin: 0 auto;
+      margin: 0 auto 32px;
+    }
+    .tg-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tg-hero-btn:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
 
     /* ── Shared section wrapper ── */
     .tg-section {
-      padding: 80px 0;
+      padding: 100px 0;
       background: transparent;
     }
     .tg-section.alt {
-      background: var(--surface);
-    }
-    [data-theme="dark"] .tg-section.alt {
       background: var(--surface);
     }
 
     /* ── Section header — matches pb-section-header / rss-section-head ── */
     .tg-section-head {
       max-width: 620px;
-      margin: 0 auto 28px;
+      margin: 0 auto 50px;
       text-align: center;
     }
     .tg-section-head.left {
@@ -225,12 +296,12 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--ampersand, #FF5A1F);
+      background:rgb(25, 69, 134);
       flex-shrink: 0;
     }
     .tg-note-accent {
       font-size: 0.82rem;
-      color: var(--ampersand, #FF5A1F);
+      color: var(--text-muted);
       line-height: 1.65;
     }
 
@@ -311,36 +382,64 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .tg-nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
       .tg-hero { padding: 130px 0 80px; }
       .tg-hero h1 { font-size: 2.2rem; }
       .tg-section { padding: 64px 0; }
+      .tg-section-title,
+      .tg-cta h2 { font-size: 1.55rem; }
       .tg-card { padding: 22px 20px; }
       .tg-cta { padding: 80px 0; }
       .tg-cta-panel { padding: 40px 20px; }
     }
+
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .tg-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .tg-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
   </style>
 </head>
 <body class="tg-page">
-  <!-- Navbar injected by navbar.js -->
+  <!-- ── Navbar ── -->
+  <nav class="sp-nav">
+    <div class="sp-nav-inner">
+      <a href="index.html" class="sp-logo">
+        <img src="logo-dark.png" alt="PodPress" data-logo />
+      </a>
+      <ul class="tg-nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#inputs">Inputs</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#after">After</a></li>
+        <li><a href="#get-started">Get Started</a></li>
+      </ul>
+      <div class="tg-nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="tg-nav-login">Login</a>
+        <a href="#get-started" class="tg-nav-start">Start Free &rarr;</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- ======================== HERO ======================== -->
-  <section class="tg-hero">
+  <section class="tg-hero" id="overview">
     <div class="tg-hero-inner">
       <span class="tg-badge">Transcription</span>
       <h1>Podcast Transcript Generator</h1>
       <p>
-        Generate accurate podcast transcripts from your episodes using AI.
-        Podpress converts YouTube podcasts, RSS feeds, or uploaded audio
-        files into full transcripts that power structured newsletter creation.
+        Generate accurate podcast transcripts from your episodes using AI. Podpress converts YouTube podcasts, RSS feeds, or uploaded audio files into full transcripts that power structured newsletter creation.
       </p>
+      <a href="#get-started" class="tg-hero-btn">Generate your podcast transcript &rarr;</a>
     </div>
   </section>
 
   <div class="tg-divider"></div>
 
   <!-- ======================== SUPPORTED INPUTS ======================== -->
-  <section class="tg-section">
+  <section class="tg-section" id="inputs">
     <div class="sp-container">
       <div class="tg-section-head">
         <h2 class="tg-section-title">Supported inputs</h2>
@@ -369,7 +468,7 @@
   <div class="tg-divider"></div>
 
   <!-- ======================== WHY TRANSCRIPTS MATTER ======================== -->
-  <section class="tg-section alt">
+  <section class="tg-section alt" id="why">
     <div class="sp-container">
       <div class="tg-section-head">
         <h2 class="tg-section-title">Why transcripts matter for podcasters</h2>
@@ -418,7 +517,7 @@
   <div class="tg-divider"></div>
 
   <!-- ======================== WHAT HAPPENS AFTER TRANSCRIPTION ======================== -->
-  <section class="tg-section">
+  <section class="tg-section" id="after">
     <div class="sp-container">
       <div class="tg-section-head">
         <h2 class="tg-section-title">What happens after transcription?</h2>
@@ -469,12 +568,12 @@
   </section>
 
   <!-- ======================== CTA ======================== -->
-  <section class="tg-cta">
+  <section class="tg-cta" id="get-started">
     <div class="sp-container">
       <div class="tg-cta-panel">
         <h2>Start with a transcript</h2>
         <p>Upload an episode and generate an accurate transcript in minutes.</p>
-        <a href="#" class="tg-cta-btn">Generate your podcast transcript &rarr;</a>
+        <a href="index.html" class="tg-cta-btn">Generate your podcast transcript &rarr;</a>
       </div>
     </div>
   </section>
@@ -523,19 +622,19 @@
       <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
         <div class="footer-socials">
-          <a href="#" aria-label="Facebook">
+          <a href="https://www.facebook.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
             </svg>
           </a>
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
             </svg>

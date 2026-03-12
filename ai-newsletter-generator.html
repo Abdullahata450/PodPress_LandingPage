@@ -13,134 +13,220 @@
        AI Newsletter Generator — Page Styles
        ═══════════════════════════════════════════════════ */
 
-    /* ── Shared layout ── */
-    .ang-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 32px;
-      text-align: center;
+    body.ang-page {
+      background:
+        radial-gradient(circle at top left, rgba(58,103,255,0.07), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,90,31,0.04), transparent 22%),
+        var(--bg);
+    }
+
+    /* ── Full Navbar ── */
+    .sp-nav {
+      background: rgba(247,245,242,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
+    }
+    .sp-nav-inner { justify-content: space-between; }
+    .ang-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .ang-nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .ang-nav-links a:hover { color: var(--ink); }
+    .ang-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ang-nav-login {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
+    }
+    .ang-nav-login:hover { color: var(--cornflower); }
+    .ang-nav-start {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(58,103,255,0.16);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .ang-nav-start:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.22);
     }
 
     /* ── Hero ── */
     .ang-hero {
-      padding: 156px 0 108px;
-      background: var(--bg);
+      background: var(--surface);
+      padding: 152px 0 110px;
+      text-align: center;
+    }
+    .ang-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
     .ang-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: rgba(255, 90, 31, 0.09);
-      color: var(--ampersand);
+      gap: 8px;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
       padding: 7px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 90, 31, 0.2);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
+    }
+    .ang-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
     }
     .ang-hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1.13;
-      color: var(--ink);
-      letter-spacing: -0.025em;
-      margin-bottom: 22px;
       font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 18px;
     }
     .ang-hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.72;
+      font-size: 0.97rem;
       color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 40px;
+      line-height: 1.82;
+      max-width: 580px;
+      margin: 0 auto 32px;
     }
     .ang-btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      background: var(--cornflower);
-      color: #ffffff;
-      font-size: 0.9rem;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.92rem;
       font-weight: 600;
-      padding: 15px 30px;
-      border-radius: 999px;
+      padding: 14px 30px;
+      border-radius: 100px;
       text-decoration: none;
-      font-family: var(--font-body);
-      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
     .ang-btn-primary:hover {
-      background: #2850d9;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(58, 103, 255, 0.3);
-      color: #ffffff;
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
 
-    /* ── Section base ── */
+    /* ── Section wrapper ── */
     .ang-section {
-      padding: 112px 0;
-      background: var(--bg);
+      padding: 100px 0;
+      background: transparent;
     }
-    .ang-section + .ang-section {
-      border-top: 1px solid var(--border-light, #E8E5E0);
+    .ang-section.alt {
+      background: var(--surface);
     }
-    .ang-section h2 {
-      font-size: clamp(1.75rem, 3.5vw, 2.45rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 52px;
+
+    /* ── Section header ── */
+    .ang-section-header {
+      max-width: 620px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+    .ang-section-header h2 {
       font-family: var(--font-display);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .ang-section-header p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
     }
 
     /* ── What makes Podpress different — Checklist ── */
+    .ang-list-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+    }
     .ang-diff-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      max-width: 460px;
-      margin: 0 auto;
+      gap: 0;
+      margin: 0;
       text-align: left;
     }
     .ang-diff-list li {
       display: flex;
       align-items: flex-start;
-      gap: 15px;
-      font-size: 0.97rem;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--ink);
-      line-height: 1.55;
+      line-height: 1.7;
+    }
+    .ang-diff-list li:last-child {
+      border-bottom: none;
     }
     .ang-check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 22px;
-      height: 22px;
-      min-width: 22px;
-      background: rgba(58, 103, 255, 0.1);
+      background: rgba(58,103,255,0.1);
       color: var(--cornflower);
-      border-radius: 50%;
-      font-size: 0.65rem;
-      font-weight: 800;
       margin-top: 1px;
     }
-    [data-theme="dark"] .ang-check {
-      background: rgba(58, 103, 255, 0.2);
+    .ang-check svg {
+      width: 12px;
+      height: 12px;
+      display: block;
     }
 
     /* ── Supported formats ── */
-    .ang-formats-sub {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 440px;
-      margin: -28px auto 44px;
-    }
     .ang-pills {
       display: flex;
       flex-wrap: wrap;
@@ -168,61 +254,122 @@
     .ang-who-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      max-width: 820px;
+      gap: 18px;
+      max-width: 900px;
       margin: 0 auto;
+    }
+    .ang-who-col {
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       text-align: left;
     }
+    .ang-who-col:hover {
+      box-shadow: 0 28px 50px rgba(17,17,17,0.06);
+      border-color: rgba(58,103,255,0.2);
+    }
     .ang-who-col h3 {
-      font-size: 0.97rem;
+      font-size: 0.98rem;
       font-weight: 600;
       color: var(--ink);
       margin-bottom: 10px;
       font-family: var(--font-body);
+      line-height: 1.35;
     }
     .ang-who-col h3.orange {
       color: var(--ampersand);
     }
     .ang-who-col p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.68;
-    }
-
-    /* ── Ready to generate CTA ── */
-    .ang-cta-sub {
-      font-size: 0.97rem;
+      font-size: 0.9rem;
+      font-weight: 500;
       color: var(--text-muted);
       line-height: 1.7;
-      margin: -28px auto 40px;
-      max-width: 420px;
+      margin: 0;
     }
 
-    /* ── Dark mode ── */
-    [data-theme="dark"] .ang-hero,
-    [data-theme="dark"] .ang-section { background: var(--bg); }
-    [data-theme="dark"] .ang-section + .ang-section { border-top-color: var(--border); }
+    /* ── CTA ── */
+    .ang-cta {
+      padding: 110px 0;
+      background: var(--surface);
+      text-align: center;
+    }
+    .ang-cta-panel {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 28px 56px rgba(17,17,17,0.07);
+    }
+    .ang-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+    .ang-cta p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0 0 30px;
+      line-height: 1.7;
+    }
 
     /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .ang-hero    { padding: 120px 0 72px; }
-      .ang-section { padding: 80px 0; }
-      .ang-who-grid { grid-template-columns: 1fr; gap: 28px; }
+    @media (max-width: 900px) {
+      .ang-nav-links { display: none; }
+      .ang-who-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .ang-hero { padding: 130px 0 80px; }
+      .ang-hero h1 { font-size: 2.2rem; }
+      .ang-section { padding: 64px 0; }
+      .ang-section-header h2,
+      .ang-cta h2 { font-size: 1.55rem; }
+      .ang-list-wrap,
+      .ang-cta-panel { padding: 22px 20px; }
+      .ang-cta { padding: 80px 0; }
+      .ang-cta-panel { padding: 40px 20px; }
       .ang-wrap { padding: 0 20px; }
     }
+
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .ang-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .ang-list-wrap { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .ang-diff-list li { border-bottom-color: var(--border); }
+    [data-theme="dark"] .ang-who-col { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .ang-who-col:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .ang-cta-panel { background: var(--bg); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
-<body>
+<body class="ang-page">
 
-  <!-- Old nav hidden by .sp-nav { display:none } — full nav injected by navbar.js -->
+  <!-- ── Navbar ── -->
   <nav class="sp-nav">
     <div class="sp-nav-inner">
       <a href="index.html" class="sp-logo">
         <img src="logo-dark.png" alt="PodPress" data-logo />
       </a>
-      <div class="sp-nav-right">
+      <ul class="ang-nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#different">Different</a></li>
+        <li><a href="#formats">Formats</a></li>
+        <li><a href="#who">Who</a></li>
+        <li><a href="#get-started">Get Started</a></li>
+      </ul>
+      <div class="ang-nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
-        <a href="index.html" class="sp-back">&larr; Back to home</a>
+        <a href="index.html" class="ang-nav-login">Login</a>
+        <a href="#get-started" class="ang-nav-start">Start Free &rarr;</a>
       </div>
     </div>
   </nav>
@@ -230,49 +377,71 @@
   <!-- ═══════════════════════════════
        HERO
   ═══════════════════════════════ -->
-  <section class="ang-hero">
-    <div class="ang-wrap">
+  <section class="ang-hero" id="overview">
+    <div class="ang-hero-inner">
       <span class="ang-badge">AI-Powered</span>
       <h1>AI Podcast Newsletter<br>Generator</h1>
       <p class="ang-hero-sub">Podpress is an AI-powered podcast newsletter generator that converts episodes into structured email content. No prompts, no formatting work — just upload your episode and publish.</p>
-      <a href="#" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
+      <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
     </div>
   </section>
 
   <!-- ═══════════════════════════════
        WHAT MAKES PODPRESS DIFFERENT
   ═══════════════════════════════ -->
-  <section class="ang-section">
-    <div class="ang-wrap">
-      <h2>What makes Podpress different</h2>
-      <ul class="ang-diff-list">
-        <li>
-          <span class="ang-check">✓</span>
-          Transcript-first generation (not guessing)
-        </li>
-        <li>
-          <span class="ang-check">✓</span>
-          Built specifically for podcasters
-        </li>
-        <li>
-          <span class="ang-check">✓</span>
-          Regeneration within plan limits
-        </li>
-        <li>
-          <span class="ang-check">✓</span>
-          Multiple newsletter formats supported
-        </li>
-      </ul>
+  <section class="ang-section" id="different">
+    <div class="sp-container">
+      <div class="ang-section-header">
+        <h2>What makes Podpress different</h2>
+      </div>
+      <div class="ang-list-wrap">
+        <ul class="ang-diff-list">
+          <li>
+            <span class="ang-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Transcript-first generation (not guessing)
+          </li>
+          <li>
+            <span class="ang-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Built specifically for podcasters
+          </li>
+          <li>
+            <span class="ang-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Regeneration within plan limits
+          </li>
+          <li>
+            <span class="ang-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Multiple newsletter formats supported
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════
        SUPPORTED NEWSLETTER FORMATS
   ═══════════════════════════════ -->
-  <section class="ang-section">
-    <div class="ang-wrap">
-      <h2>Supported newsletter formats</h2>
-      <p class="ang-formats-sub">Choose the depth that fits your audience. Every format is generated from the same transcript.</p>
+  <section class="ang-section alt" id="formats">
+    <div class="sp-container">
+      <div class="ang-section-header">
+        <h2>Supported newsletter formats</h2>
+        <p>Choose the depth that fits your audience. Every format is generated from the same transcript.</p>
+      </div>
       <div class="ang-pills">
         <span class="ang-pill">Short</span>
         <span class="ang-pill">Summary</span>
@@ -285,22 +454,24 @@
   <!-- ═══════════════════════════════
        WHO IT'S FOR
   ═══════════════════════════════ -->
-  <section class="ang-section">
-    <div class="ang-wrap">
-      <h2>Who it's for</h2>
-    </div>
-    <div class="ang-who-grid" style="padding: 0 32px; box-sizing: border-box; margin-left:auto; margin-right:auto; margin-top: -16px;">
-      <div class="ang-who-col">
-        <h3 class="orange">Independent podcasters</h3>
-        <p>Solo creators who need written content without a writing team.</p>
+  <section class="ang-section" id="who">
+    <div class="sp-container">
+      <div class="ang-section-header">
+        <h2>Who it's for</h2>
       </div>
-      <div class="ang-who-col">
-        <h3>Podcast networks</h3>
-        <p>Multi-show operations that need scale and consistency.</p>
-      </div>
-      <div class="ang-who-col">
-        <h3>Content teams</h3>
-        <p>Teams managing multiple shows with tight publishing schedules.</p>
+      <div class="ang-who-grid">
+        <div class="ang-who-col">
+          <h3 class="orange">Independent podcasters</h3>
+          <p>Solo creators who need written content without a writing team.</p>
+        </div>
+        <div class="ang-who-col">
+          <h3>Podcast networks</h3>
+          <p>Multi-show operations that need scale and consistency.</p>
+        </div>
+        <div class="ang-who-col">
+          <h3>Content teams</h3>
+          <p>Teams managing multiple shows with tight publishing schedules.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -308,11 +479,13 @@
   <!-- ═══════════════════════════════
        READY TO GENERATE — CTA
   ═══════════════════════════════ -->
-  <section class="ang-section">
-    <div class="ang-wrap">
-      <h2>Ready to generate?</h2>
-      <p class="ang-cta-sub">Upload an episode and get your first AI-generated newsletter in minutes.</p>
-      <a href="#" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
+  <section class="ang-cta" id="get-started">
+    <div class="sp-container">
+      <div class="ang-cta-panel">
+        <h2>Ready to generate?</h2>
+        <p>Upload an episode and get your first AI-generated newsletter in minutes.</p>
+        <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="ang-btn-primary">Generate your first podcast newsletter &rarr;</a>
+      </div>
     </div>
   </section>
 
@@ -362,19 +535,19 @@
       <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
         <div class="footer-socials">
-          <a href="#" aria-label="Facebook">
+          <a href="https://www.facebook.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
             </svg>
           </a>
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
             </svg>

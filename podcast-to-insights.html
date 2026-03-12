@@ -298,29 +298,48 @@
     }
 
     /* ── CTA ── */
+    /* ── CTA ── */
     .ins-cta {
       padding: 110px 0;
-      background: var(--bg);
+      background: var(--surface);
       text-align: center;
+    }
+    .ins-cta-panel {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 28px 56px rgba(17,17,17,0.07);
     }
     .ins-cta h2 {
       font-family: var(--font-display);
       font-size: clamp(2rem, 3.2vw, 2.8rem);
       font-weight: 400;
       letter-spacing: -0.03em;
-      color: var(--ink); line-height: 1.1;
-      margin-bottom: 14px;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
     }
     .ins-cta p {
       font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 32px;
+      margin: 0 0 30px;
+      line-height: 1.7;
     }
     .ins-cta-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
-      font-size: 0.92rem; font-weight: 600;
-      padding: 14px 30px; border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
       text-decoration: none;
       box-shadow: 0 18px 34px rgba(58,103,255,0.18);
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -394,6 +413,8 @@
       .sp-hero h1 { font-size: 2.2rem; }
       .ins-section-title, .ins-faq-title, .ins-cta h2 { font-size: 1.55rem; }
       .ins-faq-panel { padding: 32px 20px 28px; }
+      .ins-cta { padding: 80px 0; }
+      .ins-cta-panel { padding: 40px 20px; }
       .footer-grid-5 { grid-template-columns: 1fr; }
       .footer-grid-5 .footer-brand { grid-column: span 1; }
       .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
@@ -407,6 +428,7 @@
     [data-theme="dark"] .ins-check-item { border-bottom-color: var(--border); }
     [data-theme="dark"] .ins-benefit-item { border-bottom-color: var(--border); }
     [data-theme="dark"] .ins-faq-item   { border-bottom-color: var(--border); }
+    [data-theme="dark"] .ins-cta-panel  { background: var(--bg); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body>
@@ -442,7 +464,7 @@
         automatically. Generate summaries, highlights, and actionable
         insights that your audience can use.
       </p>
-      <a href="#" class="ins-hero-btn">Try Podpress Free &rarr;</a>
+      <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="ins-hero-btn">Try Podpress Free &rarr;</a>
     </div>
   </section>
 
@@ -565,25 +587,25 @@
           <div class="ins-faq-item">
             <button class="ins-faq-q">How fast can I get key insights?<span class="faq-icon">+</span></button>
             <div class="ins-faq-a">
-              <div class="ins-faq-a-inner">Most episodes are processed within 2–3 minutes. You'll receive a structured summary with key insights, highlights, and actionable takeaways as soon as the analysis is complete.</div>
+              <div class="ins-faq-a-inner">Under 3 minutes on average. Upload your episode and get a structured summary with key insights and takeaways ready to use.</div>
             </div>
           </div>
           <div class="ins-faq-item">
             <button class="ins-faq-q">What types of insights are extracted?<span class="faq-icon">+</span></button>
             <div class="ins-faq-a">
-              <div class="ins-faq-a-inner">We extract key takeaways, main discussion points, notable quotes, actionable advice, and topic summaries. The AI identifies the most important moments based on speaker emphasis and topic relevance.</div>
+              <div class="ins-faq-a-inner">Main takeaways, key points, actionable insights, highlights, and important quotes from your episode.</div>
             </div>
           </div>
           <div class="ins-faq-item">
             <button class="ins-faq-q">What formats can I export?<span class="faq-icon">+</span></button>
             <div class="ins-faq-a">
-              <div class="ins-faq-a-inner">You can export insights as plain text, HTML, or markdown. All formats are optimized for newsletters, blog posts, social media, and internal documentation.</div>
+              <div class="ins-faq-a-inner">Export as text, HTML, markdown, or share directly as summaries, social posts, or documentation.</div>
             </div>
           </div>
           <div class="ins-faq-item">
             <button class="ins-faq-q">Can I customize the insight format?<span class="faq-icon">+</span></button>
             <div class="ins-faq-a">
-              <div class="ins-faq-a-inner">Yes. Every generated draft is fully editable. You can adjust tone, reorder sections, add your own commentary, and refine the output before sharing or publishing.</div>
+              <div class="ins-faq-a-inner">Yes. Edit insights, reorganize by topic, and format the summary to match your needs and style.</div>
             </div>
           </div>
         </div>
@@ -592,11 +614,13 @@
   </section>
 
   <!-- ── CTA ── -->
-  <section class="ins-cta">
+  <section class="ins-cta" id="get-started">
     <div class="sp-container">
-      <h2>Ready to get started?</h2>
-      <p>Extract key insights from your episodes in minutes.</p>
-      <a href="#" class="ins-cta-btn">Get started with Podpress &rarr;</a>
+      <div class="ins-cta-panel">
+        <h2>Ready to get started?</h2>
+        <p>Extract key insights from your episodes in minutes.</p>
+        <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="ins-cta-btn">Get started with PodPress &rarr;</a>
+      </div>
     </div>
   </section>
 
@@ -644,19 +668,19 @@
       <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
         <div class="footer-socials">
-          <a href="#" aria-label="Facebook">
+          <a href="https://www.facebook.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
             </svg>
           </a>
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.instagram.com/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/usepodpress/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
             </svg>
