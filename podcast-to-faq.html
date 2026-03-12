@@ -11,74 +11,74 @@
   <style>
     body.pf-page {
       background:
-        radial-gradient(circle at top left, rgba(58,103,255,0.08), transparent 30%),
-        radial-gradient(circle at top right, rgba(255,90,31,0.04), transparent 24%),
+        radial-gradient(circle at top left, rgba(58,103,255,0.07), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,90,31,0.04), transparent 22%),
         var(--bg);
     }
 
+    /* ── Full Navbar ── */
     .sp-nav {
-      background: rgba(247,245,242,0.84);
+      background: rgba(247,245,242,0.82);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(221,217,211,0.82);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
     }
-
-    .pf-nav-links,
+    .sp-nav-inner { justify-content: space-between; }
+    .pf-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .pf-nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .pf-nav-links a:hover { color: var(--ink); }
     .pf-nav-actions {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 10px;
     }
-
-    .pf-nav-links {
-      list-style: none;
-      flex: 1;
-      justify-content: center;
-      padding: 0 24px;
-    }
-
-    .pf-nav-links a,
-    .pf-nav-actions a {
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .pf-nav-links a:hover,
-    .pf-nav-actions a:hover {
-      color: var(--ink);
-      transform: translateY(-1px);
-    }
-
     .pf-nav-login {
-      color: var(--ink) !important;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
     }
-
+    .pf-nav-login:hover { color: var(--cornflower); }
     .pf-nav-start {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      border-radius: 999px;
+      gap: 6px;
       background: linear-gradient(135deg, var(--cornflower), #2953e6);
-      color: #fff !important;
-      font-weight: 600 !important;
-      box-shadow: 0 12px 26px rgba(58,103,255,0.18);
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(58,103,255,0.16);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-
     .pf-nav-start:hover {
-      box-shadow: 0 16px 30px rgba(58,103,255,0.24);
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.22);
     }
 
+    /* ── Hero ── */
     .pf-hero {
-      padding: 154px 0 84px;
+      background: var(--surface);
+      padding: 152px 0 110px;
       text-align: center;
-      background: transparent;
     }
-
     .pf-hero-inner {
-      max-width: 700px;
+      max-width: 680px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -87,19 +87,18 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.74);
-      border: 1px solid rgba(58,103,255,0.18);
-      color: var(--cornflower);
       font-size: 0.68rem;
       font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.13em;
-      margin-bottom: 20px;
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
+      padding: 7px 16px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.72);
       box-shadow: 0 12px 28px rgba(17,17,17,0.04);
     }
-
     .pf-badge::before {
       content: "";
       width: 7px;
@@ -111,72 +110,77 @@
 
     .pf-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 4.4vw, 4rem);
-      line-height: 1.02;
-      letter-spacing: -0.045em;
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
       font-weight: 400;
-      margin-bottom: 18px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       color: var(--ink);
+      margin-bottom: 18px;
     }
 
     .pf-hero p {
-      max-width: 600px;
-      margin: 0 auto 28px;
-      font-size: 0.98rem;
-      line-height: 1.78;
+      font-size: 0.97rem;
       color: var(--text-muted);
+      line-height: 1.82;
+      max-width: 580px;
+      margin: 0 auto 32px;
     }
 
     .pf-primary-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 26px;
-      border-radius: 999px;
       background: linear-gradient(135deg, var(--cornflower), #2953e6);
       color: #fff;
-      text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
       box-shadow: 0 18px 34px rgba(58,103,255,0.18);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-
     .pf-primary-btn:hover {
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
       box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
 
+    /* ── Section wrapper ── */
     .pf-section {
-      padding: 76px 0;
+      padding: 100px 0;
+      background: transparent;
+    }
+    .pf-section.alt {
+      background: var(--surface);
     }
 
+    /* ── Section header ── */
     .pf-section-header {
       max-width: 620px;
-      margin: 0 auto 34px;
+      margin: 0 auto 50px;
       text-align: center;
     }
-
     .pf-section-header h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
       font-weight: 400;
-      line-height: 1.08;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
       color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.1;
     }
-
     .pf-section-header p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.75;
     }
 
+    /* ── List wrap ── */
     .pf-list-wrap {
-      max-width: 760px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 30px 28px;
+      padding: 28px 30px;
       border-radius: 24px;
       background: rgba(255,255,255,0.82);
       border: 1px solid rgba(221,217,211,0.94);
@@ -187,16 +191,23 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 0;
+      margin: 0;
     }
 
     .pf-list li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
       font-size: 0.9rem;
+      font-weight: 500;
       line-height: 1.7;
       color: var(--ink);
+    }
+    .pf-list li:last-child {
+      border-bottom: none;
     }
 
     .pf-check {
@@ -213,7 +224,13 @@
       font-weight: 700;
       margin-top: 1px;
     }
+    .pf-check svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+    }
 
+    /* ── Benefits grid ── */
     .pf-benefits-grid {
       max-width: 900px;
       margin: 0 auto;
@@ -223,36 +240,41 @@
     }
 
     .pf-benefit {
-      padding: 24px 22px;
-      border-radius: 22px;
+      padding: 28px 30px;
+      border-radius: 24px;
       background: rgba(255,255,255,0.82);
       border: 1px solid rgba(221,217,211,0.94);
-      box-shadow: 0 22px 42px rgba(17,17,17,0.04);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .pf-benefit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 28px 50px rgba(17,17,17,0.06);
+      border-color: rgba(58,103,255,0.2);
     }
 
     .pf-benefit h3 {
       font-size: 0.98rem;
       line-height: 1.35;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: var(--ink);
     }
 
     .pf-benefit p {
-      font-size: 0.86rem;
-      line-height: 1.68;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.7;
       color: var(--text-muted);
     }
 
+    /* ── FAQ ── */
     .pf-faq-shell {
-      max-width: 640px;
+      max-width: 560px;
       margin: 0 auto;
-      padding: 30px 26px;
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
-        linear-gradient(135deg, rgba(58,103,255,0.06), rgba(255,90,31,0.03));
-      border: 1px solid rgba(221,217,211,0.92);
-      box-shadow: 0 28px 54px rgba(17,17,17,0.06);
+      padding: 48px 36px 40px;
+      border-radius: 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
     }
 
     .pf-faq-label {
@@ -260,20 +282,25 @@
       text-align: center;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--cornflower);
-      margin-bottom: 10px;
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin: 0 auto 18px;
+      width: fit-content;
     }
 
     .pf-faq-title {
       text-align: center;
       font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 2.6rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      font-weight: 400;
-      margin-bottom: 10px;
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.1;
     }
 
     .pf-faq-copy {
@@ -281,139 +308,140 @@
       font-size: 0.88rem;
       color: var(--text-muted);
       line-height: 1.7;
-      margin-bottom: 22px;
+      margin-bottom: 36px;
     }
 
     .pf-faq-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
+      text-align: left;
     }
 
     .pf-faq-item {
-      border: 1px solid rgba(221,217,211,0.92);
-      border-radius: 16px;
+      border-bottom: 1px solid var(--border);
       overflow: hidden;
-      background: rgba(255,255,255,0.8);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .pf-faq-item.is-open {
-      border-color: rgba(58,103,255,0.3);
-      box-shadow: 0 16px 28px rgba(58,103,255,0.08);
+    .pf-faq-item:last-child {
+      border-bottom: none;
     }
 
     .pf-faq-q {
       width: 100%;
       background: none;
       border: none;
-      padding: 18px;
+      padding: 18px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      text-align: left;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--ink);
+      text-align: left;
     }
 
     .pf-faq-q .icon {
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      display: inline-flex;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(58,103,255,0.08);
-      color: var(--cornflower);
+      font-size: 0.85rem;
+      color: var(--text-muted);
       flex-shrink: 0;
-      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+      transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
     }
 
     .pf-faq-item.is-open .pf-faq-q .icon {
       transform: rotate(45deg);
       background: var(--cornflower);
       color: #fff;
+      border-color: var(--cornflower);
     }
 
     .pf-faq-a {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.28s ease;
+      transition: max-height 0.35s ease;
     }
 
     .pf-faq-item.is-open .pf-faq-a {
-      max-height: 240px;
+      max-height: 280px;
     }
 
     .pf-faq-a-inner {
-      padding: 0 18px 18px;
-      font-size: 0.86rem;
+      padding: 0 0 18px;
       color: var(--text-muted);
-      line-height: 1.72;
+      line-height: 1.7;
+      font-size: 0.88rem;
     }
 
+    /* ── CTA ── */
     .pf-cta {
-      padding-top: 42px;
+      padding: 110px 0;
+      background: var(--surface);
       text-align: center;
     }
-
+    .pf-cta-panel {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 28px 56px rgba(17,17,17,0.07);
+    }
     .pf-cta h2 {
       font-family: var(--font-display);
       font-size: clamp(2rem, 3.2vw, 2.8rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
       font-weight: 400;
-      margin-bottom: 12px;
+      letter-spacing: -0.03em;
       color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
     }
-
     .pf-cta p {
-      max-width: 520px;
-      margin: 0 auto 24px;
-      font-size: 0.9rem;
-      line-height: 1.72;
+      font-size: 0.95rem;
       color: var(--text-muted);
+      margin: 0 0 30px;
+      line-height: 1.7;
     }
 
-    @media (max-width: 920px) {
-      .pf-nav-links {
-        display: none;
-      }
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .pf-nav-links { display: none; }
+      .pf-benefits-grid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 768px) {
-      .pf-nav-actions .pf-nav-login {
-        display: none;
-      }
-
-      .pf-hero {
-        padding: 132px 0 72px;
-      }
-
+    @media (max-width: 600px) {
+      .pf-hero { padding: 130px 0 80px; }
+      .pf-hero h1 { font-size: 2.2rem; }
+      .pf-section { padding: 64px 0; }
+      .pf-section-header h2,
+      .pf-faq-title,
+      .pf-cta h2 { font-size: 1.55rem; }
       .pf-list-wrap,
-      .pf-faq-shell {
-        padding: 24px 18px;
-      }
-
-      .pf-benefits-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pf-section {
-        padding: 64px 0;
-      }
+      .pf-faq-shell { padding: 22px 20px; }
+      .pf-faq-shell { padding: 32px 20px 28px; }
+      .pf-cta { padding: 80px 0; }
+      .pf-cta-panel { padding: 40px 20px; }
     }
     /* ── Dark mode overrides ── */
-    [data-theme="dark"] .sp-nav         { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
-    [data-theme="dark"] .pf-badge       { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
-    [data-theme="dark"] .pf-list-wrap   { background: var(--surface); border-color: var(--border); box-shadow: none; }
-    [data-theme="dark"] .pf-benefit     { background: var(--surface); border-color: var(--border); box-shadow: none; }
-    [data-theme="dark"] .pf-faq-shell   { background: var(--surface); border-color: var(--border); box-shadow: 0 28px 54px rgba(0,0,0,0.2); }
-    [data-theme="dark"] .pf-faq-item    { background: var(--bg); border-color: var(--border); }
-    [data-theme="dark"] .pf-faq-item.is-open { border-color: rgba(58,103,255,0.35); }
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .pf-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .pf-list-wrap { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .pf-list li { border-bottom-color: var(--border); }
+    [data-theme="dark"] .pf-benefit { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .pf-benefit:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .pf-faq-shell { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .pf-faq-item { border-bottom-color: var(--border); }
+    [data-theme="dark"] .pf-cta-panel { background: var(--bg); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body class="pf-page">
@@ -441,7 +469,7 @@
     <div class="pf-hero-inner">
       <span class="pf-badge">FAQ</span>
       <h1>Podcast to FAQ</h1>
-      <p>Convert interview transcripts and episode notes into concise FAQ entries automatically. Generate helpful question-and-answer content that helps your audience find answers fast.</p>
+      <p>Extract frequently asked questions from your podcast episodes automatically. Generate FAQ pages and Q&A content that helps your audience find answers quickly.</p>
       <a href="#get-started" class="pf-primary-btn">Try PodPress Free &rarr;</a>
     </div>
   </section>
@@ -450,32 +478,74 @@
     <div class="sp-container">
       <div class="pf-section-header">
         <h2>How it works</h2>
-        <p>From raw audio or transcripts to a clean FAQ layout your audience can scan quickly and understand at a glance.</p>
+        <p>Four simple steps from episode to FAQ page. No manual review — AI extracts questions and answers automatically.</p>
       </div>
       <div class="pf-list-wrap">
         <ul class="pf-list">
-          <li><span class="pf-check">1</span>Start with your podcast audio, RSS feed, or transcript.</li>
-          <li><span class="pf-check">2</span>We identify questions and structure your episode into a question-and-answer format.</li>
-          <li><span class="pf-check">3</span>PodPress creates short, readable answers from the conversation and notes.</li>
-          <li><span class="pf-check">4</span>Review, customize, and publish the FAQ wherever your audience needs it.</li>
+          <li><span class="pf-check">1</span>Share your episode via RSS, MP3 upload, or podcast link.</li>
+          <li><span class="pf-check">2</span>We identify questions asked and answers given throughout your episode.</li>
+          <li><span class="pf-check">3</span>Receive a structured FAQ page with questions and answers organized clearly.</li>
+          <li><span class="pf-check">4</span>Review, customize, and publish to your website or export as HTML.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="pf-section" id="what-you-get">
+  <section class="pf-section alt" id="what-you-get">
     <div class="sp-container">
       <div class="pf-section-header">
         <h2>What you get</h2>
-        <p>A polished FAQ draft that feels useful and structured instead of a raw transcript dump.</p>
       </div>
       <div class="pf-list-wrap">
         <ul class="pf-list">
-          <li><span class="pf-check">✓</span>Questions and answers extracted from real episode conversations.</li>
-          <li><span class="pf-check">✓</span>Structured FAQ sections with clean formatting and better readability.</li>
-          <li><span class="pf-check">✓</span>Support for interview, solo, and panel-style podcasts.</li>
-          <li><span class="pf-check">✓</span>Answers cleaned up for clarity without losing the original meaning.</li>
-          <li><span class="pf-check">✓</span>FAQ-ready copy you can embed on websites, help centers, or landing pages.</li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            FAQ format with questions and answers organized by topic
+          </li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Structured Q&A pairs ready for FAQ pages
+          </li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Export-ready HTML or JSON for your website
+          </li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Editable draft so you can refine questions and answers
+          </li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Smart detection of questions and matching answers
+          </li>
+          <li>
+            <span class="pf-check">
+              <svg viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            SEO-friendly FAQ schema markup for better search visibility
+          </li>
         </ul>
       </div>
     </div>
@@ -485,59 +555,54 @@
     <div class="sp-container">
       <div class="pf-section-header">
         <h2>Benefits</h2>
-        <p>Turn episodes into something more searchable, skimmable, and reusable for your audience and team.</p>
       </div>
       <div class="pf-benefits-grid">
         <article class="pf-benefit">
-          <h3>Reuse answers across your website and support content</h3>
-          <p>Transform each episode into evergreen Q&A content that continues to help listeners after the episode is published.</p>
+          <h4>Save time — extract FAQs automatically instead of manually reviewing hours of audio.</h4>
         </article>
         <article class="pf-benefit">
-          <h3>Reduce time spent rewriting spoken content manually</h3>
-          <p>Let PodPress structure and polish common questions so your team edits faster and publishes more consistently.</p>
+          <h4>Reduce manual effort — no more listening through episodes to find questions.</h4>
         </article>
         <article class="pf-benefit">
-          <h3>Make your content easier to scan and understand</h3>
-          <p>FAQ formatting helps readers jump directly to the information they care about without reading the entire transcript.</p>
+          <h4>Easy content repurposing — turn one episode into FAQ pages and help docs.</h4>
         </article>
         <article class="pf-benefit">
-          <h3>Improve discovery for recurring audience questions</h3>
-          <p>Build a stronger searchable knowledge layer around your podcast topics, guests, and recurring themes.</p>
+          <h4>Improve productivity — focus on recording; we extract and organize FAQs.</h4>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="pf-section" id="faq">
+  <section class="pf-section alt" id="faq">
     <div class="sp-container">
       <div class="pf-faq-shell">
         <span class="pf-faq-label">FAQ</span>
-        <h2 class="pf-faq-title">Frequently asked questions</h2>
-        <p class="pf-faq-copy">A few common questions about converting podcast content into clean FAQ entries with PodPress.</p>
+        <h2 class="pf-faq-title">Frequently<br>asked questions</h2>
+        <p class="pf-faq-copy">Quick answers about Podcast to FAQ.</p>
 
         <div class="pf-faq-list">
-          <div class="pf-faq-item is-open">
+          <div class="pf-faq-item">
             <button class="pf-faq-q">How fast can I get a FAQ draft?<span class="icon">+</span></button>
             <div class="pf-faq-a">
-              <div class="pf-faq-a-inner">Most episodes can be turned into a first FAQ draft within minutes, depending on transcript quality and overall episode length.</div>
+              <div class="pf-faq-a-inner">Under 3 minutes on average. Upload your episode and get a structured FAQ with questions and answers ready to use.</div>
             </div>
           </div>
           <div class="pf-faq-item">
-            <button class="pf-faq-q">Does it work for any style of podcast?<span class="icon">+</span></button>
+            <button class="pf-faq-q">Does it work for any type of podcast?<span class="icon">+</span></button>
             <div class="pf-faq-a">
-              <div class="pf-faq-a-inner">Yes. PodPress works well for interviews, solo episodes, co-hosted shows, and many panel-style formats where questions and explanations naturally appear.</div>
+              <div class="pf-faq-a-inner">Yes. Whether it's interviews, Q&A sessions, or educational content, Podpress extracts questions and answers from any episode format.</div>
             </div>
           </div>
           <div class="pf-faq-item">
-            <button class="pf-faq-q">What formats can I use it in?<span class="icon">+</span></button>
+            <button class="pf-faq-q">What formats can I export?<span class="icon">+</span></button>
             <div class="pf-faq-a">
-              <div class="pf-faq-a-inner">You can reuse the output on FAQ pages, resource hubs, product pages, support centers, blog posts, or any content workflow that benefits from question-and-answer formatting.</div>
+              <div class="pf-faq-a-inner">Export as HTML, JSON, or publish directly to FAQ plugins, help centers, and documentation platforms.</div>
             </div>
           </div>
           <div class="pf-faq-item">
-            <button class="pf-faq-q">Can I customize the final content?<span class="icon">+</span></button>
+            <button class="pf-faq-q">Can I customize the FAQ structure?<span class="icon">+</span></button>
             <div class="pf-faq-a">
-              <div class="pf-faq-a-inner">Absolutely. You can edit wording, remove entries, combine similar questions, and tailor the final FAQ to fit your site structure and tone.</div>
+              <div class="pf-faq-a-inner">Yes. Edit questions, reorganize answers, and format the FAQ to match your website's style and needs.</div>
             </div>
           </div>
         </div>
@@ -545,48 +610,24 @@
     </div>
   </section>
 
-  <section class="pf-section" id="get-started">
-    <div class="sp-container pf-cta">
-      <h2>Ready to get started?</h2>
-      <p>Turn your podcast conversations into useful FAQ content your audience can search, skim, and trust.</p>
-      <a href="index.html" class="pf-primary-btn">Get started with PodPress &rarr;</a>
+  <section class="pf-cta" id="get-started">
+    <div class="sp-container">
+      <div class="pf-cta-panel">
+        <h2>Ready to get started?</h2>
+        <p>Extract FAQs from your episodes in minutes.</p>
+        <a href="index.html" class="pf-primary-btn">Get started with PodPress &rarr;</a>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid-5">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" data-logo />
+          <a href="#" class="nav-logo">
+            <img src="logo-dark.png" alt="PodPress" />
           </a>
-          <p class="footer-brand-desc">
-            Turn your podcast episodes into engaging newsletters in minutes.
-            Built for creators who want to connect with their audience beyond the audio.
-          </p>
-          <div class="footer-brand-socials">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Twitter">&#120143;</a>
-            <a href="#" aria-label="YouTube">&#9654;</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="index.html#how-it-works">How It Works</a></li>
-            <li><a href="#">Integrations</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-          </ul>
+          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
         </div>
         <div class="footer-col">
           <h4>Features</h4>
@@ -611,20 +652,34 @@
             <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav-strip" aria-label="Footer navigation">
-        <a href="#">Features</a>
-        <a href="index.html#how-it-works">How It Works</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="#">FAQ</a>
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-      </nav>
-      <div class="footer-bottom-row">
+      <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="terms.html">Terms</a>
-          <a href="privacy.html">Privacy</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>

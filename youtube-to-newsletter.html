@@ -76,24 +76,16 @@
       box-shadow: 0 16px 28px rgba(58,103,255,0.22);
     }
 
-    /* ── Hero tweaks ── */
+    /* ── Hero ── */
     .sp-hero {
-      background: transparent;
-      padding: 156px 0 110px;
+      background: var(--surface);
+      padding: 152px 0 110px;
+      text-align: center;
     }
     .sp-hero-inner {
-      max-width: 1120px;
+      max-width: 680px;
+      margin: 0 auto;
       padding: 0 24px;
-    }
-    .yt-hero-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 54px;
-      align-items: center;
-    }
-    .yt-hero-copy {
-      max-width: 560px;
-      text-align: left;
     }
 
     .yt-badge {
@@ -108,9 +100,9 @@
       border: 1.5px solid rgba(58,103,255,0.22);
       border-radius: 100px;
       padding: 7px 16px;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       background: rgba(255,255,255,0.72);
-      box-shadow: 0 14px 30px rgba(17,17,17,0.04);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
     }
     .yt-badge::before {
       content: "";
@@ -123,35 +115,33 @@
 
     .sp-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.7rem, 4.6vw, 4.5rem);
-      font-weight: 600;
-      line-height: 1.02;
-      letter-spacing: -0.045em;
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
       color: var(--ink);
       margin-bottom: 18px;
     }
 
-    .sp-hero .yt-sub {
-      font-size: 1rem;
+    .sp-hero .yt-desc {
+      font-size: 0.97rem;
       color: var(--text-muted);
       line-height: 1.82;
-      max-width: 520px;
-      margin: 0 0 30px;
+      max-width: 580px;
+      margin: 0 auto 32px;
     }
-    .sp-hero .yt-sub .hl { color: var(--cornflower); }
+    .sp-hero .yt-desc .hl { color: var(--cornflower); }
 
-    .yt-hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
     .yt-hero-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
-      font-size: 0.92rem; font-weight: 600;
-      padding: 14px 30px; border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
       text-decoration: none;
       box-shadow: 0 18px 34px rgba(58,103,255,0.18);
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -161,352 +151,174 @@
       transform: translateY(-1px);
       box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
-    .yt-hero-note {
-      font-size: 0.82rem;
-      color: var(--text-muted);
+
+    /* ── Section wrapper ── */
+    .yt-section {
+      padding: 100px 0;
+      background: transparent;
     }
-    .yt-hero-note strong {
+    .yt-section.alt {
+      background: var(--surface);
+    }
+
+    /* ── Section header ── */
+    .yt-section-head {
+      max-width: 620px;
+      margin: 0 auto 50px;
+      text-align: center;
+    }
+    .yt-section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
       color: var(--ink);
-      font-weight: 600;
-    }
-    .yt-hero-preview {
-      position: relative;
-      padding: 28px;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82)),
-        linear-gradient(135deg, rgba(58,103,255,0.12), rgba(255,90,31,0.06));
-      border: 1px solid rgba(221,217,211,0.9);
-      box-shadow: 0 30px 70px rgba(17,17,17,0.08);
-      overflow: hidden;
-    }
-    .yt-hero-preview::before {
-      content: "";
-      position: absolute;
-      inset: auto -40px -70px auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(58,103,255,0.18), transparent 70%);
-      pointer-events: none;
-    }
-    .yt-preview-shell {
-      position: relative;
-      background: rgba(247,245,242,0.8);
-      border: 1px solid rgba(221,217,211,0.92);
-      border-radius: 22px;
-      padding: 18px;
-      backdrop-filter: blur(8px);
-    }
-    .yt-preview-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-    .yt-preview-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .yt-preview-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(58,103,255,0.08);
-      color: var(--cornflower);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-    .yt-preview-flow {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 14px;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .yt-preview-card {
-      background: #fff;
-      border: 1px solid rgba(221,217,211,0.92);
-      border-radius: 18px;
-      padding: 16px;
-      min-height: 164px;
-      box-shadow: 0 18px 30px rgba(17,17,17,0.03);
-    }
-    .yt-preview-card h3 {
-      font-size: 0.92rem;
-      margin-bottom: 10px;
-      line-height: 1.35;
-    }
-    .yt-preview-meta {
-      font-size: 0.75rem;
-      color: var(--text-muted);
       margin-bottom: 12px;
+      line-height: 1.1;
     }
-    .yt-preview-video {
-      height: 86px;
-      border-radius: 14px;
-      background:
-        linear-gradient(135deg, rgba(17,17,17,0.94), rgba(43,47,54,0.88));
-      position: relative;
-      overflow: hidden;
+    .yt-section-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
     }
-    .yt-preview-video::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: 10px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.08) 100%);
+
+    /* ── How it works — vertical numbered steps ── */
+    .yt-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: left;
     }
-    .yt-preview-play {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 38px;
-      height: 38px;
+    .yt-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .yt-step:last-child {
+      border-bottom: none;
+    }
+    .yt-step-num {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-size: 0.95rem;
-      backdrop-filter: blur(6px);
-    }
-    .yt-preview-arrow {
-      font-size: 1.3rem;
-      color: var(--cornflower);
-      font-weight: 700;
-    }
-    .yt-line {
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(58,103,255,0.18), rgba(58,103,255,0.06));
-      margin-bottom: 8px;
-    }
-    .yt-line.short { width: 72%; }
-    .yt-line.mid { width: 88%; }
-    .yt-preview-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .yt-preview-tags span {
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: rgba(58,103,255,0.08);
-      color: var(--cornflower);
-    }
-    .yt-preview-foot {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .yt-preview-stat {
-      flex: 1 1 120px;
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(221,217,211,0.92);
-      border-radius: 16px;
-      padding: 14px;
-    }
-    .yt-preview-stat strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-    .yt-preview-stat span {
-      font-size: 0.76rem;
-      color: var(--text-muted);
-    }
-
-    /* ── How it works — numbered steps ── */
-    .yt-how {
-      padding: 88px 0 84px;
-      background: transparent;
-    }
-    .yt-section-head {
-      max-width: 620px;
-      margin: 0 auto 46px;
-      text-align: center;
-    }
-    .yt-how-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 2.7rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      margin-bottom: 12px;
-    }
-    .yt-section-copy {
-      font-size: 0.92rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-    }
-    .yt-steps {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      max-width: 920px;
-      margin: 0 auto;
-    }
-    .yt-step {
-      position: relative;
-      padding: 28px 26px 24px;
-      text-align: left;
-      border: 1px solid rgba(221,217,211,0.95);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.84);
-      box-shadow: 0 20px 40px rgba(17,17,17,0.04);
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .yt-step::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(58,103,255,0.05), transparent 45%);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-    .yt-step:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 46px rgba(17,17,17,0.06);
-      border-color: rgba(58,103,255,0.28);
-    }
-    .yt-step:hover::after { opacity: 1; }
-    .yt-step-num {
-      width: 42px; height: 42px;
-      border-radius: 14px;
-      background: rgba(58,103,255,0.1);
-      color: var(--cornflower);
-      font-size: 0.92rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 0 18px;
-      box-shadow: inset 0 0 0 1px rgba(58,103,255,0.08);
-    }
-    .yt-step h3 {
-      font-size: 0.98rem;
-      line-height: 1.35;
-      margin-bottom: 8px;
-      color: var(--ink);
+      box-shadow: 0 8px 16px rgba(58,103,255,0.18);
+      margin-top: 2px;
     }
     .yt-step p {
-      font-size: 0.84rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-muted);
-      line-height: 1.65;
+      color: var(--ink);
+      line-height: 1.6;
+      padding-top: 6px;
     }
 
     /* ── Why section — checklist ── */
-    .yt-why {
-      padding: 100px 0;
-      background: var(--surface);
-    }
-    .yt-why-wrap {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 42px;
-      align-items: start;
-      max-width: 980px;
+    .yt-checklist-wrap {
+      max-width: 700px;
       margin: 0 auto;
-    }
-    .yt-why-intro {
-      padding-top: 14px;
-    }
-    .yt-why-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 2.7rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--ink);
-      margin-bottom: 16px;
-    }
-    .yt-why-copy {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.8;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
     }
     .yt-checklist {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      list-style: none;
       margin: 0;
       text-align: left;
     }
     .yt-check {
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
       font-size: 0.92rem;
       font-weight: 500;
       color: var(--ink);
-      padding: 20px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(221,217,211,0.95);
-      background: rgba(247,245,242,0.74);
-      box-shadow: 0 14px 28px rgba(17,17,17,0.03);
+    }
+    .yt-check:last-child {
+      border-bottom: none;
     }
     .yt-check-icon {
-      width: 24px; height: 24px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      margin-top: 1px;
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(58,103,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(58,103,255,0.1);
+      color: var(--cornflower);
     }
-    .yt-check-icon svg { display: block; }
+    .yt-check-icon svg {
+      display: block;
+    }
 
-    /* ── Light CTA ── */
+    /* ── CTA ── */
     .yt-cta {
-      padding: 120px 0;
-      background: transparent;
+      padding: 110px 0;
+      background: var(--surface);
       text-align: center;
     }
     .yt-cta-panel {
-      max-width: 860px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 54px 32px;
+      padding: 56px 32px;
       border-radius: 28px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82)),
-        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.05));
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
       border: 1px solid rgba(221,217,211,0.9);
       box-shadow: 0 28px 56px rgba(17,17,17,0.07);
     }
     .yt-cta h2 {
       font-family: var(--font-display);
-      font-size: clamp(2.1rem, 3.4vw, 3rem); font-weight: 400;
-      color: var(--ink); line-height: 1.08;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      font-weight: 400;
       letter-spacing: -0.03em;
-      margin-bottom: 14px;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
     }
     .yt-cta p {
       font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 32px;
+      margin: 0 0 30px;
+      line-height: 1.7;
     }
     .yt-cta-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff;
-      font-size: 0.92rem; font-weight: 600;
-      padding: 14px 30px; border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: 100px;
       text-decoration: none;
       box-shadow: 0 18px 34px rgba(58,103,255,0.18);
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
     .yt-cta-btn:hover {
-      background: linear-gradient(135deg, #2f59ee, #2148d1); transform: translateY(-1px);
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
       box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
 
@@ -575,41 +387,29 @@
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .sp-nav-links { display: none; }
-      .yt-hero-layout,
-      .yt-why-wrap { grid-template-columns: 1fr; gap: 32px; }
-      .yt-hero-copy { max-width: 100%; text-align: center; margin: 0 auto; }
-      .sp-hero .yt-sub { margin: 0 auto 30px; }
-      .yt-hero-actions { justify-content: center; }
-      .yt-steps { grid-template-columns: 1fr 1fr; }
       .footer-grid-5 { grid-template-columns: 1fr 1fr; gap: 32px; }
       .footer-grid-5 .footer-brand { grid-column: span 2; }
       .footer-brand-desc { max-width: 100%; }
     }
     @media (max-width: 600px) {
-      .sp-hero { padding: 132px 0 84px; }
+      .sp-hero { padding: 130px 0 80px; }
       .sp-hero h1 { font-size: 2.2rem; }
-      .yt-how-title, .yt-why-title, .yt-cta h2 { font-size: 1.55rem; }
-      .yt-hero-preview { padding: 18px; }
-      .yt-preview-flow { grid-template-columns: 1fr; }
-      .yt-preview-arrow { display: none; }
-      .yt-steps { grid-template-columns: 1fr; }
-      .yt-checklist { grid-template-columns: 1fr; gap: 14px; }
+      .yt-section { padding: 64px 0; }
+      .yt-section-title, .yt-cta h2 { font-size: 1.55rem; }
+      .yt-checklist-wrap { padding: 22px 20px; }
+      .yt-cta { padding: 80px 0; }
       .yt-cta-panel { padding: 40px 20px; }
       .footer-grid-5 { grid-template-columns: 1fr; }
       .footer-grid-5 .footer-brand { grid-column: span 1; }
+      .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
     }
     /* ── Dark mode overrides ── */
-    [data-theme="dark"] .sp-nav            { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
-    [data-theme="dark"] .yt-badge          { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
-    [data-theme="dark"] .yt-hero-preview   { background: var(--surface); border-color: var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.3); }
-    [data-theme="dark"] .yt-preview-shell  { background: var(--bg); border-color: var(--border); box-shadow: none; backdrop-filter: none; }
-    [data-theme="dark"] .yt-preview-card   { background: var(--surface); border-color: var(--border); }
-    [data-theme="dark"] .yt-preview-overlay{ background: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .yt-preview-stat   { background: var(--surface); border-color: var(--border); }
-    [data-theme="dark"] .yt-step           { background: var(--surface); border-color: var(--border); box-shadow: none; }
-    [data-theme="dark"] .yt-step::after    { background: linear-gradient(180deg, rgba(58,103,255,0.08), transparent 45%); }
-    [data-theme="dark"] .yt-check          { background: var(--surface); border-color: var(--border); box-shadow: none; }
-    [data-theme="dark"] .yt-cta-panel      { background: var(--surface); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .yt-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .yt-step { border-bottom-color: var(--border); }
+    [data-theme="dark"] .yt-checklist-wrap { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .yt-check { border-bottom-color: var(--border); }
+    [data-theme="dark"] .yt-cta-panel { background: var(--bg); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body class="yt-page">
@@ -637,143 +437,86 @@
   <!-- ── Hero ── -->
   <section class="sp-hero" id="overview">
     <div class="sp-hero-inner">
-      <div class="yt-hero-layout">
-        <div class="yt-hero-copy">
-          <span class="yt-badge">YouTube</span>
-          <h1>Convert YouTube Podcasts to Newsletters</h1>
-          <p class="yt-sub">
-            Have a podcast on YouTube? <span class="hl">Podpress</span> turns <span class="hl">YouTube</span> podcast
-            episodes into <span class="hl">structured newsletters using AI</span> — automatically
-            extracting transcripts and transforming them into written content.
-          </p>
-          <div class="yt-hero-actions">
-            <a href="#" class="yt-hero-btn">Turn YouTube podcasts into newsletters &rarr;</a>
-            <span class="yt-hero-note"><strong>Built for creators</strong> who want more reach without more manual work.</span>
-          </div>
-        </div>
-
-        <div class="yt-hero-preview" aria-hidden="true">
-          <div class="yt-preview-shell">
-            <div class="yt-preview-top">
-              <span class="yt-preview-label">From video to inbox</span>
-              <span class="yt-preview-pill">AI workflow</span>
-            </div>
-
-            <div class="yt-preview-flow">
-              <div class="yt-preview-card">
-                <div class="yt-preview-meta">YouTube Episode</div>
-                <h3>Creator Economy Weekly</h3>
-                <div class="yt-preview-video">
-                  <div class="yt-preview-play">▶</div>
-                </div>
-              </div>
-
-              <div class="yt-preview-arrow">&rarr;</div>
-
-              <div class="yt-preview-card">
-                <div class="yt-preview-meta">Generated Newsletter</div>
-                <h3>3 ideas from this week's episode</h3>
-                <div class="yt-line mid"></div>
-                <div class="yt-line"></div>
-                <div class="yt-line short"></div>
-                <div class="yt-preview-tags">
-                  <span>Summary</span>
-                  <span>Highlights</span>
-                  <span>CTA</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="yt-preview-foot">
-              <div class="yt-preview-stat">
-                <strong>Minutes</strong>
-                <span>to create a clean first draft</span>
-              </div>
-              <div class="yt-preview-stat">
-                <strong>Email-ready</strong>
-                <span>output with structure and flow</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <span class="yt-badge">YouTube</span>
+      <h1>Convert YouTube Podcasts to Newsletters</h1>
+      <p class="yt-desc">
+        Have a podcast on YouTube? <span class="hl">Podpress</span> turns <span class="hl">YouTube</span> podcast
+        episodes into <span class="hl">structured newsletters using AI</span> — automatically
+        extracting transcripts and transforming them into written content.
+      </p>
+      <a href="#" class="yt-hero-btn">Turn YouTube podcasts into newsletters &rarr;</a>
     </div>
   </section>
 
   <!-- ── How it works ── -->
-  <section class="yt-how" id="how-it-works">
+  <section class="yt-section" id="how-it-works">
     <div class="sp-container">
       <div class="yt-section-head">
-        <h2 class="yt-how-title">How it works</h2>
-        <p class="yt-section-copy">A simple four-step workflow that turns your YouTube podcast into something polished, readable, and ready to send.</p>
+        <h2 class="yt-section-title">How it works</h2>
+        <p class="yt-section-sub">A simple four-step workflow that turns your YouTube podcast into something polished, readable, and ready to send.</p>
       </div>
       <div class="yt-steps">
         <div class="yt-step">
           <div class="yt-step-num">1</div>
-          <h3>Paste your YouTube podcast link</h3>
-          <p>Drop in an episode URL and let Podpress start the workflow instantly.</p>
+          <p>Paste your YouTube podcast link.</p>
         </div>
         <div class="yt-step">
           <div class="yt-step-num">2</div>
-          <h3>Podpress extracts the episode transcript</h3>
-          <p>The platform captures the spoken content and prepares it for conversion.</p>
+          <p>Podpress extracts the episode transcript.</p>
         </div>
         <div class="yt-step">
           <div class="yt-step-num">3</div>
-          <h3>Newsletter content is generated</h3>
-          <p>Your video becomes a structured draft with readable sections and highlights.</p>
+          <p>Newsletter content is generated.</p>
         </div>
         <div class="yt-step">
           <div class="yt-step-num">4</div>
-          <h3>Download or refine instantly</h3>
-          <p>Edit, polish, and publish faster without starting from a blank page.</p>
+          <p>Download or refine instantly.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ── Why YouTube podcasters use this ── -->
-  <section class="yt-why" id="why-youtube-newsletters">
+  <section class="yt-section alt" id="why-youtube-newsletters">
     <div class="sp-container">
-      <div class="yt-why-wrap">
-        <div class="yt-why-intro">
-          <h2 class="yt-why-title">Why YouTube podcasters use this</h2>
-          <p class="yt-why-copy">You already create valuable long-form content. This workflow helps you turn each episode into a second channel for growth with cleaner distribution and a more direct relationship with your audience.</p>
-        </div>
-        <div class="yt-checklist">
-          <div class="yt-check">
+      <div class="yt-section-head">
+        <h2 class="yt-section-title">Why YouTube podcasters use this</h2>
+      </div>
+      <div class="yt-checklist-wrap">
+        <ul class="yt-checklist">
+          <li class="yt-check">
             <span class="yt-check-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             No manual transcription
-          </div>
-          <div class="yt-check">
+          </li>
+          <li class="yt-check">
             <span class="yt-check-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             Faster written distribution
-          </div>
-          <div class="yt-check">
+          </li>
+          <li class="yt-check">
             <span class="yt-check-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             Reach audiences beyond YouTube
-          </div>
-          <div class="yt-check">
+          </li>
+          <li class="yt-check">
             <span class="yt-check-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <path d="M3.75 9.5L7.25 13L14.25 5.5" stroke="#3A67FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
             Build an email list from video content
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -782,7 +525,7 @@
   <section class="yt-cta" id="get-started">
     <div class="sp-container">
       <div class="yt-cta-panel">
-        <h2>Your YouTube episodes deserve<br>more reach</h2>
+        <h2>Your YouTube episodes deserve more reach</h2>
         <p>Paste a link, get a newsletter. It's that simple.</p>
         <a href="#" class="yt-cta-btn">Turn YouTube podcasts into newsletters &rarr;</a>
       </div>
@@ -792,38 +535,12 @@
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid-5">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" data-logo />
+          <a href="#" class="nav-logo">
+            <img src="logo-dark.png" alt="PodPress" />
           </a>
-          <p class="footer-brand-desc">
-            Turn your podcast episodes into engaging newsletters in minutes.
-            Built for creators who want to connect with their audience beyond the audio.
-          </p>
-          <div class="footer-brand-socials">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Twitter">&#120143;</a>
-            <a href="#" aria-label="YouTube">&#9654;</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="index.html#how-it-works">How It Works</a></li>
-            <li><a href="#">Integrations</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-          </ul>
+          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
         </div>
         <div class="footer-col">
           <h4>Features</h4>
@@ -848,20 +565,34 @@
             <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav-strip" aria-label="Footer navigation">
-        <a href="#">Features</a>
-        <a href="index.html#how-it-works">How It Works</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="#">FAQ</a>
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-      </nav>
-      <div class="footer-bottom-row">
+      <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="terms.html">Terms</a>
-          <a href="privacy.html">Privacy</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>

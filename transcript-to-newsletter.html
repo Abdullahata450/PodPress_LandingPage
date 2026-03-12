@@ -11,158 +11,175 @@
   <style>
     .tn-page {
       background:
-        radial-gradient(circle at top center, rgba(58, 103, 255, 0.08), transparent 32%),
+        radial-gradient(circle at top left, rgba(58,103,255,0.07), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,90,31,0.04), transparent 22%),
         var(--bg);
     }
 
-    .tn-nav-links,
+    /* ── Full Navbar ── */
+    .sp-nav {
+      background: rgba(247,245,242,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
+    }
+    .sp-nav-inner { justify-content: space-between; }
+    .tn-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .tn-nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .tn-nav-links a:hover { color: var(--ink); }
     .tn-nav-actions {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 10px;
     }
-
-    .tn-nav-links {
-      list-style: none;
-      flex: 1;
-      justify-content: center;
-      padding: 0 24px;
-    }
-
-    .tn-nav-links a,
-    .tn-nav-actions a {
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .tn-nav-links a:hover,
-    .tn-nav-actions a:hover {
-      color: var(--ink);
-      transform: translateY(-1px);
-    }
-
     .tn-nav-actions .tn-login {
+      font-size: 0.88rem;
+      font-weight: 500;
       color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
     }
-
+    .tn-nav-actions .tn-login:hover { color: var(--cornflower); }
     .tn-nav-actions .tn-start {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 11px 18px;
-      border-radius: 999px;
-      background: var(--cornflower);
+      gap: 6px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
       color: #fff;
+      font-size: 0.86rem;
       font-weight: 600;
-      box-shadow: 0 12px 24px rgba(58, 103, 255, 0.18);
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(58,103,255,0.16);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-
     .tn-nav-actions .tn-start:hover {
-      color: #fff;
-      box-shadow: 0 16px 30px rgba(58, 103, 255, 0.24);
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 28px rgba(58,103,255,0.22);
     }
 
+    /* ── Hero ── */
     .tn-hero {
-      padding: 156px 0 96px;
+      background: var(--surface);
+      padding: 152px 0 110px;
+      text-align: center;
     }
-
     .tn-hero-inner {
-      max-width: 720px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
     .tn-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 12px;
-      border: 1px solid rgba(58, 103, 255, 0.18);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
-      color: var(--cornflower);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(17, 17, 17, 0.04);
+      color: var(--cornflower);
+      border: 1.5px solid rgba(58,103,255,0.22);
+      border-radius: 100px;
+      padding: 7px 16px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 12px 28px rgba(17,17,17,0.04);
     }
-
     .tn-badge::before {
       content: "";
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: currentColor;
-      box-shadow: 0 0 0 4px rgba(58, 103, 255, 0.12);
+      box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
     }
 
     .tn-hero h1 {
-      font-size: clamp(2.5rem, 4.2vw, 4.1rem);
-      line-height: 1.03;
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
       letter-spacing: -0.04em;
-      margin-bottom: 20px;
+      color: var(--ink);
+      margin-bottom: 18px;
     }
-
     .tn-hero h1 span {
       color: var(--text-muted);
       font-style: normal;
     }
 
     .tn-hero p {
-      max-width: 600px;
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 28px;
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      max-width: 580px;
+      margin: 0 auto 32px;
     }
 
     .tn-primary-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--cornflower), #2452ea);
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
       color: #fff;
-      text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       font-weight: 600;
-      box-shadow: 0 18px 34px rgba(58, 103, 255, 0.18);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 14px 30px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 18px 34px rgba(58,103,255,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-
     .tn-primary-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 22px 40px rgba(58, 103, 255, 0.24);
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(58,103,255,0.24);
     }
 
+    /* ── Section wrapper ── */
     .tn-section {
-      padding: 88px 0;
+      padding: 100px 0;
+      background: transparent;
+    }
+    .tn-section.alt {
+      background: var(--surface);
     }
 
     .tn-section-header {
       max-width: 620px;
-      margin: 0 auto 38px;
+      margin: 0 auto 50px;
       text-align: center;
     }
-
     .tn-section-header h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
       font-weight: 400;
-      line-height: 1.12;
       letter-spacing: -0.03em;
+      color: var(--ink);
       margin-bottom: 12px;
+      line-height: 1.1;
     }
-
     .tn-section-header p {
       font-size: 0.92rem;
-      line-height: 1.75;
       color: var(--text-muted);
+      line-height: 1.75;
     }
 
+    /* ── Card grids ── */
     .tn-process-grid,
     .tn-output-grid {
       display: grid;
@@ -172,28 +189,20 @@
       margin: 0 auto;
     }
 
+    /* ── Card styling ── */
     .tn-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid rgba(221, 217, 211, 0.9);
-      border-radius: 20px;
-      padding: 26px;
-      box-shadow: 0 22px 44px rgba(17, 17, 17, 0.04);
-      overflow: hidden;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
-    .tn-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(58, 103, 255, 0.05), transparent 42%);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-    }
-
-    .tn-card:hover::after {
-      opacity: 1;
+    .tn-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 28px 50px rgba(17,17,17,0.06);
+      border-color: rgba(58,103,255,0.2);
     }
 
     .tn-step {
@@ -207,59 +216,78 @@
       text-transform: uppercase;
       color: var(--cornflower);
     }
-
     .tn-step::before {
       content: "";
       width: 18px;
       height: 1px;
-      background: rgba(58, 103, 255, 0.35);
+      background: rgba(58,103,255,0.35);
     }
 
     .tn-card h3 {
-      font-size: 1rem;
+      font-size: 0.98rem;
       line-height: 1.35;
       margin-bottom: 10px;
-    }
-
-    .tn-card p {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: var(--text-muted);
-    }
-
-    .tn-benefits {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .tn-checklist {
-      list-style: none;
-      margin-top: 24px;
-      border-top: 1px solid rgba(221, 217, 211, 0.95);
-    }
-
-    .tn-checklist li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(221, 217, 211, 0.95);
-      font-size: 0.92rem;
       color: var(--ink);
     }
 
+    .tn-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ── Benefits checklist ── */
+    .tn-benefits {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .tn-checklist-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      box-shadow: 0 24px 46px rgba(17,17,17,0.05);
+    }
+    .tn-checklist {
+      list-style: none;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .tn-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .tn-checklist li:last-child {
+      border-bottom: none;
+    }
     .tn-check {
       width: 22px;
       height: 22px;
+      flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(58, 103, 255, 0.1);
+      background: rgba(58,103,255,0.1);
       color: var(--cornflower);
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
-      flex-shrink: 0;
+    }
+    .tn-check-icon {
+      width: 12px;
+      height: 12px;
+    }
+    .tn-check-icon svg {
+      display: block;
     }
 
     .tn-output-grid .tn-card {
@@ -274,75 +302,77 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
-      font-size: 1rem;
-      font-weight: 700;
       color: var(--cornflower);
-      background: rgba(58, 103, 255, 0.1);
-      box-shadow: inset 0 0 0 1px rgba(58, 103, 255, 0.08);
+      background: rgba(58,103,255,0.1);
+      box-shadow: inset 0 0 0 1px rgba(58,103,255,0.08);
+    }
+    .tn-icon svg {
+      width: 22px;
+      height: 22px;
+      display: block;
     }
 
+    /* ── CTA ── */
     .tn-cta {
+      padding: 110px 0;
+      background: var(--surface);
       text-align: center;
-      padding-top: 36px;
     }
-
+    .tn-cta-panel {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 56px 32px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84)),
+        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 28px 56px rgba(17,17,17,0.07);
+    }
     .tn-cta h2 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
       font-weight: 400;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      color: var(--ink);
+      margin: 0 0 12px;
+      line-height: 1.1;
     }
-
     .tn-cta p {
-      max-width: 540px;
-      margin: 0 auto 24px;
-      font-size: 0.92rem;
-      line-height: 1.7;
+      font-size: 0.95rem;
       color: var(--text-muted);
+      margin: 0 0 30px;
+      line-height: 1.7;
     }
 
-    @media (max-width: 960px) {
-      .tn-nav-links {
-        display: none;
-      }
-
-      .sp-nav-inner {
-        gap: 18px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .tn-nav-actions .tn-login {
-        display: none;
-      }
-
-      .tn-hero {
-        padding: 132px 0 72px;
-      }
-
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .tn-nav-links { display: none; }
       .tn-process-grid,
-      .tn-output-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tn-card {
-        padding: 22px;
-      }
-
-      .tn-section {
-        padding: 68px 0;
-      }
+      .tn-output-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .tn-hero { padding: 130px 0 80px; }
+      .tn-hero h1 { font-size: 2.2rem; }
+      .tn-section { padding: 64px 0; }
+      .tn-section-header h2,
+      .tn-cta h2 { font-size: 1.55rem; }
+      .tn-card,
+      .tn-checklist-wrap { padding: 22px 20px; }
+      .tn-cta { padding: 80px 0; }
+      .tn-cta-panel { padding: 40px 20px; }
     }
     /* ── Dark mode overrides ── */
-    [data-theme="dark"] .tn-badge       { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); box-shadow: none; }
-    [data-theme="dark"] .tn-card        { background: var(--surface); border-color: var(--border); box-shadow: none; }
-    [data-theme="dark"] .tn-card::after  { background: linear-gradient(180deg, rgba(58,103,255,0.08), transparent 42%); }
-    [data-theme="dark"] .tn-step        { color: var(--cornflower); }
-    [data-theme="dark"] .tn-checklist   { border-top-color: var(--border); }
-    [data-theme="dark"] .tn-checklist li{ border-bottom-color: var(--border); }
-    [data-theme="dark"] .tn-icon        { background: rgba(58,103,255,0.12); }
-    [data-theme="dark"] .tn-check       { background: rgba(58,103,255,0.12); }
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .tn-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .tn-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .tn-card:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .tn-step { color: var(--cornflower); }
+    [data-theme="dark"] .tn-checklist-wrap { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .tn-checklist li { border-bottom-color: var(--border); }
+    [data-theme="dark"] .tn-icon { background: rgba(58,103,255,0.12); }
+    [data-theme="dark"] .tn-check { background: rgba(58,103,255,0.12); }
+    [data-theme="dark"] .tn-cta-panel { background: var(--bg); border-color: var(--border); box-shadow: 0 28px 56px rgba(0,0,0,0.25); }
   </style>
 </head>
 <body class="tn-page">
@@ -367,9 +397,9 @@
 
   <section class="sp-hero tn-hero">
     <div class="sp-hero-inner tn-hero-inner">
-      <div class="tn-badge">Automated</div>
+      <span class="tn-badge">Automated</span>
       <h1>Podcast Transcript to Newsletter <span>(Automatically)</span></h1>
-      <p>Turn podcast transcripts into engaging email newsletters in minutes. Repurpose every raw or edited transcript into a clean, readable newsletter draft that is formatted, audience-ready, and easy to customize.</p>
+      <p>Turn podcast transcripts into structured, ready-to-send newsletters in minutes. Podpress uses your episode transcript as the source of truth to generate clean, formatted newsletters — without rewriting, copy-pasting, or manual editing.</p>
       <a href="index.html" class="tn-primary-btn">Turn your transcript into a newsletter &rarr;</a>
     </div>
   </section>
@@ -383,40 +413,68 @@
       <div class="tn-process-grid">
         <article class="tn-card">
           <div class="tn-step">Step 01</div>
-          <h3>Upload your episode or content</h3>
-          <p>Bring in a transcript, audio file, or episode source and PodPress prepares the text for a newsletter workflow without extra formatting work.</p>
+          <h3>Upload your episode or connect RSS</h3>
+          <p>Drop an audio file or link your podcast feed — we pull the episode automatically.</p>
         </article>
         <article class="tn-card">
           <div class="tn-step">Step 02</div>
-          <h3>AI transcript generated</h3>
-          <p>Need a transcript first? PodPress can transcribe your episode automatically, organize the copy, and clean up the raw conversation for publishing.</p>
+          <h3>Full transcript generated</h3>
+          <p>Podpress transcribes the entire episode with high accuracy, ready for conversion.</p>
         </article>
         <article class="tn-card">
           <div class="tn-step">Step 03</div>
-          <h3>Transcript becomes newsletter</h3>
-          <p>The transcript is transformed into a polished draft with subject-ready sections, highlights, summaries, and a structure built for reader engagement.</p>
+          <h3>Transcript becomes a newsletter</h3>
+          <p>Your transcript is structured into a clean, scannable newsletter draft with sections and CTAs.</p>
         </article>
         <article class="tn-card">
           <div class="tn-step">Step 04</div>
-          <h3>Segment, refine, or customize</h3>
-          <p>Adjust the tone, trim sections, add links and CTAs, or shape the final newsletter to match your brand before publishing anywhere you send email.</p>
+          <h3>Regenerate, refine, or repurpose</h3>
+          <p>Adjust tone, length, or format. Use templates to match your brand, then publish or export.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="tn-section" id="why-it-works">
+  <section class="tn-section alt" id="why-it-works">
     <div class="sp-container">
-      <div class="tn-section-header tn-benefits">
+      <div class="tn-section-header">
         <h2>Why podcasters use transcript-based newsletters</h2>
-        <p>Turn every transcript into one more audience touchpoint. PodPress helps you create cleaner recaps, faster publishing workflows, and more value from each episode you already record.</p>
+        <p>Your transcript is the most faithful representation of your episode. Build newsletters directly from it.</p>
       </div>
-      <div class="tn-benefits">
+      <div class="tn-checklist-wrap">
         <ul class="tn-checklist">
-          <li><span class="tn-check">✓</span>Accurate content that stays true to the episode</li>
-          <li><span class="tn-check">✓</span>Faster publishing without manual transcript cleanup</li>
-          <li><span class="tn-check">✓</span>Create skimmable recap newsletters from every episode</li>
-          <li><span class="tn-check">✓</span>One transcript, multiple newsletter formats</li>
+          <li>
+            <span class="tn-check">
+              <svg class="tn-check-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Accurate content that stays true to the episode
+          </li>
+          <li>
+            <span class="tn-check">
+              <svg class="tn-check-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Faster publishing without manual transcript cleanup
+          </li>
+          <li>
+            <span class="tn-check">
+              <svg class="tn-check-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Consistent voice across every newsletter
+          </li>
+          <li>
+            <span class="tn-check">
+              <svg class="tn-check-icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5L4.8 9.5L10 3" stroke="#3A67FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            One transcript, multiple newsletter formats
+          </li>
         </ul>
       </div>
     </div>
@@ -426,75 +484,76 @@
     <div class="sp-container">
       <div class="tn-section-header">
         <h2>What you can generate</h2>
-        <p>Choose the format that fits your audience. From concise summaries to richer editorial recaps, your transcript can become multiple newsletter styles in a few clicks.</p>
+        <p>One transcript, multiple formats. Repurpose your episode across channels with a single click.</p>
       </div>
       <div class="tn-output-grid">
         <article class="tn-card">
-          <div class="tn-icon">A</div>
-          <h3>Short email summaries and highlights</h3>
-          <p>Create concise newsletter intros that explain what happened in the episode and give readers the fastest path to the core takeaways.</p>
+          <div class="tn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </div>
+          <h3>Short or detailed newsletters</h3>
+          <p>Brief recaps or deep-dive editions — choose the length that fits your list.</p>
         </article>
         <article class="tn-card">
-          <div class="tn-icon">Q</div>
-          <h3>Key insights and talking points</h3>
-          <p>Pull out the strongest ideas, quotable moments, and audience-ready takeaways so each newsletter feels thoughtful and easy to skim.</p>
+          <div class="tn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21h6"/>
+              <path d="M12 3a6 6 0 0 0-6 6c0 4.314 4.314 9 6 9s6-4.686 6-9a6 6 0 0 0-6-6z"/>
+              <path d="M12 9v6"/>
+            </svg>
+          </div>
+          <h3>Key insights and highlights</h3>
+          <p>Pull-quotes, takeaways, and timestamped highlights extracted automatically.</p>
         </article>
         <article class="tn-card">
-          <div class="tn-icon">W</div>
-          <h3>Daily, weekly, or episode recaps</h3>
-          <p>Turn one transcript or multiple episodes into regular roundup newsletters that keep subscribers engaged between releases.</p>
+          <div class="tn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <h3>Blog-style summaries</h3>
+          <p>Long-form write-ups formatted for your blog or content hub.</p>
         </article>
         <article class="tn-card">
-          <div class="tn-icon">S</div>
-          <h3>SEO-friendly newsletter drafts</h3>
-          <p>Generate structured copy with searchable phrasing, helpful headings, and reusable content blocks you can also adapt for archives and web publishing.</p>
+          <div class="tn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
+          <h3>SEO-friendly excerpts</h3>
+          <p>Optimized snippets ready for search engines and social sharing.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="tn-section">
-    <div class="sp-container tn-cta">
-      <h2>Ready to try it?</h2>
-      <p>Let your transcript become a newsletter draft in minutes, then refine the voice, format, and final delivery to fit your audience.</p>
-      <a href="index.html" class="tn-primary-btn">Turn your podcast transcript into a newsletter &rarr;</a>
+  <section class="tn-cta">
+    <div class="sp-container">
+      <div class="tn-cta-panel">
+        <h2>Ready to try it?</h2>
+        <p>Turn your podcast transcript into a newsletter — automatically, in minutes.
+
+        </p>
+        <a href="index.html" class="tn-primary-btn">Turn your podcast transcript into a newsletter &rarr;</a>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid-5">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html">
-            <img src="logo-dark.png" alt="PodPress" data-logo />
+          <a href="#" class="nav-logo">
+            <img src="logo-dark.png" alt="PodPress" />
           </a>
-          <p class="footer-brand-desc">
-            Turn your podcast episodes into engaging newsletters in minutes.
-            Built for creators who want to connect with their audience beyond the audio.
-          </p>
-          <div class="footer-brand-socials">
-            <a href="#" aria-label="LinkedIn">in</a>
-            <a href="#" aria-label="Twitter">&#120143;</a>
-            <a href="#" aria-label="YouTube">&#9654;</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="index.html#pricing">Pricing</a></li>
-            <li><a href="index.html#how-it-works">How It Works</a></li>
-            <li><a href="#">Integrations</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Service</a></li>
-          </ul>
+          <p>AI-powered podcast automation. Turn episodes into newsletters, show notes, and social content in minutes.</p>
         </div>
         <div class="footer-col">
           <h4>Features</h4>
@@ -519,20 +578,34 @@
             <li><a href="what-is-a-newsletter.html">What is a Newsletter?</a></li>
           </ul>
         </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-nav-strip" aria-label="Footer navigation">
-        <a href="#">Features</a>
-        <a href="index.html#how-it-works">How It Works</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="#">FAQ</a>
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-      </nav>
-      <div class="footer-bottom-row">
+      <div class="footer-bottom">
         <span>&copy; 2026 PodPress. All rights reserved.</span>
-        <div class="footer-bottom-links">
-          <a href="terms.html">Terms</a>
-          <a href="privacy.html">Privacy</a>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-7h2.3l.4-3h-2.7V9.1c0-.9.3-1.5 1.7-1.5H16V5.1C15.7 5 14.8 5 13.8 5 11.3 5 9.5 6.5 9.5 8.8V11H7v3h2.5v7h4z" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17" cy="7" r="1.2" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com" aria-label="LinkedIn">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 6.5A1.75 1.75 0 1 1 6.5 3a1.75 1.75 0 0 1 0 3.5zM4.75 9h3.5V21h-3.5V9zm6 0h3.36v1.65h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.24 4.24 5.15V21h-3.5v-5.3c0-1.26-.02-2.89-1.76-2.89-1.76 0-2.03 1.38-2.03 2.8V21h-3.5V9z" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -541,4 +614,5 @@
   <script src="theme.js"></script>
   <script src="premium.js"></script>
 </body>
+</html>
 </html>
