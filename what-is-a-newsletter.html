@@ -17,7 +17,7 @@
     }
     .sp-nav { background: rgba(247,245,242,0.84); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(221,217,211,0.82); }
     
-    .wn-hero { padding: 154px 0 84px; text-align: center; }
+    .wn-hero { padding: 152px 0 110px; text-align: center; }
     .wn-hero-inner { max-width: 700px; margin: 0 auto; padding: 0 24px; }
     .wn-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.74); border: 1px solid rgba(58,103,255,0.18); color: var(--cornflower); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.13em; margin-bottom: 20px; box-shadow: 0 12px 28px rgba(17,17,17,0.04); }
     .wn-badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px rgba(58,103,255,0.12); }
@@ -25,13 +25,13 @@
     .wn-hero p { max-width: 600px; margin: 0 auto 16px; font-size: 0.98rem; line-height: 1.78; color: var(--text-muted); }
     .wn-hero p.sub { font-size: 0.9rem; color: var(--text-muted); opacity: 0.8; }
 
-    .wn-section { padding: 76px 0; }
-    .wn-section-header { max-width: 620px; margin: 0 auto 34px; text-align: center; }
+    .wn-section { padding: 100px 0; }
+    .wn-section-header { max-width: 620px; margin: 0 auto 50px; text-align: center; }
     .wn-section-header h2 { font-family: var(--font-display); font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 12px; color: var(--ink); }
     .wn-section-header p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
 
     .wn-compare-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-    .wn-compare-card { padding: 32px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .wn-compare-card { padding: 32px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); }
     .wn-compare-card.highlight { background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)), linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04)); border-color: rgba(58,103,255,0.3); }
     .wn-compare-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 24px; color: var(--ink); padding-bottom: 16px; border-bottom: 1px solid rgba(221,217,211,0.8); text-align: center; }
     .wn-compare-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
@@ -40,28 +40,128 @@
     .wn-bullet-icon { width: 6px; height: 6px; border-radius: 50%; background: var(--cornflower); flex-shrink: 0; }
     .wn-bullet-icon.alt { background: var(--text-muted); opacity: 0.5; }
 
-    .wn-list-wrap { max-width: 760px; margin: 0 auto; padding: 30px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 24px 46px rgba(17,17,17,0.05); }
+    .wn-list-wrap { max-width: 760px; margin: 0 auto; padding: 30px 28px; border-radius: 24px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); }
     .wn-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
     .wn-check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; line-height: 1.7; color: var(--ink); font-weight: 500;}
     .wn-check { width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(58,103,255,0.1); color: var(--cornflower); font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
 
     .wn-pill-wrap { max-width: 760px; margin: 0 auto; text-align: center; }
     .wn-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 24px; }
-    .wn-tag { padding: 10px 20px; border-radius: 999px; background: rgba(58,103,255,0.08); color: var(--cornflower); font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(58,103,255,0.15); box-shadow: 0 4px 12px rgba(58,103,255,0.05); }
+    .wn-tag { padding: 10px 20px; border-radius: 999px; background: rgba(58,103,255,0.08); color: var(--cornflower); font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(58,103,255,0.15); }
     .wn-note { font-size: 0.88rem; color: var(--text-muted); opacity: 0.9; text-align: center; margin-top: 24px; }
 
     .wn-step-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
-    .wn-step-card { padding: 24px 20px; border-radius: 20px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); box-shadow: 0 16px 32px rgba(17,17,17,0.04); text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .wn-step-card { padding: 24px 20px; border-radius: 20px; background: rgba(255,255,255,0.82); border: 1px solid rgba(221,217,211,0.94); text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; }
     .wn-step-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(58, 103, 255, 0.03), transparent 60%); opacity: 0; transition: opacity 0.2s ease; pointer-events: none; border-radius: 20px; }
     .wn-step-card:hover::after { opacity: 1; }
     .wn-step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--cornflower); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; box-shadow: 0 0 0 4px rgba(58, 103, 255, 0.12); }
     .wn-step-text { font-size: 0.95rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
 
-    .wn-cta { text-align: center; padding-top: 42px; }
-    .wn-cta h2 { font-family: var(--font-display); font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; margin-bottom: 16px; color: var(--ink); }
-    .wn-cta p { max-width: 520px; margin: 0 auto 28px; font-size: 0.95rem; line-height: 1.72; color: var(--text-muted); }
-    .wn-primary-btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; box-shadow: 0 18px 34px rgba(58,103,255,0.18); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .wn-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(58,103,255,0.24); color: #fff; }
+    /* ========== CTA ========== */
+    .cta-section {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner {
+      background: #ffffff;
+      border: 1px solid rgba(221,217,211,0.5);
+      border-radius: 20px;
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner .section-label { color: var(--ampersand); }
+    .cta-inner .section-label::before { background: var(--ampersand); }
+    .cta-inner .section-title {
+      max-width: 600px;
+      margin: 0 auto 16px;
+      color: var(--ink);
+    }
+    .cta-inner .section-title em { color: var(--ampersand); }
+    .cta-inner .section-desc {
+      max-width: 460px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* ── Button Styles (from index.html) ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      font-family: var(--font-body);
+    }
+    .btn-primary {
+      background: var(--ampersand);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #e84e15;
+    }
+    .btn-ghost {
+      color: var(--ink);
+      border: 1.5px solid var(--slate);
+      background: transparent;
+    }
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--porcelain);
+      border-color: var(--ink);
+    }
+    .btn-large {
+      padding: 16px 36px;
+      font-size: 1rem;
+    }
+
+    /* ── Section Label & Title Styles ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--cornflower);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--cornflower);
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
 
     @media (max-width: 900px) {
       .wn-step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -72,6 +172,9 @@
       .wn-compare-grid { grid-template-columns: 1fr; }
       .wn-step-grid { grid-template-columns: 1fr; }
       .wn-section { padding: 64px 0; }
+      .cta-section { padding: 80px 0; }
+      .cta-inner { padding: 48px 24px; }
+      .section-title { font-size: 1.55rem; }
     }
 
     /* Dark mode overrides */
@@ -82,6 +185,7 @@
     [data-theme="dark"] .wn-compare-title { border-color: var(--border); }
     [data-theme="dark"] .wn-check { background: rgba(58,103,255,0.12); }
     [data-theme="dark"] .wn-tag { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cta-inner { background: var(--surface); border-color: var(--border); }
   </style>
 </head>
 <body class="wn-page">
@@ -99,7 +203,7 @@
       <div class="sp-nav-right" style="display: flex; align-items: center; gap: 18px;">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
         <a href="index.html" class="wn-login" style="text-decoration: none; font-size: 0.82rem; font-weight: 500; color: var(--ink);">Log in</a>
-        <a href="index.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; font-weight: 600; font-size: 0.82rem; text-decoration: none; box-shadow: 0 12px 26px rgba(58,103,255,0.18);">Start free</a>
+        <a href="index.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 10px 18px; border-radius: 999px; background: linear-gradient(135deg, var(--cornflower), #2953e6); color: #fff; font-weight: 600; font-size: 0.82rem; text-decoration: none;">Start free</a>
       </div>
     </div>
   </nav>
@@ -206,11 +310,16 @@
     </div>
   </section>
 
-  <section class="wn-section">
-    <div class="sp-container wn-cta">
-      <h2>Create your first podcast newsletter</h2>
-      <p>Go from episode to newsletter in minutes — no manual rewriting required.</p>
-      <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="wn-primary-btn">Create your podcast newsletter &rarr;</a>
+  <section class="cta-section">
+    <div class="sp-container">
+      <div class="cta-inner">
+        <div class="section-label" style="justify-content:center;">Ready?</div>
+        <h2 class="section-title">Create your first podcast newsletter</h2>
+        <p class="section-desc" style="text-align:center;max-width:460px;margin:0 auto 40px;">Go from episode to newsletter in minutes — no manual rewriting required.</p>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Create your podcast newsletter &rarr;</a>
+        </div>
+      </div>
     </div>
   </section>
 

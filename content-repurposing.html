@@ -13,8 +13,8 @@
     /* ── Page background gradient ── */
     body.cr-page {
       background:
-        radial-gradient(circle at 18% 0%, rgba(58,103,255,0.09) 0%, transparent 34%),
-        radial-gradient(circle at 82% 6%, rgba(255,90,31,0.05) 0%, transparent 28%),
+        radial-gradient(circle at top left, rgba(58,103,255,0.07), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,90,31,0.04), transparent 22%),
         var(--bg);
     }
 
@@ -22,31 +22,68 @@
        CONTENT REPURPOSING  —  .cr-* namespace
     ============================================================ */
 
+    /* ── Full Navbar ── */
+    .sp-nav {
+      background: rgba(247,245,242,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(221,217,211,0.8);
+    }
+    .sp-nav-inner { justify-content: space-between; }
+    .cr-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .cr-nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cr-nav-links a:hover { color: var(--ink); }
+    .cr-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cr-nav-login {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      transition: color 0.2s;
+    }
+    .cr-nav-login:hover { color: var(--cornflower); }
+    .cr-nav-start {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--cornflower), #2953e6);
+      color: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cr-nav-start:hover {
+      background: linear-gradient(135deg, #2f59ee, #2148d1);
+    }
+
     /* ─── Hero ─── */
     .cr-hero {
-      padding: 158px 0 108px;
+      background: var(--surface);
+      padding: 152px 0 110px;
       text-align: center;
-      background: transparent;
-      position: relative;
-      overflow: hidden;
-    }
-    /* decorative glow orb */
-    .cr-hero::before {
-      content: "";
-      position: absolute;
-      width: 600px; height: 600px;
-      left: 50%; top: -120px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(58,103,255,0.09) 0%, transparent 68%);
-      pointer-events: none;
     }
     .cr-hero-inner {
-      max-width: 720px;
+      max-width: 680px;
       margin: 0 auto;
       padding: 0 24px;
-      position: relative;
-      z-index: 1;
     }
 
     /* Badge */
@@ -56,37 +93,34 @@
       gap: 8px;
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--cornflower);
       border: 1.5px solid rgba(58,103,255,0.22);
       border-radius: 100px;
       padding: 7px 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       background: rgba(255,255,255,0.72);
       box-shadow: 0 12px 28px rgba(17,17,17,0.04);
     }
     .cr-badge::before {
       content: "";
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: currentColor;
       box-shadow: 0 0 0 4px rgba(58,103,255,0.12);
-    }
-    [data-theme="dark"] .cr-badge {
-      background: rgba(58,103,255,0.14);
-      border-color: rgba(58,103,255,0.26);
     }
 
     /* H1 two-tone heading */
     .cr-hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
-      font-weight: 600;
-      line-height: 1.04;
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
       letter-spacing: -0.04em;
       color: var(--ink);
-      margin: 0 0 20px;
+      margin-bottom: 18px;
     }
     .cr-hero h1 .cr-h1-muted {
       display: block;
@@ -97,11 +131,11 @@
     }
 
     .cr-hero-desc {
-      font-size: 0.98rem;
+      font-size: 0.97rem;
       color: var(--text-muted);
       line-height: 1.82;
       max-width: 580px;
-      margin: 0 auto 36px;
+      margin: 0 auto 32px;
     }
 
     .cr-hero-btn {
@@ -116,38 +150,32 @@
       padding: 14px 30px;
       border-radius: 100px;
       text-decoration: none;
-      box-shadow: 0 18px 36px rgba(58,103,255,0.22);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: background 0.2s;
     }
     .cr-hero-btn:hover {
       background: linear-gradient(135deg, #2f59ee, #2148d1);
-      transform: translateY(-2px);
-      box-shadow: 0 22px 42px rgba(58,103,255,0.28);
     }
     .cr-hero-btn svg { flex-shrink: 0; }
 
     /* ─── Shared section styles ─── */
     .cr-section {
-      padding: 96px 0;
+      padding: 100px 0;
       background: transparent;
     }
     .cr-section.cr-alt {
       background: var(--surface);
     }
-    [data-theme="dark"] .cr-section.cr-alt {
-      background: var(--surface);
-    }
 
     .cr-section-head {
-      max-width: 580px;
-      margin: 0 auto 52px;
+      max-width: 620px;
+      margin: 0 auto 50px;
       text-align: center;
     }
     .cr-section-title {
       font-family: var(--font-display);
-      font-size: clamp(1.95rem, 3.2vw, 2.6rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.5rem);
       font-weight: 400;
-      letter-spacing: -0.032em;
+      letter-spacing: -0.03em;
       color: var(--ink);
       margin: 0 0 12px;
       line-height: 1.1;
@@ -168,35 +196,14 @@
       margin: 0 auto;
     }
     .cr-input-card {
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(221,217,211,0.9);
-      border-radius: 22px;
-      padding: 32px 28px;
-      box-shadow: 0 20px 42px rgba(17,17,17,0.04);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .cr-input-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(58,103,255,0.04), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      border-radius: 24px;
+      padding: 28px 30px;
+      transition: border-color 0.2s ease;
     }
     .cr-input-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 28px 54px rgba(17,17,17,0.07);
-      border-color: rgba(58,103,255,0.22);
-    }
-    .cr-input-card:hover::after { opacity: 1; }
-    [data-theme="dark"] .cr-input-card {
-      background: var(--surface);
-      border-color: var(--border);
-      box-shadow: none;
+      border-color: rgba(58,103,255,0.2);
     }
 
     .cr-input-icon {
@@ -239,21 +246,13 @@
       align-items: center;
       gap: 18px;
       padding: 20px 26px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(221,217,211,0.92);
-      box-shadow: 0 14px 28px rgba(17,17,17,0.03);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      transition: border-color 0.2s ease;
     }
     .cr-output-item:hover {
-      transform: translateX(4px);
-      box-shadow: 0 18px 36px rgba(17,17,17,0.06);
       border-color: rgba(58,103,255,0.2);
-    }
-    [data-theme="dark"] .cr-output-item {
-      background: var(--surface);
-      border-color: var(--border);
-      box-shadow: none;
     }
     .cr-output-icon {
       width: 40px; height: 40px;
@@ -282,22 +281,14 @@
       display: flex;
       gap: 18px;
       align-items: flex-start;
-      padding: 28px 26px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(221,217,211,0.92);
-      box-shadow: 0 18px 38px rgba(17,17,17,0.04);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(221,217,211,0.94);
+      transition: border-color 0.2s ease;
     }
     .cr-why-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 48px rgba(17,17,17,0.07);
       border-color: rgba(58,103,255,0.2);
-    }
-    [data-theme="dark"] .cr-why-card {
-      background: var(--surface);
-      border-color: var(--border);
-      box-shadow: none;
     }
     .cr-why-icon {
       width: 40px; height: 40px;
@@ -324,87 +315,167 @@
     }
 
     /* ─── CTA Section ─── */
-    .cr-cta {
-      padding: 110px 0;
-      background: var(--surface);
+    /* ── CTA Section (from index.html) ── */
+    .cta-section {
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-inner {
+      background: #ffffff;
+      border: 1px solid rgba(221,217,211,0.5);
+      border-radius: 20px;
+      padding: 80px 60px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    [data-theme="dark"] .cr-cta { background: var(--surface); }
-    .cr-cta-panel {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 58px 36px;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.86)),
-        linear-gradient(135deg, rgba(58,103,255,0.08), rgba(255,90,31,0.04));
-      border: 1px solid rgba(221,217,211,0.9);
-      box-shadow: 0 32px 64px rgba(17,17,17,0.07);
-    }
-    [data-theme="dark"] .cr-cta-panel {
-      background: var(--bg);
-      border-color: var(--border);
-      box-shadow: 0 32px 64px rgba(0,0,0,0.25);
-    }
-    .cr-cta h2 {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.4vw, 3rem);
-      font-weight: 400;
-      letter-spacing: -0.034em;
+    .cta-inner .section-label { color: var(--ampersand); }
+    .cta-inner .section-label::before { background: var(--ampersand); }
+    .cta-inner .section-title {
+      max-width: 600px;
+      margin: 0 auto 16px;
       color: var(--ink);
-      margin: 0 0 14px;
-      line-height: 1.1;
     }
-    .cr-cta p {
-      font-size: 0.95rem;
+    .cta-inner .section-title em { color: var(--ampersand); }
+    .cta-inner .section-desc {
+      max-width: 460px;
+      margin: 0 auto 40px;
+      text-align: center;
       color: var(--text-muted);
-      margin: 0 0 32px;
-      line-height: 1.72;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 32px;
     }
-    .cr-cta-btn {
+
+    /* ── Button Styles (from index.html) ── */
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      background: linear-gradient(135deg, var(--cornflower), #2953e6);
-      color: #fff;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
+      justify-content: center;
+      gap: 8px;
       font-weight: 600;
-      padding: 14px 30px;
-      border-radius: 100px;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 18px 34px rgba(58,103,255,0.2);
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      border: none;
+      font-family: var(--font-body);
     }
-    .cr-cta-btn:hover {
-      background: linear-gradient(135deg, #2f59ee, #2148d1);
-      transform: translateY(-2px);
-      box-shadow: 0 22px 40px rgba(58,103,255,0.28);
+    .btn-primary {
+      background: var(--ampersand);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #e84e15;
+    }
+    .btn-ghost {
+      color: var(--ink);
+      border: 1.5px solid var(--slate);
+      background: transparent;
+    }
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--porcelain);
+      border-color: var(--ink);
+    }
+    .btn-large {
+      padding: 16px 36px;
+      font-size: 1rem;
+    }
+
+    /* ── Section Label & Title Styles ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--slate);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--cornflower);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin: 0 0 16px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--cornflower);
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
     }
 
     /* ─── Responsive ─── */
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
+      .cr-nav-links { display: none; }
       .cr-input-grid { grid-template-columns: 1fr; max-width: 520px; }
       .cr-why-grid { grid-template-columns: 1fr; max-width: 520px; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .cr-hero { padding: 130px 0 80px; }
-      .cr-hero h1 { font-size: 2.3rem; }
-      .cr-section { padding: 70px 0; }
-      .cr-cta { padding: 80px 0; }
-      .cr-cta-panel { padding: 40px 22px; }
+      .cr-hero h1 { font-size: 2.2rem; }
+      .cr-section { padding: 64px 0; }
+      .cr-section-title,
+      .section-title { font-size: 1.55rem; }
+      .cr-input-card,
+      .cr-output-item,
+      .cr-why-card { padding: 22px 20px; }
+      .cta-section { padding: 80px 0; }
+      .cta-inner { padding: 48px 24px; }
     }
+
+    /* ── Dark mode overrides ── */
+    [data-theme="dark"] .sp-nav { background: rgba(13,16,23,0.88); border-bottom-color: var(--border); }
+    [data-theme="dark"] .cr-badge { background: rgba(58,103,255,0.15); border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cr-input-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .cr-input-card:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cr-output-item { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .cr-output-item:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cr-why-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
+    [data-theme="dark"] .cr-why-card:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cta-inner { background: var(--surface); border-color: var(--border); }
   </style>
 </head>
 <body class="cr-page">
-  <!-- Navbar injected by navbar.js -->
+  <!-- ── Navbar ── -->
+  <nav class="sp-nav">
+    <div class="sp-nav-inner">
+      <a href="index.html" class="sp-logo">
+        <img src="logo-dark.png" alt="PodPress" data-logo />
+      </a>
+      <ul class="cr-nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#what-does">What Does</a></li>
+        <li><a href="#outputs">Outputs</a></li>
+        <li><a href="#why">Why</a></li>
+        <li><a href="#get-started">Get Started</a></li>
+      </ul>
+      <div class="cr-nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+        <a href="index.html" class="cr-nav-login">Login</a>
+        <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="cr-nav-start">Start Free &rarr;</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- ====================== HERO ====================== -->
-  <section class="cr-hero">
+  <section class="cr-hero" id="overview">
     <div class="cr-hero-inner">
       <span class="cr-badge">Feature</span>
       <h1>
@@ -416,17 +487,14 @@
         and written content using AI — without losing context. One episode
         becomes multiple assets, all generated from a single transcript.
       </p>
-      <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="cr-hero-btn">
-        Repurpose your podcast automatically
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Repurpose your podcast automatically &rarr;</a>
+      </div>
     </div>
   </section>
 
   <!-- ====================== WHAT DOES PODPRESS REPURPOSE? ====================== -->
-  <section class="cr-section cr-alt">
+  <section class="cr-section cr-alt" id="what-does">
     <div class="sp-container">
       <div class="cr-section-head">
         <h2 class="cr-section-title">What does Podpress repurpose?</h2>
@@ -478,7 +546,7 @@
   </section>
 
   <!-- ====================== REPURPOSING OUTPUTS ====================== -->
-  <section class="cr-section">
+  <section class="cr-section" id="outputs">
     <div class="sp-container">
       <div class="cr-section-head">
         <h2 class="cr-section-title">Repurposing outputs</h2>
@@ -544,7 +612,7 @@
   </section>
 
   <!-- ====================== WHY REPURPOSING MATTERS ====================== -->
-  <section class="cr-section cr-alt">
+  <section class="cr-section cr-alt" id="why">
     <div class="sp-container">
       <div class="cr-section-head">
         <h2 class="cr-section-title">Why repurposing matters</h2>
@@ -614,17 +682,15 @@
   </section>
 
   <!-- ====================== CTA ====================== -->
-  <section class="cr-cta">
+  <section class="cta-section" id="get-started">
     <div class="sp-container">
-      <div class="cr-cta-panel">
-        <h2>Stop creating once,<br>start repurposing</h2>
-        <p>Turn every episode into newsletters, blog posts, and more — automatically.</p>
-        <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="cr-cta-btn">
-          Repurpose your podcast automatically
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+      <div class="cta-inner">
+        <div class="section-label" style="justify-content:center;">Ready?</div>
+        <h2 class="section-title">Stop creating once,<br>start repurposing</h2>
+        <p class="section-desc" style="text-align:center;max-width:460px;margin:0 auto 40px;">Turn every episode into newsletters, blog posts, and more — automatically.</p>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+          <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Repurpose your podcast automatically &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
