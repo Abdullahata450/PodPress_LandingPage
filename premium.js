@@ -107,11 +107,6 @@
     '/* Staggered children */',
     '.pp-stagger > * { transition-delay: calc(var(--i, 0) * 0.08s); }',
     '',
-    '/* ── Magnetic button hover ── */',
-    '.pp-magnetic {',
-    '  transition: transform 0.3s cubic-bezier(.4,0,.2,1);',
-    '}',
-    '',
     '/* ── Smooth gradient glow on hero headings ── */',
     '@keyframes pp-text-shimmer {',
     '  0%   { background-position: -200% center; }',
@@ -283,33 +278,11 @@
   }
 
   /* ================================================================
-     4. MAGNETIC BUTTONS
+     4. MAGNETIC BUTTONS - DISABLED
      ================================================================ */
   function initMagneticButtons() {
-    if (isTouchDevice) return;
-
-    var magneticSelectors = [
-      '.btn-primary', '.tn-primary-btn', '.yt-hero-btn', '.yt-cta-btn',
-      '.rss-cta-btn', '.pb-primary-btn', '.pf-primary-btn', '.ins-hero-btn', '.ins-cta-btn',
-      '.sp-nav-start', '.pb-nav-start', '.pf-nav-start',
-    ];
-
-    magneticSelectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (btn) {
-        btn.classList.add('pp-magnetic');
-
-        btn.addEventListener('mousemove', function (e) {
-          var rect = btn.getBoundingClientRect();
-          var x = e.clientX - rect.left - rect.width / 2;
-          var y = e.clientY - rect.top - rect.height / 2;
-          btn.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
-        });
-
-        btn.addEventListener('mouseleave', function () {
-          btn.style.transform = '';
-        });
-      });
-    });
+    // Magnetic button effect disabled
+    return;
   }
 
   /* ================================================================

@@ -68,7 +68,6 @@
       padding: 10px 20px;
       border-radius: 100px;
       text-decoration: none;
-      transition: background 0.2s;
     }
     .cr-nav-start:hover {
       background: linear-gradient(135deg, #2f59ee, #2148d1);
@@ -150,7 +149,6 @@
       padding: 14px 30px;
       border-radius: 100px;
       text-decoration: none;
-      transition: background 0.2s;
     }
     .cr-hero-btn:hover {
       background: linear-gradient(135deg, #2f59ee, #2148d1);
@@ -320,9 +318,10 @@
       padding: 120px 0;
       position: relative;
       overflow: hidden;
+      background: #ffffff;
     }
     .cta-inner {
-      background: #ffffff;
+      background: #F7F5F2;
       border: 1px solid rgba(221,217,211,0.5);
       border-radius: 20px;
       padding: 80px 60px;
@@ -336,8 +335,13 @@
       max-width: 600px;
       margin: 0 auto 16px;
       color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 400;
     }
-    .cta-inner .section-title em { color: var(--ampersand); }
+    .cta-inner .section-title em { 
+      color: var(--ampersand);
+      font-style: italic;
+    }
     .cta-inner .section-desc {
       max-width: 460px;
       margin: 0 auto 40px;
@@ -355,7 +359,6 @@
       font-size: 0.9rem;
       padding: 12px 24px;
       border-radius: 999px;
-      transition: all 0.25s ease;
       cursor: pointer;
       text-decoration: none;
       border: none;
@@ -420,6 +423,10 @@
       max-width: 520px;
       line-height: 1.7;
     }
+      .section-title em {
+      font-style: italic;
+      color: var(--cornflower);
+    }
 
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
@@ -449,6 +456,7 @@
     [data-theme="dark"] .cr-output-item:hover { border-color: rgba(58,103,255,0.25); }
     [data-theme="dark"] .cr-why-card { background: var(--surface); border-color: var(--border); box-shadow: none; }
     [data-theme="dark"] .cr-why-card:hover { border-color: rgba(58,103,255,0.25); }
+    [data-theme="dark"] .cta-section { background: var(--bg); }
     [data-theme="dark"] .cta-inner { background: var(--surface); border-color: var(--border); }
   </style>
 </head>
@@ -686,10 +694,11 @@
     <div class="sp-container">
       <div class="cta-inner">
         <div class="section-label" style="justify-content:center;">Ready?</div>
-        <h2 class="section-title">Stop creating once,<br>start repurposing</h2>
+        <h2 class="section-title">Stop creating once,<br><em>start repurposing</em></h2>
         <p class="section-desc" style="text-align:center;max-width:460px;margin:0 auto 40px;">Turn every episode into newsletters, blog posts, and more — automatically.</p>
         <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-          <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Repurpose your podcast automatically &rarr;</a>
+          <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Get Started Free &rarr;</a>
+          <a href="#" class="btn btn-ghost btn-large">Watch Demo</a>
         </div>
       </div>
     </div>
