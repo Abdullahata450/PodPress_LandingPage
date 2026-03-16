@@ -296,7 +296,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 18px;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--border-light);
       background: var(--bg);
     }
@@ -310,11 +310,11 @@
     .mockup-dot:nth-child(2) { background: #febc2e; }
     .mockup-dot:nth-child(3) { background: #28c840; }
     .mockup-content {
-      padding: 36px;
+      padding: 28px 30px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      min-height: 340px;
+      min-height: 280px;
       background: var(--surface);
     }
     .mockup-left {
@@ -349,6 +349,7 @@
     .mockup-waveform {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 3px;
       margin-top: 10px;
       height: 28px;
@@ -368,6 +369,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
+      height: 100%;
     }
     .mockup-newsletter {
       background: var(--bg);
@@ -725,6 +727,148 @@
     .bento-4 { grid-column: span 4; }
     .bento-5 { grid-column: span 4; }
     .bento-6 { grid-column: span 4; }
+    .bento-7 { grid-column: span 12; }
+
+    /* --- Card 7: Email Templates --- */
+    .template-widget {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+      justify-content: center;
+      perspective: 800px;
+    }
+    .template-card {
+      width: 120px;
+      min-width: 0;
+      flex-shrink: 1;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(221,217,211,0.9);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.1);
+      padding: 14px 12px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .template-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: 14px 14px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .template-card:nth-child(1)::before { background: linear-gradient(90deg, var(--cornflower), #6B8FFF); }
+    .template-card:nth-child(2)::before { background: linear-gradient(90deg, var(--ampersand), #FF8A5C); }
+    .template-card:nth-child(3)::before { background: linear-gradient(90deg, #8B5CF6, #A78BFA); }
+    .template-card:nth-child(4)::before { background: linear-gradient(90deg, #059669, #34D399); }
+    .template-card:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 20px 50px rgba(15,23,42,0.18);
+      border-color: transparent;
+    }
+    .template-card:hover::before {
+      opacity: 1;
+    }
+    .template-card-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .template-card-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .template-card:nth-child(1) .template-card-icon { background: linear-gradient(135deg, var(--cornflower), #5A80FF); }
+    .template-card:nth-child(2) .template-card-icon { background: linear-gradient(135deg, var(--ampersand), #FF7A40); }
+    .template-card:nth-child(3) .template-card-icon { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+    .template-card:nth-child(4) .template-card-icon { background: linear-gradient(135deg, #059669, #10B981); }
+    .template-card-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .template-card-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .template-line {
+      height: 5px;
+      border-radius: 3px;
+      background: var(--border);
+      transition: background 0.3s ease 0.05s;
+    }
+    .template-card:hover .template-line:nth-child(odd)  { background: rgba(58,103,255,0.25); }
+    .template-card:hover .template-line:nth-child(even) { background: rgba(255,90,31,0.2); }
+    .template-card-tag {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 0.58rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s ease 0.1s;
+    }
+    .template-card:hover .template-card-tag {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scalability row uses three equal cards */
+    .scalability-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: auto;
+    }
+    .scalability-card {
+      grid-column: span 1;
+    }
+    .scalability .section-label,
+    .scalability .section-title,
+    .scalability .section-desc {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .scalability .section-label {
+      display: flex;
+      justify-content: center;
+    }
+    .scalability-steps .step-number {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      background: #f5f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .scalability-steps .step-number svg {
+      width: 32px;
+      height: 32px;
+      display: block;
+    }
 
     /* --- Shared visual area with gradient backgrounds --- */
     .bento-visual {
@@ -991,29 +1135,94 @@
     .bento-3:hover .export-chip:nth-child(4) { background: linear-gradient(135deg, var(--slate), #444A54); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(43,47,54,0.25); transition-delay: 0.15s; }
     .bento-3:hover .export-chip:nth-child(5) { background: linear-gradient(135deg, var(--cornflower), #6B8FFF); color: #fff; border-color: transparent; transform: translateY(-3px) scale(1.04); box-shadow: 0 6px 18px rgba(58,103,255,0.25); transition-delay: 0.2s; }
 
-    /* --- Card 4: Custom Branding --- */
-    .brand-widget {
+    /* --- Card 4: Tone & Style Control --- */
+    .tone-widget {
       position: relative;
       z-index: 2;
       display: flex;
-      align-items: flex-end;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 230px;
     }
-    .brand-pill {
-      width: 38px;
-      border-radius: 19px;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    .tone-pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(221,217,211,0.95);
+      background: rgba(255,255,255,0.9);
+      color: var(--slate);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.16);
       cursor: default;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      opacity: 0.25;
+      transform: translateY(4px) scale(0.96);
+      animation: tonePulse 12s ease-in-out infinite;
     }
-    .brand-pill:nth-child(1) { height: 58px; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); }
-    .brand-pill:nth-child(2) { height: 44px; background: linear-gradient(180deg, var(--cornflower), #6B8FFF); }
-    .brand-pill:nth-child(3) { height: 68px; background: linear-gradient(180deg, var(--slate), #444A54); }
-    .brand-pill:nth-child(4) { height: 36px; background: linear-gradient(180deg, #DDD9D3, #C5C0B9); }
-    .bento-4:hover .brand-pill:nth-child(1) { height: 44px; border-radius: 14px; transform: rotate(-3deg); }
-    .bento-4:hover .brand-pill:nth-child(2) { height: 68px; border-radius: 14px; transform: rotate(2deg); }
-    .bento-4:hover .brand-pill:nth-child(3) { height: 38px; border-radius: 14px; transform: rotate(-2deg); }
-    .bento-4:hover .brand-pill:nth-child(4) { height: 58px; border-radius: 14px; transform: rotate(3deg); }
+    .tone-pill:nth-child(1) { animation-delay: 0s; }
+    .tone-pill:nth-child(2) { animation-delay: 1.6s; }
+    .tone-pill:nth-child(3) { animation-delay: 3.2s; }
+    .tone-pill:nth-child(4) { animation-delay: 4.8s; }
+    .tone-pill:nth-child(5) { animation-delay: 6.4s; }
+    .tone-pill:nth-child(6) { animation-delay: 8s; }
+    .tone-pill:nth-child(7) { animation-delay: 9.6s; }
+
+    @keyframes tonePulse {
+      0%, 12% {
+        opacity: 0.25;
+        transform: translateY(4px) scale(0.96);
+        box-shadow: 0 4px 14px rgba(15,23,42,0.12);
+      }
+      16%, 26% {
+        opacity: 1;
+        transform: translateY(0) scale(1.03);
+        box-shadow: 0 14px 40px rgba(15,23,42,0.32);
+      }
+      30%, 100% {
+        opacity: 0.25;
+        transform: translateY(4px) scale(0.96);
+        box-shadow: 0 4px 14px rgba(15,23,42,0.12);
+      }
+    }
+
+    @keyframes templateFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .template-card:nth-child(1) { animation: templateFloat 4s ease-in-out 0s infinite; }
+    .template-card:nth-child(2) { animation: templateFloat 4s ease-in-out 0.5s infinite; }
+    .template-card:nth-child(3) { animation: templateFloat 4s ease-in-out 1s infinite; }
+    .template-card:nth-child(4) { animation: templateFloat 4s ease-in-out 1.5s infinite; }
+
+    .tone-pill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .tone-pill span {
+      position: relative;
+      z-index: 1;
+    }
+    .tone-pill--friendly   { border-color: rgba(59,130,246,0.45); }
+    .tone-pill--formal     { border-color: rgba(15,23,42,0.55); }
+    .tone-pill--playful    { border-color: rgba(244,114,182,0.6); }
+    .tone-pill--educational{ border-color: rgba(34,197,94,0.55); }
+    .tone-pill--analytic   { border-color: rgba(59,130,246,0.6); }
+    .tone-pill--story      { border-color: rgba(249,115,22,0.6); }
+    .tone-pill--promo      { border-color: rgba(244,63,94,0.6); }
+
+    .bento-4:hover .tone-pill::before {
+      opacity: 1;
+    }
 
     /* --- Card 5: Smart Timestamps --- */
     .ts-widget {
@@ -1076,21 +1285,71 @@
       border: 1px solid rgba(255,255,255,0.6);
     }
 
-    /* --- Card 6: Analytics --- */
-    .chart-widget {
+    /* --- Card 6: Flowing language ticker --- */
+    .lang-ticker {
       position: relative;
       z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      gap: 7px;
-      height: 90px;
+      width: 100%;
+      max-width: 220px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
     }
-    .chart-col {
-      width: 20px;
-      border-radius: 8px 8px 4px 4px;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    .lang-ticker-row {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+      animation: langScroll 18s linear infinite;
+    }
+    .lang-ticker-row.reverse {
+      animation: langScrollReverse 22s linear infinite;
+      margin-top: 8px;
+    }
+    .bento-6:hover .lang-ticker-row {
+      animation-play-state: paused;
+    }
+    @keyframes langScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes langScrollReverse {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .lang-chip {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(221,217,211,0.9);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--slate);
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
       position: relative;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .lang-chip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lang-chip:nth-child(odd)::before  { background: linear-gradient(135deg, rgba(58,103,255,0.14), transparent); }
+    .lang-chip:nth-child(even)::before { background: linear-gradient(135deg, rgba(255,90,31,0.12), transparent); }
+    .lang-chip:hover {
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 14px 34px rgba(15,23,42,0.22);
+      border-color: var(--cornflower);
+      color: var(--cornflower);
+      background: #fff;
+    }
+    .lang-chip:hover::before {
+      opacity: 1;
     }
     .chart-col:nth-child(1) { height: 30%; background: linear-gradient(180deg, rgba(43,47,54,0.3), rgba(43,47,54,0.1)); }
     .chart-col:nth-child(2) { height: 50%; background: linear-gradient(180deg, rgba(58,103,255,0.4), rgba(58,103,255,0.15)); }
@@ -1231,7 +1490,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-      align-items: start;
+      align-items: stretch;
     }
 
     /* --- Card base --- */
@@ -1561,6 +1820,7 @@
       .bento-1 .bento-visual { min-height: 220px; }
       .bento-2, .bento-3 { grid-column: span 3; }
       .bento-4, .bento-5, .bento-6 { grid-column: span 3; }
+      .bento-7 { grid-column: span 6; }
       .pricing-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; margin: 0 auto; }
     }
     @media (max-width: 768px) {
@@ -1579,7 +1839,11 @@
       .hero-actions .btn { width: 100%; }
       .how-it-works .steps { grid-template-columns: 1fr; }
       .bento-grid { grid-template-columns: 1fr; }
-      .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6 { grid-column: span 1; }
+      .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7 { grid-column: span 1; }
+      .template-widget { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .template-card { width: calc(50% - 8px); min-width: 0; box-sizing: border-box; }
+      .template-card-name { font-size: 0.65rem; }
+      .template-card-tag { font-size: 0.52rem; }
       .bento-1 { grid-row: span 1; }
       .bento-visual { min-height: 150px; }
       .bento-1 .bento-visual { min-height: 200px; }
@@ -1598,6 +1862,27 @@
     @media (max-width: 480px) {
       .footer-grid-5 { grid-template-columns: 1fr; }
       .footer-grid-5 .footer-brand { grid-column: span 1; }
+      .template-widget { gap: 8px; }
+      .template-card { width: calc(50% - 6px); padding: 10px 8px; border-radius: 10px; }
+      .template-card-icon { width: 20px; height: 20px; border-radius: 6px; }
+      .template-card-icon svg { width: 10px; height: 10px; }
+      .template-card-name { font-size: 0.6rem; }
+      .template-card-lines { gap: 4px; }
+      .template-line { height: 4px; }
+      .template-card-tag { font-size: 0.48rem; padding: 2px 6px; margin-top: 8px; }
+      .template-card-header { gap: 4px; margin-bottom: 8px; }
+    }
+    @media (max-width: 360px) {
+      .template-widget { gap: 6px; }
+      .template-card { width: calc(50% - 5px); padding: 8px 6px; border-radius: 8px; }
+      .template-card-icon { width: 18px; height: 18px; }
+      .template-card-icon svg { width: 9px; height: 9px; }
+      .template-card-name { font-size: 0.55rem; }
+      .template-card-lines { gap: 3px; }
+      .template-line { height: 3px; }
+      .template-card-tag { display: none; }
+      .template-card-header { gap: 3px; margin-bottom: 6px; }
+      .bento-visual { min-height: 130px; }
     }
 
     /* ========== MOBILE MENU ========== */
@@ -1641,6 +1926,10 @@
     [data-theme="dark"] .export-chip       { background: rgba(22,26,34,0.75); border-color: var(--border); backdrop-filter: blur(10px); }
     [data-theme="dark"] .ts-bar            { background: rgba(22,26,34,0.6); border-color: var(--border); }
     [data-theme="dark"] .ts-time           { background: rgba(22,26,34,0.6); border-color: var(--border); }
+    [data-theme="dark"] .template-card     { background: rgba(22,26,34,0.85); border-color: var(--border); backdrop-filter: blur(12px); }
+    [data-theme="dark"] .template-card-name { color: var(--ink); }
+    [data-theme="dark"] .template-card:hover .template-line:nth-child(odd) { background: rgba(58,103,255,0.35); }
+    [data-theme="dark"] .template-card:hover .template-line:nth-child(even) { background: rgba(255,90,31,0.3); }
 
     .mobile-menu {
       position: fixed;
@@ -2227,7 +2516,7 @@
             </div>
           </div>
           <div class="bento-card-content">
-            <h3>12+ Export Formats</h3>
+            <h3>Multiple Output Formats</h3>
             <p>HTML, Markdown, plain text, Substack, Mailchimp, ConvertKit, and more.</p>
           </div>
         </div>
@@ -2235,17 +2524,20 @@
         <!-- Card 4: Custom Branding -->
         <div class="bento-card bento-4 reveal reveal-delay-1">
           <div class="bento-visual">
-            <div class="float-orb" style="width:70px;height:70px;background:#9B6FFF;top:10%;left:20%;"></div>
-            <div class="brand-widget">
-              <div class="brand-pill"></div>
-              <div class="brand-pill"></div>
-              <div class="brand-pill"></div>
-              <div class="brand-pill"></div>
+            <div class="float-orb" style="width:90px;height:90px;background:linear-gradient(135deg,#0F172A,#1D293B);top:6%;left:18%;opacity:0.9;"></div>
+            <div class="tone-widget">
+              <div class="tone-pill tone-pill--friendly"><span>Friendly</span></div>
+              <div class="tone-pill tone-pill--formal"><span>Formal</span></div>
+              <div class="tone-pill tone-pill--playful"><span>Playful</span></div>
+              <div class="tone-pill tone-pill--educational"><span>Educational</span></div>
+              <div class="tone-pill tone-pill--analytic"><span>Analytic</span></div>
+              <div class="tone-pill tone-pill--story"><span>Storytelling</span></div>
+              <div class="tone-pill tone-pill--promo"><span>Promotional</span></div>
             </div>
           </div>
           <div class="bento-card-content">
-            <h3>Custom Branding</h3>
-            <p>Match your show's visual identity with custom colors, fonts, and layouts.</p>
+            <h3>Tone &amp; Style Control</h3>
+            <p>Preview how your newsletter feels in different tones &mdash; from friendly or playful to analytic, educational, and promotional &mdash; before you export.</p>
           </div>
         </div>
 
@@ -2268,7 +2560,7 @@
             </div>
           </div>
           <div class="bento-card-content">
-            <h3>Smart Timestamps</h3>
+            <h3>Smart Transcript</h3>
             <p>Auto-generated chapter markers and clickable timestamp links.</p>
           </div>
         </div>
@@ -2277,20 +2569,177 @@
         <div class="bento-card bento-6 reveal reveal-delay-3">
           <div class="bento-visual">
             <div class="float-orb" style="width:70px;height:70px;background:var(--ampersand);bottom:10%;right:10%;"></div>
-            <div class="chart-widget">
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
-              <div class="chart-col"></div>
+            <div class="lang-ticker">
+              <div class="lang-ticker-row">
+                <span class="lang-chip">English</span>
+                <span class="lang-chip">Mandarin</span>
+                <span class="lang-chip">Hindi</span>
+                <span class="lang-chip">Spanish</span>
+                <span class="lang-chip">French</span>
+                <span class="lang-chip">Arabic</span>
+                <span class="lang-chip">Bengali</span>
+                <span class="lang-chip">Portuguese</span>
+                <span class="lang-chip">Russian</span>
+                <span class="lang-chip">English</span>
+                <span class="lang-chip">Mandarin</span>
+                <span class="lang-chip">Hindi</span>
+                <span class="lang-chip">Spanish</span>
+                <span class="lang-chip">French</span>
+                <span class="lang-chip">Arabic</span>
+                <span class="lang-chip">Bengali</span>
+                <span class="lang-chip">Portuguese</span>
+                <span class="lang-chip">Russian</span>
+              </div>
+              <div class="lang-ticker-row reverse">
+                <span class="lang-chip">Japanese</span>
+                <span class="lang-chip">Korean</span>
+                <span class="lang-chip">German</span>
+                <span class="lang-chip">Italian</span>
+                <span class="lang-chip">Turkish</span>
+                <span class="lang-chip">Dutch</span>
+                <span class="lang-chip">Polish</span>
+                <span class="lang-chip">Swedish</span>
+                <span class="lang-chip">Japanese</span>
+                <span class="lang-chip">Korean</span>
+                <span class="lang-chip">German</span>
+                <span class="lang-chip">Italian</span>
+                <span class="lang-chip">Turkish</span>
+                <span class="lang-chip">Dutch</span>
+                <span class="lang-chip">Polish</span>
+                <span class="lang-chip">Swedish</span>
+              </div>
             </div>
           </div>
           <div class="bento-card-content">
-            <h3>Analytics</h3>
-            <p>Track open rates, clicks, and engagement across every newsletter.</p>
+            <h3>15+ Language Support</h3>
+            <p>Reach global audiences effortlessly.</p>
           </div>
+        </div>
+
+        <!-- Card 7: Email Templates -->
+        <div class="bento-card bento-7 reveal">
+          <div class="bento-visual">
+            <div class="float-orb" style="width:100px;height:100px;background:var(--cornflower);top:10%;right:8%;"></div>
+            <div class="float-orb" style="width:70px;height:70px;background:var(--ampersand);bottom:12%;left:5%;"></div>
+            <div class="template-widget">
+              <div class="template-card">
+                <div class="template-card-header">
+                  <div class="template-card-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+                  </div>
+                  <span class="template-card-name">Minimal</span>
+                </div>
+                <div class="template-card-lines">
+                  <div class="template-line" style="width:100%"></div>
+                  <div class="template-line" style="width:80%"></div>
+                  <div class="template-line" style="width:90%"></div>
+                  <div class="template-line" style="width:60%"></div>
+                </div>
+                <span class="template-card-tag">Clean layout</span>
+              </div>
+
+              <div class="template-card">
+                <div class="template-card-header">
+                  <div class="template-card-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                  </div>
+                  <span class="template-card-name">Editorial</span>
+                </div>
+                <div class="template-card-lines">
+                  <div class="template-line" style="width:100%"></div>
+                  <div class="template-line" style="width:70%"></div>
+                  <div class="template-line" style="width:95%"></div>
+                  <div class="template-line" style="width:50%"></div>
+                </div>
+                <span class="template-card-tag">Magazine feel</span>
+              </div>
+
+              <div class="template-card">
+                <div class="template-card-header">
+                  <div class="template-card-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l2.09 6.26L20 10.27l-4.91 3.82L16.18 22 12 17.77 7.82 22l1.09-7.91L4 10.27l5.91-1.01L12 2z"/></svg>
+                  </div>
+                  <span class="template-card-name">Bold</span>
+                </div>
+                <div class="template-card-lines">
+                  <div class="template-line" style="width:100%"></div>
+                  <div class="template-line" style="width:85%"></div>
+                  <div class="template-line" style="width:75%"></div>
+                  <div class="template-line" style="width:90%"></div>
+                </div>
+                <span class="template-card-tag">High impact</span>
+              </div>
+
+              <div class="template-card">
+                <div class="template-card-header">
+                  <div class="template-card-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                  </div>
+                  <span class="template-card-name">Friendly</span>
+                </div>
+                <div class="template-card-lines">
+                  <div class="template-line" style="width:100%"></div>
+                  <div class="template-line" style="width:90%"></div>
+                  <div class="template-line" style="width:65%"></div>
+                  <div class="template-line" style="width:80%"></div>
+                </div>
+                <span class="template-card-tag">Warm tone</span>
+              </div>
+            </div>
+          </div>
+          <div class="bento-card-content">
+            <h3>Email Templates</h3>
+            <p>Convert newsletters into ready-to-send email templates. Pick a style, customize, and deliver straight to your audience's inbox.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCALABILITY ===== -->
+  <section class="how-it-works scalability">
+    <div class="container">
+      <div class="section-label reveal">Use Cases</div>
+      <h2 class="section-title reveal">Scalability of <em>PodPress</em></h2>
+      <p class="section-desc reveal">PodPress fits every type of podcast operation, from solo shows to multi-client agencies.</p>
+
+      <div class="steps scalability-steps">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-number">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.2" fill="#111" />
+              <path d="M6.5 18.5C7.4 15.7 9.5 14 12 14s4.6 1.7 5.5 4.5" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" />
+              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            </svg>
+          </div>
+          <h3>Solo Creators</h3>
+          <p>Consistent weekly newsletters without the hassle.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-number">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="8" y="4" width="8" height="11" rx="3" ry="3" fill="#111" />
+              <rect x="10.5" y="15" width="3" height="4.5" rx="1.2" ry="1.2" fill="#111" />
+              <circle cx="12" cy="9.5" r="1.4" fill="#fff" />
+              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            </svg>
+          </div>
+          <h3>Brands &amp; In‑House Teams</h3>
+          <p>One tool to consolidate audio content into email, blog, and social copy.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-number">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="6.5" fill="none" stroke="#111" stroke-width="1.6" />
+              <path d="M12 5.5a9.5 9.5 0 010 13" fill="none" stroke="#111" stroke-width="1.1" />
+              <path d="M5.5 12h13" fill="none" stroke="#111" stroke-width="1.1" />
+              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            </svg>
+          </div>
+          <h3>Agencies &amp; Producers</h3>
+          <p>Scale content repurposing across multiple shows and clients.</p>
         </div>
       </div>
     </div>
@@ -2645,6 +3094,7 @@
       statEls.forEach(el => statObserver.observe(el));
     }
 
+    // === Draggable language badges (language orbit) ===
     // === Billing toggle ===
     const billingToggle = document.getElementById('billingToggle');
     const pricingSection = document.querySelector('.pricing');
