@@ -689,7 +689,7 @@
       margin-top: 64px;
     }
     .bento-card {
-      background: var(--bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 0;
@@ -858,11 +858,13 @@
       width: 64px;
       height: 64px;
       border-radius: 20px;
-      background: #f5f7ff;
+      background: rgba(58,103,255,0.06);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
+      color: var(--ink);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.10);
     }
     .scalability-steps .step-number svg {
       width: 32px;
@@ -1853,15 +1855,14 @@
       .mockup-content { grid-template-columns: 1fr; }
       .mockup-arrow { display: none; }
       .section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-      .footer-grid-5 { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .footer-grid-5 .footer-brand { grid-column: span 2; }
-      .footer-brand-desc { max-width: 100%; }
-      .footer-bottom-row { flex-direction: column; gap: 12px; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand { grid-column: span 2; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
       .cta-inner { padding: 48px 24px; }
     }
-    @media (max-width: 480px) {
-      .footer-grid-5 { grid-template-columns: 1fr; }
-      .footer-grid-5 .footer-brand { grid-column: span 1; }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
       .template-widget { gap: 8px; }
       .template-card { width: calc(50% - 6px); padding: 10px 8px; border-radius: 10px; }
       .template-card-icon { width: 20px; height: 20px; border-radius: 6px; }
@@ -1926,6 +1927,33 @@
     [data-theme="dark"] .export-chip       { background: rgba(22,26,34,0.75); border-color: var(--border); backdrop-filter: blur(10px); }
     [data-theme="dark"] .ts-bar            { background: rgba(22,26,34,0.6); border-color: var(--border); }
     [data-theme="dark"] .ts-time           { background: rgba(22,26,34,0.6); border-color: var(--border); }
+    [data-theme="dark"] .bento-card        { background: rgba(22,26,34,0.85); border-color: var(--border); backdrop-filter: blur(12px); box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(58,103,255,0.35); }
+    [data-theme="dark"] .bento-card:hover  { box-shadow: 0 28px 72px rgba(0,0,0,0.7), 0 0 0 1px rgba(58,103,255,0.5); }
+    [data-theme="dark"] .bento-1 .bento-visual::before { background: linear-gradient(135deg, #341810 0%, #3A2118 40%, #442319 100%); }
+    [data-theme="dark"] .bento-2 .bento-visual::before { background: linear-gradient(135deg, #141923 0%, #1A2230 50%, #202738 100%); }
+    [data-theme="dark"] .bento-3 .bento-visual::before { background: linear-gradient(135deg, #151B30 0%, #1C2540 50%, #223050 100%); }
+    [data-theme="dark"] .bento-4 .bento-visual::before { background: linear-gradient(135deg, #161922 0%, #1E222D 50%, #252A36 100%); }
+    [data-theme="dark"] .bento-5 .bento-visual::before { background: linear-gradient(135deg, #151B30 0%, #1C2540 50%, #223050 100%); }
+    [data-theme="dark"] .bento-6 .bento-visual::before { background: linear-gradient(135deg, #141923 0%, #1A2230 50%, #202738 100%); }
+    [data-theme="dark"] .tone-pill {
+      background: rgba(15,23,42,0.95);
+      border-color: rgba(148,163,184,0.7);
+      color: #E5E7EB;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    }
+    [data-theme="dark"] .lang-chip {
+      background: rgba(15,23,42,0.95);
+      border-color: rgba(148,163,184,0.7);
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    }
+    [data-theme="dark"] .scalability-steps .step-number {
+      background: radial-gradient(circle at 30% 20%, rgba(248,250,252,0.25), transparent 55%),
+                  radial-gradient(circle at 70% 80%, rgba(59,130,246,0.45), transparent 60%),
+                  rgba(15,23,42,0.95);
+      color:#ffffff; /* SVG icons (currentColor) become pure white */
+      box-shadow: 0 10px 32px rgba(15,23,42,0.85), 0 0 0 1px rgba(59,130,246,0.55);
+    }
     [data-theme="dark"] .template-card     { background: rgba(22,26,34,0.85); border-color: var(--border); backdrop-filter: blur(12px); }
     [data-theme="dark"] .template-card-name { color: var(--ink); }
     [data-theme="dark"] .template-card:hover .template-line:nth-child(odd) { background: rgba(58,103,255,0.35); }
@@ -2524,7 +2552,7 @@
         <!-- Card 4: Custom Branding -->
         <div class="bento-card bento-4 reveal reveal-delay-1">
           <div class="bento-visual">
-            <div class="float-orb" style="width:90px;height:90px;background:linear-gradient(135deg,#0F172A,#1D293B);top:6%;left:18%;opacity:0.9;"></div>
+            <div class="float-orb" style="width:70px;height:70px;background:var(--ampersand);bottom:10%;right:10%;"></div>
             <div class="tone-widget">
               <div class="tone-pill tone-pill--friendly"><span>Friendly</span></div>
               <div class="tone-pill tone-pill--formal"><span>Formal</span></div>
@@ -2533,11 +2561,12 @@
               <div class="tone-pill tone-pill--analytic"><span>Analytic</span></div>
               <div class="tone-pill tone-pill--story"><span>Storytelling</span></div>
               <div class="tone-pill tone-pill--promo"><span>Promotional</span></div>
+
             </div>
           </div>
           <div class="bento-card-content">
             <h3>Tone &amp; Style Control</h3>
-            <p>Preview how your newsletter feels in different tones &mdash; from friendly or playful to analytic, educational, and promotional &mdash; before you export.</p>
+            <p>Adjust the depth of detail to match your brand voice.</p>
           </div>
         </div>
 
@@ -2612,7 +2641,7 @@
           </div>
           <div class="bento-card-content">
             <h3>15+ Language Support</h3>
-            <p>Reach global audiences effortlessly.</p>
+            <p>Reach global audiences effortlessly worldwide.</p>
           </div>
         </div>
 
@@ -2688,8 +2717,8 @@
             </div>
           </div>
           <div class="bento-card-content">
-            <h3>Email Templates</h3>
-            <p>Convert newsletters into ready-to-send email templates. Pick a style, customize, and deliver straight to your audience's inbox.</p>
+            <h3>Templates</h3>
+            <p>Convert newsletters into ready-to-send email templates. Pick a style and deliver straight to your audience's inbox.</p>
           </div>
         </div>
       </div>
@@ -2706,10 +2735,11 @@
       <div class="steps scalability-steps">
         <div class="step-card reveal reveal-delay-1">
           <div class="step-number">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="8" r="3.2" fill="#111" />
-              <path d="M6.5 18.5C7.4 15.7 9.5 14 12 14s4.6 1.7 5.5 4.5" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" />
-              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            <svg width="182" height="164" viewBox="0 0 182 164" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M81.75 63.5834C96.7998 63.5834 109 51.3831 109 36.3334C109 21.2836 96.7998 9.08337 81.75 9.08337C66.7003 9.08337 54.5 21.2836 54.5 36.3334C54.5 51.3831 66.7003 63.5834 81.75 63.5834Z" stroke="currentColor" stroke-width="18.1667"/>
+              <path d="M136.25 154.417C146.283 154.417 154.417 146.283 154.417 136.25C154.417 126.217 146.283 118.083 136.25 118.083C126.217 118.083 118.083 126.217 118.083 136.25C118.083 146.283 126.217 154.417 136.25 154.417Z" stroke="currentColor" stroke-width="18.1667" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M136.25 154.417C146.283 154.417 154.417 146.283 154.417 136.25C154.417 126.217 146.283 118.083 136.25 118.083C126.217 118.083 118.083 126.217 118.083 136.25C118.083 146.283 126.217 154.417 136.25 154.417Z" fill="currentColor"/>
+              <path d="M84.8474 154.417H27.25C22.4319 154.417 17.8111 152.503 14.4042 149.096C10.9973 145.689 9.08334 141.068 9.08334 136.25C9.08334 126.614 12.9113 117.372 19.7251 110.558C26.5389 103.745 35.7805 99.9166 45.4167 99.9166H95.6293M154.417 136.25V72.6666L172.583 90.8333" stroke="currentColor" stroke-width="18.1667" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Solo Creators</h3>
@@ -2718,11 +2748,8 @@
 
         <div class="step-card reveal reveal-delay-2">
           <div class="step-number">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="8" y="4" width="8" height="11" rx="3" ry="3" fill="#111" />
-              <rect x="10.5" y="15" width="3" height="4.5" rx="1.2" ry="1.2" fill="#111" />
-              <circle cx="12" cy="9.5" r="1.4" fill="#fff" />
-              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            <svg width="199" height="173" viewBox="0 0 199 173" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M62.821 172.583C60.2474 172.583 58.0916 171.711 56.3536 169.967C54.6157 168.223 53.7437 166.068 53.7376 163.5V144.652C39.6585 142.684 27.7381 136.819 17.9766 127.058C8.21501 117.296 2.27148 105.6 0.145982 91.9688C-0.308184 89.3951 0.29737 87.0486 1.96265 84.9292C3.62793 82.8097 5.74737 81.75 8.32098 81.75C10.8946 81.75 13.0897 82.7734 14.9064 84.8202C16.7231 86.867 17.9342 89.2498 18.5397 91.9688C20.8106 102.112 26.0335 110.514 34.2085 117.175C42.3835 123.836 51.921 127.167 62.821 127.167H65.0918C65.8488 127.167 66.6057 127.091 67.3626 126.94C69.3307 129.967 71.4501 132.807 73.721 135.46C75.9918 138.112 78.414 140.571 80.9876 142.835C79.4738 143.29 77.9962 143.632 76.555 143.862C75.1138 144.092 73.5635 144.355 71.9043 144.652V163.5C71.9043 166.074 71.0323 168.232 69.2883 169.976C67.5443 171.72 65.3885 172.589 62.821 172.583ZM135.488 109C127.918 109 121.484 106.351 116.186 101.052C110.887 95.7535 108.238 89.3195 108.238 81.75V27.25C108.238 19.6806 110.887 13.2465 116.186 7.94792C121.484 2.64931 127.918 0 135.488 0C143.057 0 149.491 2.64931 154.79 7.94792C160.088 13.2465 162.738 19.6806 162.738 27.25V81.75C162.738 89.3195 160.088 95.7535 154.79 101.052C149.491 106.351 143.057 109 135.488 109ZM135.488 90.8333C138.061 90.8333 140.22 89.9613 141.964 88.2173C143.708 86.4733 144.577 84.3176 144.571 81.75V27.25C144.571 24.6764 143.699 22.5206 141.955 20.7827C140.211 19.0447 138.055 18.1727 135.488 18.1667C132.92 18.1606 130.764 19.0326 129.02 20.7827C127.276 22.5327 126.404 24.6885 126.404 27.25V81.75C126.404 84.3236 127.276 86.4824 129.02 88.2264C130.764 89.9704 132.92 90.8394 135.488 90.8333ZM58.2793 108.546C51.7696 107.335 46.359 104.231 42.0474 99.2354C37.7358 94.2396 35.577 88.4111 35.571 81.75V27.25C35.571 19.6806 38.2203 13.2465 43.5189 7.94792C48.8175 2.64931 55.2515 0 62.821 0C70.3904 0 76.8244 2.64931 82.1231 7.94792C87.4217 13.2465 90.071 19.6806 90.071 27.25V65.1729C88.5571 64.5674 87.0795 64.1526 85.6383 63.9285C84.1971 63.7044 82.6469 63.5894 80.9876 63.5833C73.5696 63.5833 67.287 66.1963 62.1397 71.4223C56.9925 76.6482 54.4189 82.9672 54.4189 90.3792C54.4189 93.407 54.7974 96.4347 55.5543 99.4625C56.3113 102.49 57.2196 105.518 58.2793 108.546ZM135.488 127.167C146.388 127.167 155.925 123.836 164.1 117.175C172.275 110.514 177.498 102.112 179.769 91.9688C180.374 89.2438 181.586 86.8579 183.402 84.8111C185.219 82.7643 187.414 81.7439 189.988 81.75C192.561 81.7561 194.681 82.8158 196.346 84.9292C198.011 87.0426 198.617 89.3891 198.163 91.9688C196.043 105.594 190.1 117.29 180.332 127.058C170.564 136.825 158.644 142.69 144.571 144.652V163.5C144.571 166.074 143.699 168.232 141.955 169.976C140.211 171.72 138.055 172.589 135.488 172.583C132.92 172.577 130.764 171.705 129.02 169.967C127.276 168.229 126.404 166.074 126.404 163.5V144.652C112.325 142.684 100.405 136.819 90.6432 127.058C80.8817 117.296 74.9381 105.6 72.8126 91.9688C72.3585 89.3951 72.964 87.0486 74.6293 84.9292C76.2946 82.8097 78.414 81.75 80.9876 81.75C83.5612 81.75 85.7564 82.7734 87.5731 84.8202C89.3897 86.867 90.6008 89.2498 91.2064 91.9688C93.4772 102.112 98.7001 110.514 106.875 117.175C115.05 123.836 124.588 127.167 135.488 127.167Z" fill="currentColor"/>
             </svg>
           </div>
           <h3>Brands &amp; In‑House Teams</h3>
@@ -2731,12 +2758,10 @@
 
         <div class="step-card reveal reveal-delay-3">
           <div class="step-number">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="6.5" fill="none" stroke="#111" stroke-width="1.6" />
-              <path d="M12 5.5a9.5 9.5 0 010 13" fill="none" stroke="#111" stroke-width="1.1" />
-              <path d="M5.5 12h13" fill="none" stroke="#111" stroke-width="1.1" />
-              <rect x="4" y="4" width="16" height="16" rx="6" ry="6" fill="none" stroke="#111" stroke-width="1.1" opacity="0.15" />
+            <svg width="198" height="198" viewBox="0 0 198 198" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M0 95.375C0 145.222 38.2454 186.145 86.9956 190.389C85.778 187.245 85.1543 183.903 85.1562 180.531V172.901C80.8916 169.4 76.5725 163.629 72.6553 155.141C69.9012 149.058 67.712 142.734 66.1153 136.25H85.1562V132.844C85.1521 129.342 85.8229 125.873 87.1319 122.625H63.3563C61.9743 113.608 61.291 104.497 61.3125 95.375C61.3125 85.7898 62.0414 76.627 63.3563 68.125H127.394C128.709 76.627 129.438 85.7898 129.438 95.375C129.438 98.8448 129.344 102.251 129.158 105.594H142.804C142.976 102.233 143.062 98.8267 143.062 95.375C143.062 85.9329 142.402 76.7769 141.162 68.125H172.472C175.559 76.8783 177.132 86.0934 177.125 95.375C177.133 103.499 175.93 111.579 173.555 119.348L173.589 119.416L177.629 116.31C180.936 113.713 185.033 112.329 189.238 112.386C190.232 106.868 190.75 101.179 190.75 95.375C190.75 42.7008 148.049 0 95.375 0C42.7008 0 0 42.7008 0 95.375ZM95.375 13.625C102.406 13.625 110.928 20.0833 118.095 35.6089C120.636 41.1271 122.85 47.4831 124.635 54.5H66.1153C67.9002 47.4831 70.1143 41.1203 72.6553 35.6089C79.8221 20.0833 88.3445 13.625 95.375 13.625ZM60.2906 29.9001C56.9525 37.1213 54.1866 45.4189 52.1088 54.5H24.5591C33.9904 38.1953 48.7461 25.6335 66.3469 18.9251C64.0482 22.4206 62.0212 26.0875 60.2838 29.8932M49.5814 68.125C48.2997 77.1514 47.6668 86.2581 47.6875 95.375C47.6875 104.817 48.3483 113.973 49.5882 122.625H18.2779C15.1913 113.872 13.6178 104.657 13.625 95.375C13.625 85.8239 15.26 76.6474 18.2779 68.125H49.5814ZM52.102 136.25C54.1798 145.331 56.9457 153.629 60.277 160.85C62.0687 164.733 64.092 168.425 66.3401 171.818C48.7429 165.11 33.9899 152.551 24.5591 136.25H52.102ZM124.396 18.9251C142 25.6322 156.758 38.1941 166.191 54.5H138.634C136.557 45.4189 133.791 37.1213 130.459 29.9001C128.722 26.0943 126.695 22.4206 124.396 18.9251ZM95.375 132.844C95.375 128.327 97.1694 123.995 100.363 120.801C103.557 117.607 107.889 115.812 112.406 115.812H149.875C154.392 115.812 158.724 117.607 161.918 120.801C165.112 123.995 166.906 128.327 166.906 132.844V137.449L183.863 124.403C189.462 120.098 197.569 124.09 197.569 131.154V182.18C197.569 189.251 189.462 193.243 183.863 188.931L166.906 175.899V180.538C166.904 185.054 165.109 189.384 161.916 192.577C158.722 195.769 154.391 197.562 149.875 197.562H112.406C107.889 197.562 103.557 195.768 100.363 192.574C97.1694 189.38 95.375 185.048 95.375 180.531V132.844Z" fill="currentColor"/>
             </svg>
+            
           </div>
           <h3>Agencies &amp; Producers</h3>
           <p>Scale content repurposing across multiple shows and clients.</p>
@@ -2754,34 +2779,34 @@
       <div class="testimonial-grid">
         <div class="testimonial-card reveal reveal-delay-1">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"PodPress completely changed my workflow. I used to spend 3 hours writing each newsletter. Now it takes 3 minutes."</p>
+          <p class="testimonial-text">"Went from MP3 to a Substack post in 6 minutes. The Highlights/Q&A draft reads like my show notes, just cleaner"</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">JM</div>
+            <div class="testimonial-avatar">RM</div>
             <div>
-              <div class="testimonial-name">Jake Morrison</div>
-              <div class="testimonial-role">Host, The Deep Dive Podcast</div>
+              <div class="testimonial-name">Riya Malhotra</div>
+              <div class="testimonial-role">Host of Creator Camp</div>
             </div>
           </div>
         </div>
         <div class="testimonial-card reveal reveal-delay-2">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"The RSS integration is seamless. I connected my feed once and now every episode auto-generates a newsletter."</p>
+          <p class="testimonial-text">"I batch-processed 4 episodes and scheduled a month of emails. Huge win for consistency."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">SR</div>
+            <div class="testimonial-avatar">BC</div>
             <div>
-              <div class="testimonial-name">Sofia Rodriguez</div>
-              <div class="testimonial-role">Creator, Tech Unfiltered</div>
+              <div class="testimonial-name">Ben Costa</div>
+              <div class="testimonial-role">Host of SaaS Shift</div>
             </div>
           </div>
         </div>
         <div class="testimonial-card reveal reveal-delay-3">
           <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="testimonial-text">"I've tried every repurposing tool out there. PodPress is the only one that actually sounds like me."</p>
+          <p class="testimonial-text">"Skimmable bullets + local links = more clicks from commuters. Opens up, replies up."</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">AK</div>
+            <div class="testimonial-avatar">LA</div>
             <div>
-              <div class="testimonial-name">Alex Kim</div>
-              <div class="testimonial-role">Founder, StartupFM</div>
+              <div class="testimonial-name">Luis Andrade</div>
+              <div class="testimonial-role">Host of Local Loop FM</div>
             </div>
           </div>
         </div>
@@ -2803,7 +2828,6 @@
         <span class="toggle-label active" data-plan="monthly">Monthly</span>
         <div class="toggle-switch" id="billingToggle"></div>
         <span class="toggle-label" data-plan="yearly">Yearly</span>
-        <span class="billing-save">Save 20%</span>
       </div>
 
       <div class="pricing-grid">
@@ -2928,47 +2952,47 @@
       <div class="faq-list">
         <div class="faq-item active reveal">
           <button class="faq-question">
-            How does the AI generate newsletters?
+            How fast can PodPress generate a newsletter?
             <span class="icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Our AI processes your podcast audio, transcribes it, and uses advanced language models to extract key insights, quotes, and takeaways. It then structures everything into a clean, professional newsletter format that matches your brand's tone.</div>
+            <div class="faq-answer-inner">Under 3 minutes on average, making it the fastest podcast to newsletter quick solution available.</div>
           </div>
         </div>
         <div class="faq-item reveal reveal-delay-1">
           <button class="faq-question">
-            What podcast platforms are supported?
+            Do I need to write or paste show notes?
             <span class="icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Any podcast with an RSS feed works with PodPress. That includes Apple Podcasts, Spotify, Google Podcasts, Anchor, Buzzsprout, Transistor, and hundreds more. If it has an RSS feed, we support it.</div>
+            <div class="faq-answer-inner">PodPress automatically extracts and structures everything - your podcast notes newsletter is ready instantly.</div>
           </div>
         </div>
         <div class="faq-item reveal reveal-delay-2">
           <button class="faq-question">
-            Can I customize the newsletter output?
+            What formats can I export?
             <span class="icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Absolutely. Pro and Team plans include full customization &mdash; your colors, fonts, logo, layout, and even the AI's writing tone. You can also edit any generated content before exporting.</div>
+            <div class="faq-answer-inner">Rich text & clean HTML. Ready for any newsletter tools for podcasters.</div>
           </div>
         </div>
         <div class="faq-item reveal reveal-delay-3">
           <button class="faq-question">
-            Which email platforms can I export to?
+            Can I use PodPress in other languages?
             <span class="icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">We support direct export to Mailchimp, ConvertKit, Substack, Beehiiv, Ghost, and any platform that accepts HTML or Markdown. One-click copy makes it effortless.</div>
+            <div class="faq-answer-inner">Yes, newsletters can be created in 15+ languages.</div>
           </div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question">
-            Is there a free trial?
+            Which integrations are live?
             <span class="icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Yes! Our Starter plan is completely free with 3 episodes per month. Paid plans also come with a 14-day free trial &mdash; no credit card required.</div>
+            <div class="faq-answer-inner">Beehiiv, Mailchimp, Discord, Telegram, X, and Medium.</div>
           </div>
         </div>
       </div>
@@ -2983,7 +3007,7 @@
         <h2 class="section-title">Stop writing newsletters.<br><em>Start generating them.</em></h2>
         <p class="section-desc" style="text-align:center;max-width:460px;margin:0 auto 40px;">Join thousands of podcasters who've reclaimed hours of their week. Your first newsletter is free.</p>
         <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-          <a href="#" class="btn btn-primary btn-large">Get Started Free &rarr;</a>
+          <a href="https://app.podpress.so/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Get Started Free &rarr;</a>
           <a href="#" class="btn btn-ghost btn-large">Watch Demo</a>
         </div>
       </div>
